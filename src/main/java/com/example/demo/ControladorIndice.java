@@ -1,7 +1,13 @@
 package com.example.demo;
 
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+
 public class ControladorIndice {
-	//joto
-	//uihfkjashfjhskjfp
-	//fer es joto as
+	@RequestMapping("/")
+	public String hola(Model modelo) {
+
+		return "index";
+	}
 }
