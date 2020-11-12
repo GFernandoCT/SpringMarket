@@ -1,7 +1,5 @@
 package com.example.demo;
 
-import java.util.List;
-
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,27 +12,29 @@ import org.springframework.web.servlet.ModelAndView;
 import entidades.Producto;
 import servicios.ProductoServicio;
 
+
 @Controller
 @RequestMapping(value = "/producto")
 public class ProductoControlador {
 
 	@Autowired
-	ProductoServicio productoServicio;
-
+	ProductoServicio productoService;
+	
+	/*
 	@RequestMapping(method = RequestMethod.GET, value = "/lista")
 	public ModelAndView listarProducto() {
 		ModelAndView mav = new ModelAndView();
-		List<Producto> lProducto = productoServicio.listarProducto();
+		List<Producto> lProducto = productoService.listarProducto();
 		mav.addObject("Productos", lProducto);
 		mav.setViewName("Producto/lista");
 		return mav;
-	}
+	}*/
 
 	@RequestMapping(method = RequestMethod.GET, value = "/perfil/{id}")
 	public ModelAndView perfilProfesor(@PathVariable("id") long idProducto, HttpServletRequest request) {
 
 		ModelAndView mav = new ModelAndView();
-		Producto producto = productoServicio.obtenerProducto(idProducto);
+		Producto producto = productoService.obtenerProducto(idProducto);
 		Boolean propietario = false;
 
 		if (request.getSession().getAttribute("idUsuario") != null) {

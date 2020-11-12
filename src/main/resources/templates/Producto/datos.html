@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="ISO-8859-1">
+	<title th:text="${producto.nombreProducto}"></title>
+	<link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+</head>
+<body>
+	<div>
+				<div>
+
+					<h1>
+						Datos de un <span th:text="${producto.nombreProducto}"></span>
+					</h1>
+					<div>
+						<b>Marca:</b> <span th:text="${producto.marcaProducto}"></span>
+					</div>
+					<div>
+						<b>Nombre del modelo:</b> <span th:text="${producto.nombreProducto}"></span>
+					</div>
+					<div>
+						<b>Categoría:</b> <span th:text="${producto.categoriaProducto}"></span>
+					</div>
+				</div>
+</body>
+</html>

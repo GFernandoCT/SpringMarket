@@ -17,16 +17,25 @@ public class ProductoDaoImpl extends DaoGenericoImpl<Producto> implements Produc
 	@Override
 	public Producto buscarPorNombre(String nombre) {
 		Query query =
-				this.em.createQuery("select u FROM Producto u where u.nombre= :nombre");
+				this.em.createQuery("select u FROM PRODUCTO u where u.nombre= :nombre");
 				query.setParameter("nombre", nombre);
 				Producto producto = (Producto) query.getSingleResult();
+				
+				if (producto != null) {
+					return producto;
+				}
+			
 		return null;
 	}
 
 	@Override
 	public List<Producto> listarProductos() {
-		Query query = this.em.createQuery("FROM Profesor");
+		Query query = this.em.createQuery("FROM PRODUCTO");
 		List<Producto> lProducto= query.getResultList();
+		
+		if (lProducto != null) {
+			return lProducto;
+		}
 		
 		return null;
 	}
