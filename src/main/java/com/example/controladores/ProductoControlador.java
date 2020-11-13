@@ -38,7 +38,7 @@ public class ProductoControlador {
 	}
 
 
-	@RequestMapping(method = RequestMethod.GET, value = "/datos/{id}")
+	@RequestMapping(method = RequestMethod.GET, value = "/{id}")
 	public ModelAndView perfilProducto(@PathVariable("id") long idProducto, HttpServletRequest request) {
 
 		ModelAndView mav = new ModelAndView();
