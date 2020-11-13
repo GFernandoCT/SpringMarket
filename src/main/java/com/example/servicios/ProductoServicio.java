@@ -1,8 +1,8 @@
-package servicios;
+package com.example.servicios;
 
 import java.util.List;
 
-import entidades.Producto;
+import com.example.entidades.Producto;
 
 public interface ProductoServicio {
 

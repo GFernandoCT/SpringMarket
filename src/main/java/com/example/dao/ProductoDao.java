@@ -1,8 +1,8 @@
-package dao;
+package com.example.dao;
 
 import java.util.List;
 
-import entidades.Producto;
+import com.example.entidades.Producto;
 
 public interface ProductoDao extends DaoGenerico<Producto>{
 

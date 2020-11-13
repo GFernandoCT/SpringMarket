@@ -1,4 +1,4 @@
-package servicios;
+package com.example.servicios;
 
 import java.util.List;
 
@@ -6,8 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import dao.ProductoDao;
-import entidades.Producto;
+import com.example.dao.ProductoDao;
+import com.example.entidades.Producto;
 
 @Transactional
 @Service

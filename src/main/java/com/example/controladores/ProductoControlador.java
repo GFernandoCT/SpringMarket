@@ -1,20 +1,21 @@
-package com.example.demo;
+package com.example.controladores;
 
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import entidades.Producto;
-import servicios.ProductoServicio;
+import com.example.entidades.Producto;
+import com.example.servicios.ProductoServicio;
 
 
 @Controller
-@RequestMapping(value = "/producto")
+@RequestMapping(value = "/Producto")
 public class ProductoControlador {
 
 	@Autowired
@@ -29,8 +30,14 @@ public class ProductoControlador {
 		mav.setViewName("Producto/lista");
 		return mav;
 	}*/
+	
+	@RequestMapping("/prueba")
+	public String hola(Model modelo) {
 
-	@RequestMapping(method = RequestMethod.GET, value = "/perfil/{id}")
+		return "Producto/Prueba";
+	}
+
+	@RequestMapping(method = RequestMethod.GET, value = "/datos/{id}")
 	public ModelAndView perfilProfesor(@PathVariable("id") long idProducto, HttpServletRequest request) {
 
 		ModelAndView mav = new ModelAndView();
@@ -44,7 +51,7 @@ public class ProductoControlador {
 
 		mav.addObject("propietario", propietario);
 		mav.addObject("producto", producto);
-		mav.setViewName("producto/perfil");
+		mav.setViewName("producto/datos");
 		return mav;
 	}
 
