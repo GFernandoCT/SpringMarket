@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+	<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="ISO-8859-1">
+	<title>Añadir un producto -SpringMarketACFC</title>
+	<link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+</head>
+<body>
+	<div class="d-flex-column m-5">
+	 	<div class="form-group">
+      		<label for="nombreProducto">Nombre del vehiculo</label>
+      		<input type="text" class="form-control" id="nombreProducto" placeholder="Rayo McQueen">
+    	</div>
+	 	<div class="form-group">
+      	<label for="descripcionProducto">Descripción del vehículo</label>
+      	<textarea class="form-control" id="descripcionProducto" rows="3"></textarea>
+      	</div>
+      	<div class="form-group">
+  			<label class="control-label">Input addons</label>
+  			<div class="form-group">
+    		<div class="input-group mb-3">
+      		<div class="input-group-prepend">
+        	<span class="input-group-text">$</span>
+      	</div>
+      		<input type="text" class="form-control" aria-label="Amount (to the nearest dollar)">
+      		<div class="input-group-append">
+        	<span class="input-group-text">.00</span>
+    	</div>
+    	</div>
+  		</div>
+		</div>
+	</div>
+</body>
+</html>
