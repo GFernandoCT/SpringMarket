@@ -38,7 +38,9 @@ public class Producto implements Serializable{
 	@Column(name= "DESCUENTO")
 	private int descuentoProducto;
 
-	
+	public Producto(){
+		   super();
+		}
 	
 	public Producto(String marcaProducto, String nombreProducto, String categoriaProducto, String descripcionProducto,
 			int precioProducto, int descuentoProducto) {
