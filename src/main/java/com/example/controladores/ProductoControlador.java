@@ -30,7 +30,7 @@ public class ProductoControlador {
 		ModelAndView mav = new ModelAndView();
 		List<Producto> lProducto = productoService.listarProducto();
 		mav.addObject("Productos", lProducto);
-		mav.setViewName("Producto/lista");
+		mav.setViewName("producto/lista");
 		return mav;
 	}
 	
