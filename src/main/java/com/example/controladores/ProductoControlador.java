@@ -1,5 +1,7 @@
 package com.example.controladores;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +18,9 @@ import com.example.entidades.Producto;
 import com.example.servicios.ProductoServicio;
 
 
+
+
+
 @Controller
 @RequestMapping(value = "/Producto")
 public class ProductoControlador {
@@ -23,15 +28,15 @@ public class ProductoControlador {
 	@Autowired
 	ProductoServicio productoService;
 	
-	/*
+	
 	@RequestMapping(method = RequestMethod.GET, value = "/lista")
 	public ModelAndView listarProducto() {
 		ModelAndView mav = new ModelAndView();
 		List<Producto> lProducto = productoService.listarProducto();
 		mav.addObject("Productos", lProducto);
-		mav.setViewName("Producto/lista");
+		mav.setViewName("producto/lista");
 		return mav;
-	}*/
+	}
 	
 	@RequestMapping("/prueba")
 	public String hola(Model modelo) {
