@@ -6,14 +6,23 @@
 	<link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
 </head>
 <body>
+	<form th:action="@{/Producto/crear}" method="post">
 	<div class="d-flex-column m-5">
+		<div class="form-group">
+      		<label for="marcaProducto">Marce del vehiculo</label>
+      		<input type="text" class="form-control" id="marcaProducto" placeholder="Mazda" name="marca">
+    	</div>
 	 	<div class="form-group">
       		<label for="nombreProducto">Nombre del vehiculo</label>
-      		<input type="text" class="form-control" id="nombreProducto" placeholder="Rayo McQueen">
+      		<input type="text" class="form-control" id="nombreProducto" placeholder="Rayo McQueen" name="nombre">
+    	</div>
+    	<div class="form-group">
+      		<label for="nombreProducto">Categoria del vehiculo</label>
+      		<input type="text" class="form-control" id="nombreProducto" placeholder="Deportivo" name="categoria">
     	</div>
 	 	<div class="form-group">
       	<label for="descripcionProducto">Descripción del vehículo</label>
-      	<textarea class="form-control" id="descripcionProducto" rows="3"></textarea>
+      	<textarea class="form-control" id="descripcionProducto" rows="3" name="descripcion"></textarea>
       	</div>
       	<div class="form-group">
   			<label class="control-label">Input addons</label>
@@ -22,13 +31,29 @@
       		<div class="input-group-prepend">
         	<span class="input-group-text">$</span>
       	</div>
-      		<input type="text" class="form-control" aria-label="Amount (to the nearest dollar)">
+      		<input type="text" class="form-control" aria-label="Amount (to the nearest dollar)" name="precio">
       		<div class="input-group-append">
         	<span class="input-group-text">.00</span>
     	</div>
     	</div>
   		</div>
 		</div>
+		      	<div class="form-group">
+  			<label class="control-label">Input addons</label>
+  			<div class="form-group">
+    		<div class="input-group mb-3">
+      		<div class="input-group-prepend">
+        	<span class="input-group-text">$</span>
+      	</div>
+      		<input type="text" class="form-control" aria-label="Amount (to the nearest dollar)" name="descuento">
+      		<div class="input-group-append">
+        	<span class="input-group-text">.00</span>
+    	</div>
+    	</div>
+  		</div>
+		</div>
+			<button type="submit" class="btn btn-primary">Añadir vehiculo</button>
+		</form>
 	</div>
 </body>
 </html>

@@ -38,6 +38,19 @@ public class Producto implements Serializable{
 	@Column(name= "DESCUENTO")
 	private int descuentoProducto;
 
+	
+	
+	public Producto(String marcaProducto, String nombreProducto, String categoriaProducto, String descripcionProducto,
+			int precioProducto, int descuentoProducto) {
+		super();
+		this.marcaProducto = marcaProducto;
+		this.nombreProducto = nombreProducto;
+		this.categoriaProducto = categoriaProducto;
+		this.descripcionProducto = descripcionProducto;
+		this.precioProducto = precioProducto;
+		this.descuentoProducto = descuentoProducto;
+	}
+
 	public Long getIdProducto() {
 		return idProducto;
 	}
