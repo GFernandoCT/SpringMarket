@@ -29,12 +29,12 @@ public class ProductoControlador {
 	ProductoServicio productoService;
 	
 	
-	@RequestMapping(method = RequestMethod.GET, value = "/lista")
+	@RequestMapping(method = RequestMethod.GET, value = "/Lista")
 	public ModelAndView listarProducto() {
 		ModelAndView mav = new ModelAndView();
 		List<Producto> lProducto = productoService.listarProducto();
 		mav.addObject("Productos", lProducto);
-		mav.setViewName("producto/lista");
+		mav.setViewName("Producto/Lista");
 		return mav;
 	}
 	

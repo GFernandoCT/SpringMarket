@@ -29,9 +29,9 @@
 			</tr>
 		</thead>
 		<tbody>
-			<tr th:if="${Productos.empty}">
+			<!--<tr th:if="${Productos.empty}">
 				<td colspan="2">No existen profesores en el sistema</td>
-			</tr>
+			</tr> -->
 			<tr th:each="profesor : ${Productos}">
 				<td><span th:text="${Productos.nombreProducto}"> Nombre </span></td>
 				<td><span th:text="${Productos.marcaProducto}">
