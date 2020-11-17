@@ -25,12 +25,7 @@ public class ProductoControlador {
 	@Autowired
 	ProductoServicio productoService;
 	
-<<<<<<< HEAD
-	
-	@RequestMapping(method = RequestMethod.GET, value = "/Lista")
-=======
 	@RequestMapping(method = RequestMethod.GET, value = "/lista")
->>>>>>> branch 'develop_bien' of https://github.com/GFernandoCT/SpringMarket.git
 	public ModelAndView listarProducto() {
 		ModelAndView mav = new ModelAndView();
 		List<Producto> lProducto = productoService.listarProducto();
