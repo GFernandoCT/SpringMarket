@@ -40,4 +40,18 @@ public class ProductoDaoImpl extends DaoGenericoImpl<Producto> implements Produc
 		return null;
 	}
 
+	@Override
+	public List<Producto> listarOcho() {
+		Query query = this.em.createQuery("select p FROM Producto p ORDER BY p.id");
+		List<Producto> lProducto= query.setMaxResults(8).getResultList();
+		
+		if(lProducto != null)
+			return lProducto;
+		else
+			return null;
+	}
+
+		
+	
+
 }

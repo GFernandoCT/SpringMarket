@@ -10,4 +10,6 @@ public interface ProductoDao extends DaoGenerico<Producto>{
 	
 	public List<Producto> listarProductos();
 	
+	public List<Producto> listarOcho();
+	
 }

@@ -31,7 +31,7 @@
 			<!--<tr th:if="${Productos.empty}">
 				<td colspan="2">No existen profesores en el sistema</td>
 			</tr> -->
-			<tr th:each="producto : ${Productos}">
+			<tr th:each="producto : ${ProductosOcho}">
 				<td><span th:text="${producto.nombreProducto}"> Nombre </span></td>
 				<td><span th:text="${producto.marcaProducto}">
 						Apellido </span></td>

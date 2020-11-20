@@ -15,4 +15,6 @@ public interface ProductoServicio {
 	public Producto modificarProducto(Producto producto);
 
 	public List<Producto> listarProducto();
+	
+	public List<Producto> listarOcho();
 }

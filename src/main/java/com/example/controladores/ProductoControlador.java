@@ -25,11 +25,20 @@ public class ProductoControlador {
 	@Autowired
 	ProductoServicio productoService;
 	
-	@RequestMapping(method = RequestMethod.GET, value = "/lista")
+	/*@RequestMapping(method = RequestMethod.GET, value = "/lista")
 	public ModelAndView listarProducto() {
 		ModelAndView mav = new ModelAndView();
 		List<Producto> lProducto = productoService.listarProducto();
 		mav.addObject("Productos", lProducto);
+		mav.setViewName("Producto/Lista");
+		return mav;
+	}*/
+	
+	@RequestMapping(method = RequestMethod.GET, value = "/lista")
+	public ModelAndView listarOcho() {
+		ModelAndView mav = new ModelAndView();
+		List<Producto> lProducto = productoService.listarOcho();
+		mav.addObject("ProductosOcho", lProducto);
 		mav.setViewName("Producto/Lista");
 		return mav;
 	}
