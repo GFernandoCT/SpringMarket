@@ -87,5 +87,12 @@ public class ProductoControlador {
 		return "redirect:/";
 	}
 
+	@RequestMapping(method = RequestMethod.GET,value = "/borrar/{id}")
+	public ModelAndView borrarProducto(@PathVariable("id") long idProducto, HttpServletRequest request) {
+		ModelAndView mav = new ModelAndView();
+		productoService.eliminarProducto(idProducto);
+		mav.setViewName("redirect:/");
+		return mav;
+	}
 	
 }
