@@ -8,7 +8,6 @@
 <body>
 	<div>
 				<div>
-
 					<h1>
 						Datos de un <span th:text="${producto.nombreProducto}"></span>
 					</h1>
@@ -30,6 +29,11 @@
 					<div>
 						<b>Descuento:</b> <span th:text="${producto.descuentoProducto}"></span>
 					</div>
+					<p th:text="${producto.idProducto}"></p>
 				</div>
+				<form th:action="@{/Producto/borrar/{id}(id=${producto.idProducto})}" method="get">
+				<button type="submit" class="btn btn-primary btn-sm">Borrar Producto</button>
+				</form>
+			</div>
 </body>
 </html>
