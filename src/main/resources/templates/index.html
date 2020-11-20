@@ -100,7 +100,7 @@
 	
 	<div class="fila1 d-flex justify-content-center">
 		<span th:each="producto : ${ProductosOcho}">
-		<div class="card border-primary mb-3 mx-1 w-25" style="max-width: 20rem;">
+		<div class="card border-primary mb-3 mx-1 ">
   			<div class="card-header"><span th:text="${producto.nombreProducto}">Nombre</span></div>
   			<div class="card-body">
     			<h4 class="card-title"><span th:text="${producto.marcaProducto}">Marca</span></h4>
@@ -108,6 +108,7 @@
     			<a class="d-flex justify-content-end" th:href="@{/Producto/1}">Saber más</a>
   			</div>
 		</div>
+		</span>
 	</div>
 </body>
 </html>
