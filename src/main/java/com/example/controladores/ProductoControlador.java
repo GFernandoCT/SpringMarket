@@ -34,6 +34,7 @@ public class ProductoControlador {
 		return mav;
 	}*/
 	
+	/*
 	@RequestMapping(method = RequestMethod.GET, value = "/index")
 	public ModelAndView listarOcho() {
 		ModelAndView mav = new ModelAndView();
@@ -41,7 +42,7 @@ public class ProductoControlador {
 		mav.addObject("ProductosOcho", lProducto);
 		mav.setViewName("/index");
 		return mav;
-	}
+	}*/
 	
 	@RequestMapping("/prueba")
 	public String hola(Model modelo) {

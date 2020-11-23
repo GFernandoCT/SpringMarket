@@ -28,22 +28,21 @@
 			float:left;
 		}
 		
-		.titulo .busqueda{
-			float:right;
-		}
 		
     </style>
 </head>
 <body>
     <div class="titulo">
-    	<p>PACO</p>
-    	<form class="busqueda form-inline my-2 my-lg-0">
+    	<h1 class="float-left mt-2 font-italic text-white">Legendary Motorsports</h1>
+    	<form class="busqueda form-inline my-2 my-lg-0 float-right">
       		<input class="form-control mr-sm-2" type="text" placeholder="Search">
       		<button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
     	</form>
+    	<a th:href="@{/Producto/crear}" type="button" class="btn btn-outline-primary text-white border-white mx-1 float-right">Añadir coche</a>
     </div>
     <br>
-		<th:block th:each="producto : ${ProductosOcho}">
+    <div class="clearfix">
+	<th:block th:each="producto : ${ProductosOcho}">
 		<div class="card border-primary mb-3 w-25 border-1 float-left">
   			<div class="card-header"><span th:text="${producto.nombreProducto}">Nombre</span></div>
   			<div class="card-body">
@@ -51,7 +50,11 @@
     			<p class="card-text"><span th:text="${producto.descripcionProducto}">Descripci&oacute;n</span></p>
     			<a class="d-flex justify-content-end" th:href="@{/Producto/{id}(id=${producto.idProducto})} ">Saber más</a>
   			</div>
+		</div>
 	</div>
+	</th:block>
+	<div class="clearfix">
+		
 	</div>
 </body>
 </html>
