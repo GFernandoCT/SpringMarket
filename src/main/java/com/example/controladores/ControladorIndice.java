@@ -16,7 +16,7 @@ import com.example.servicios.ProductoServicio;
 @Controller
 public class ControladorIndice {
 	
-	/*
+
 	@Autowired
 	ProductoServicio productoService;
 	
@@ -27,12 +27,11 @@ public class ControladorIndice {
 		mav.addObject("ProductosOcho", lProducto);
 		mav.setViewName("/index");
 		return mav;
-	}*/
+	}
 	
-
-	@GetMapping({"/","/index"})
+	@GetMapping({"/"})
 	public String index(Model modelo) {
 
-		return "/index";
+		return "redirect:/index";
 	}
 }
