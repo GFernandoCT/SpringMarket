@@ -46,6 +46,10 @@ public class ProductoServiceImpl implements ProductoServicio{
 	public List<Producto> listarOcho() {
 		return productoDao.listarOcho();
 	}
-	
+
+	@Override
+	public List<Producto> buscarPorNombre(String nombre) {
+		return productoDao.buscarPorNombre(nombre);
+	}
 	
 }
