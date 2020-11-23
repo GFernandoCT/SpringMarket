@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="es" xmlns:th="http://www.thymeleaf.org">
 <head>
-	<meta charset="ISO-8859-1">
+	<meta charset="UTF-8">
 	<title th:text="${producto.nombreProducto}"></title>
 	<link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
 </head>
@@ -31,9 +31,7 @@
 					</div>
 					<p th:text="${producto.idProducto}"></p>
 				</div>
-				<form th:action="@{/Producto/borrar/{id}(id=${producto.idProducto})}" method="get">
-				<button type="submit" class="btn btn-primary btn-sm">Borrar Producto</button>
-				</form>
+				<a th:href="@{/Producto/borrar/{id}(id=${producto.idProducto})}" type="button" class="btn btn-primary btn-sm">Borrar Producto</a>
 			</div>
 </body>
 </html>
