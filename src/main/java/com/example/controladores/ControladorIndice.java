@@ -4,11 +4,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -33,16 +35,22 @@ public class ControladorIndice {
 		return mav;
 	}
 	
-	@RequestMapping(value="/buscar", method=RequestMethod.GET)
-	public String buscar_get() {
-		
-		return "formulario";
+	@GetMapping("/buscar")
+	public String buscar_get(Model model, HttpSession session) {
+		@SuppressWarnings("unchecked")
+		List<Producto> busquedad = (List<Producto>) session.getAttribute("NOMBRE");
+		if(busquedad == null) {
+			busquedad = new ArrayList<Producto>();
+		}
+		model.addAttribute("sessionBusquedad", busquedad);
+		return "buscar";
 	}
 	
-	@RequestMapping(method = RequestMethod.POST, value = "/buscar")
-	public String buscarNombre(@RequestParam String nombre) {	
-		
-		return "redirect:/buscar";
+	@PostMapping("/buscar")
+	public String buscar_post(@RequestParam("nombre") String nombre, HttpServletRequest request) {
+		List<Producto> busquedad=productoService.buscarPorNombre(nombre);
+		request.getSession().setAttribute("NOMBRE",busquedad);
+		return "redirect:/Producto/prueba";
 	}
 	
 	
