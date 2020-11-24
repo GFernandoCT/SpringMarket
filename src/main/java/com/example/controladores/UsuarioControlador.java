@@ -19,7 +19,7 @@ public class UsuarioControlador {
 	@Autowired
 	UsuarioServicio usuarioService;
 	
-	@GetMapping("/registro")
+	@GetMapping("/login")
 	public String showForm() {
 		return "usuario/registro";
 	}
