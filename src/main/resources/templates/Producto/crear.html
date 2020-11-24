@@ -1,15 +1,44 @@
 <!DOCTYPE html>
 	<html lang="es" xmlns:th="http://www.thymeleaf.org">
 <head>
-	<meta charset="ISO-8859-1">
-	<title>Añadir un producto -SpringMarketACFC</title>
+	<meta charset="UTF-8">
+	<title>AÃ±adir un producto -SpringMarketACFC</title>
 	<link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
 </head>
-<body>
+<body class="table-primary">
+<nav class="navbar navbar-expand-lg navbar-dark table-dark">
+    <div class="titulo">
+    	<h3 class="float-left font-italic text-white">Legendary Motorsports</h3>
+    </div>
+    <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+    	<span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="funcionalidades position-relative float-right w-100">
+    <div class="collapse navbar-collapse" id="navbarColor01">
+    		<ul class="navbar-nav ml-auto float-right">
+      			<li class="nav-item">
+      				<a th:href="@{/}" class="nav-link">Inicio
+          				<span class="sr-only">(current)</span>
+        			</a>
+      			</li>
+      			<li class="nav-item">
+        			<a class="nav-link active" th:href="@{/Producto/crear}">AÃ±adir vehÃ­culo</a>
+      			</li>
+      			<li class="nav-item">
+        			<a class="nav-link" th:href="@{/usuario/login}">Registrarse</a>
+      			</li>
+      		</ul>
+      		<form class="form-inline my-2 my-lg-0">
+      <input class="form-control mr-sm-2" type="text" placeholder="Search">
+      <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
+    </form>
+    </div>
+    </div>
+    </nav>
 	<form th:action="@{/Producto/crear}" method="post">
 	<div class="d-flex-column m-5">
 		<div class="form-group">
-      		<label for="marcaProducto">Marce del vehiculo</label>
+      		<label for="marcaProducto">Marca del vehiculo</label>
       		<input type="text" class="form-control" id="marcaProducto" placeholder="Mazda" name="marca">
     	</div>
 	 	<div class="form-group">
@@ -21,39 +50,39 @@
       		<input type="text" class="form-control" id="nombreProducto" placeholder="Deportivo" name="categoria">
     	</div>
 	 	<div class="form-group">
-      	<label for="descripcionProducto">Descripción del vehículo</label>
+      	<label for="descripcionProducto">DescripciÃ³n del vehÃ­culo</label>
       	<textarea class="form-control" id="descripcionProducto" rows="3" name="descripcion"></textarea>
       	</div>
       	<div class="form-group">
-  			<label class="control-label">Input addons</label>
+  			<label class="control-label">Precio</label>
   			<div class="form-group">
     		<div class="input-group mb-3">
       		<div class="input-group-prepend">
-        	<span class="input-group-text">$</span>
       	</div>
       		<input type="text" class="form-control" aria-label="Amount (to the nearest dollar)" name="precio">
       		<div class="input-group-append">
         	<span class="input-group-text">.00</span>
+        	<span class="input-group-text">$</span>
     	</div>
     	</div>
   		</div>
 		</div>
 		      	<div class="form-group">
-  			<label class="control-label">Input addons</label>
+  			<label class="control-label">Descuento</label>
   			<div class="form-group">
     		<div class="input-group mb-3">
       		<div class="input-group-prepend">
-        	<span class="input-group-text">$</span>
       	</div>
       		<input type="text" class="form-control" aria-label="Amount (to the nearest dollar)" name="descuento">
       		<div class="input-group-append">
-        	<span class="input-group-text">.00</span>
+        	<span class="input-group-text">%</span>
     	</div>
     	</div>
   		</div>
 		</div>
-			<button type="submit" class="btn btn-primary">Añadir vehiculo</button>
+		<div class="d-flex justify-content-center">
+			<button type="submit" class="btn btn-primary jusitfy-content-center">AÃ±adir vehiculo</button>
+		</div>
 		</form>
-	</div>
 </body>
 </html>

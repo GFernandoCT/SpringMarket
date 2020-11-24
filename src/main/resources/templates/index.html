@@ -6,16 +6,12 @@
     <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
     <title>SpringMarketACFC</title>
     <style type="text/css">
-    
-    	body{
-    		padding: 15px;
-    	}
     	
     	.titulo{
     		text-align:left;
     		color:white;
     		padding:15px;
-    		border:solid black 1px;
+    		border:solid white 2px;
     		border-radius:15px;
     		background:-moz-linear-gradient(bottom, #898989, #010101);
 			background:-webkit-linear-gradient(bottom, #898989, #010101);
@@ -23,38 +19,81 @@
 			background:-o-linear-gradient(bottom, #898989, #010101);
 			overflow:hidden;
     	}
-    	
-		.titulo p{
-			float:left;
-		}
 		
 		
     </style>
 </head>
+<<<<<<< HEAD
 <body>
     <div class="titulo">
+=======
+<body class="table-primary">
+<nav class="navbar navbar-expand-lg navbar-dark table-dark">
+    <div class="titulo">
+    	<h3 class="float-left font-italic text-white">Legendary Motorsports</h3>
+    	
+    	<!-- <div class="funcionalidades float-right d-block">
+    	<a th:href="@{/usuario/login}" type="button" class="btn btn-outline-primary text-white border-white mx-1 float-left">Registrarse</a>
+    	<a th:href="@{/Producto/crear}" type="button" class="btn btn-outline-primary text-white border-white mx-1 float-left">Añadir coche</a>
+=======
+<<<<<<< HEAD
+    	<p>PACO</p>
+    	<form class="busqueda form-inline my-2 my-lg-0" th:action="@{/buscar}" method="post">
+=======
+>>>>>>> branch 'develop_bien' of https://github.com/GFernandoCT/SpringMarket.git
     	<h1 class="float-left mt-2 font-italic text-white">Legendary Motorsports</h1>
+<<<<<<< HEAD
     	<form class="busqueda form-inline my-2 my-lg-0 float-right" th:action="@{/buscar}" method="post">
       		<input class="form-control mr-sm-2" type="text" placeholder="Search" name="nombre">
       		<button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
     	</form>
     	<a th:href="@{/Producto/crear}" type="button" class="btn btn-outline-primary text-white border-white mx-1 float-right">Añadir coche</a>
+=======
+>>>>>>> branch 'develop_bien' of https://github.com/GFernandoCT/SpringMarket.git
+    	<form class="busqueda form-inline my-2 my-lg-0 float-right">
+>>>>>>> branch 'develop_bien' of https://github.com/GFernandoCT/SpringMarket.git
+      		<input class="form-control mr-sm-2" type="text" placeholder="Search">
+      		<button class="btn btn-secondary my-2 my-sm-0 float-right" type="submit">Search</button>
+    	</form> -->
+>>>>>>> branch 'develop_bien' of https://github.com/GFernandoCT/SpringMarket.git
     </div>
+    <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+    	<span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="funcionalidades position-relative float-right w-100">
+    <div class="collapse navbar-collapse" id="navbarColor01">
+    		<ul class="navbar-nav ml-auto float-right">
+      			<li class="nav-item active">
+      				<a th:href="@{/}" class="nav-link">Inicio
+          				<span class="sr-only">(current)</span>
+        			</a>
+      			</li>
+      			<li class="nav-item">
+        			<a class="nav-link" th:href="@{/Producto/crear}">Añadir vehículo</a>
+      			</li>
+      			<li class="nav-item">
+        			<a class="nav-link" th:href="@{/usuario/login}">Registrarse</a>
+      			</li>
+      		</ul>
+      		<form class="form-inline my-2 my-lg-0">
+      <input class="form-control mr-sm-2" type="text" placeholder="Search">
+      <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
+    </form>
+    </div>
+    </div>
+    </nav>
     <br>
-    <div class="clearfix">
 	<th:block th:each="producto : ${ProductosOcho}">
-		<div class="card border-primary mb-3 w-25 border-1 float-left">
-  			<div class="card-header"><span th:text="${producto.nombreProducto}">Nombre</span></div>
+	<div class="productos position-relative w-25 p-2 float-left">
+		<div class="card border-primary mb-3 border-1">
+  			<div class="card-header"><span th:text="${producto.marcaProducto}">Nombre</span></div>
   			<div class="card-body">
-    			<h4 class="card-title"><span th:text="${producto.marcaProducto}">Marca</span></h4>
+    			<h4 class="card-title"><span th:text="${producto.nombreProducto}">Marca</span></h4>
     			<p class="card-text"><span th:text="${producto.descripcionProducto}">Descripci&oacute;n</span></p>
     			<a class="d-flex justify-content-end" th:href="@{/Producto/{id}(id=${producto.idProducto})} ">Saber más</a>
   			</div>
 		</div>
-	</div>
+		</div>
 	</th:block>
-	<div class="clearfix">
-		
-	</div>
 </body>
 </html>
