@@ -15,16 +15,15 @@ import com.example.entidades.Producto;
 public class ProductoDaoImpl extends DaoGenericoImpl<Producto> implements ProductoDao{
 
 	@Override
-	public Producto buscarPorNombre(String nombre) {
+	public List<Producto> buscarPorNombre(String nombre) {
 		Query query =
-				this.em.createQuery("select u FROM PRODUCTO u where u.nombre= :nombre");
-				query.setParameter("nombre", nombre);
-				Producto producto = (Producto) query.getSingleResult();
+				this.em.createQuery("select u FROM PRODUCTO u where u.nombre=: nombre");
+				query.setParameter("nombre", "%" + nombre + "%");
+				List<Producto> productos = query.getResultList();
 				
-				if (producto != null) {
-					return producto;
-				}
-			
+				if(productos != null)
+					return productos;
+
 		return null;
 	}
 
@@ -49,9 +48,7 @@ public class ProductoDaoImpl extends DaoGenericoImpl<Producto> implements Produc
 			return lProducto;
 		else
 			return null;
-	}
-
-		
+	}		
 	
 
 }

@@ -6,7 +6,7 @@ import com.example.entidades.Producto;
 
 public interface ProductoDao extends DaoGenerico<Producto>{
 
-	public Producto buscarPorNombre(String nombre);
+	public List<Producto> buscarPorNombre(String nombre);
 	
 	public List<Producto> listarProductos();
 	
