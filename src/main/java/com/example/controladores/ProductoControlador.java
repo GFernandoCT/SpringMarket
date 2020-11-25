@@ -33,28 +33,7 @@ public class ProductoControlador {
 		mav.setViewName("Producto/Lista");
 		return mav;
 	}*/
-	
-<<<<<<< HEAD
-	/*
-	@RequestMapping(method = RequestMethod.GET, value = "/index")
-=======
-	/*
-	@RequestMapping(method = RequestMethod.GET, value = "/index")
->>>>>>> branch 'develop_bien' of https://github.com/GFernandoCT/SpringMarket.git
-	public ModelAndView listarOcho() {
-		ModelAndView mav = new ModelAndView();
-		List<Producto> lProducto = productoService.listarOcho();
-		mav.addObject("ProductosOcho", lProducto);
-		mav.setViewName("/index");
-		return mav;
-<<<<<<< HEAD
-	}
-	*/
-=======
-	}*/
->>>>>>> branch 'develop_bien' of https://github.com/GFernandoCT/SpringMarket.git
-	
-	@RequestMapping("/prueba")
+		@RequestMapping("/prueba")
 	public String hola(Model modelo) {
 		return "Producto/Prueba";
 	}
