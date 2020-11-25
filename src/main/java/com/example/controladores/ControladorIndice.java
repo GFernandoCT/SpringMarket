@@ -38,19 +38,19 @@ public class ControladorIndice {
 	@GetMapping("/buscar")
 	public String buscar_get(Model model, HttpSession session) {
 		@SuppressWarnings("unchecked")
-		List<Producto> busquedad = (List<Producto>) session.getAttribute("NOMBRE");
+		List<Producto> busquedad = productoService.buscarPorNombre((String) session.getAttribute("NOMBRE"));
 		if(busquedad == null) {
 			busquedad = new ArrayList<Producto>();
 		}
 		model.addAttribute("sessionBusquedad", busquedad);
-		return "buscar";
+		return "Producto/buscar";
 	}
+	
 	
 	@PostMapping("/buscar")
 	public String buscar_post(@RequestParam("nombre") String nombre, HttpServletRequest request) {
-		List<Producto> busquedad=productoService.buscarPorNombre(nombre);
-		request.getSession().setAttribute("NOMBRE",busquedad);
-		return "redirect:/Producto/prueba";
+		request.getSession().setAttribute("NOMBRE",nombre);
+		return "redirect:/buscar";
 	}
 	
 	
