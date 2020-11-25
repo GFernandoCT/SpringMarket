@@ -1,14 +1,16 @@
 <!DOCTYPE html>
-<html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="ISO-8859-1">
 <title>Insert title here</title>
+<link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
 </head>
-<body>
-	<tr th:each="producto : ${ProductosOcho}">
-		<td><span th:text="${producto.nombreProducto}"> Nombre </span></td>
-		<td><span th:text="${producto.marcaProducto}">
-				Apellido </span></td>
-	</tr>
+<body>	
+	<div>
+        <h2>Productos</h2>
+        <ul th:each="producto : ${sessionBusquedad}">
+            <li th:text="${producto.nombre}">productos</li>
+        </ul>
+    </div>
 </body>
 </html>

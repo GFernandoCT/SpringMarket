@@ -33,7 +33,8 @@ public class ProductoControlador {
 		mav.setViewName("Producto/Lista");
 		return mav;
 	}*/
-		@RequestMapping("/prueba")
+	
+	@RequestMapping("/prueba")
 	public String hola(Model modelo) {
 		return "Producto/Prueba";
 	}
