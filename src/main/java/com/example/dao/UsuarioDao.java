@@ -10,4 +10,6 @@ public interface UsuarioDao extends DaoGenerico<Usuario>{
 	public Usuario buscarPorNombre(String nombre);
 	
 	public List<Usuario> listarUsuario();
+
+	public Usuario iniciar(String nombreUsuario, String contraseña);
 }

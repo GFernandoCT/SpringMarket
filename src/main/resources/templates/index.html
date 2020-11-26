@@ -66,9 +66,14 @@
       			<li class="nav-item">
         			<a class="nav-link" th:href="@{/Producto/crear}">A&ntilde;adir vehículo</a>
       			</li>
-      			<li class="nav-item">
-        			<a class="nav-link" th:href="@{/usuario/login}">Registrarse</a>
+      			<th:block th:switch="${idUsuario}">
+      			<li th:case="'1'" class="nav-item">
+        			<a class="nav-link" th:href="@{/usuario/myprofile}">Mi perfil</a>
       			</li>
+      			<li th:case="*" class="nav-item">
+        			<a class="nav-link" th:href="@{/usuario/inicio}">Iniciar sesion / Registrarse</a>
+      			</li>
+      			</th:block>
       		</ul>
       		<form class="form-inline my-2 my-lg-0" th:action="@{/buscar}" method="post">
       			<input class="form-control mr-sm-2" type="text" placeholder="Search" name="nombre">

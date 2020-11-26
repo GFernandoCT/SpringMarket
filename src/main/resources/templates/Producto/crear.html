@@ -25,11 +25,11 @@
         			<a class="nav-link active" th:href="@{/Producto/crear}">Añadir vehículo</a>
       			</li>
       			<li class="nav-item">
-        			<a class="nav-link" th:href="@{/usuario/login}">Registrarse</a>
+        			<a class="nav-link" th:href="@{/usuario/inicio}">Iniciar sesion / Registrarse</a>
       			</li>
       		</ul>
-      		<form class="form-inline my-2 my-lg-0">
-      <input class="form-control mr-sm-2" type="text" placeholder="Search">
+      		<form class="form-inline my-2 my-lg-0" th:action="@{/buscar}" method="post">
+      <input class="form-control mr-sm-2" type="text" placeholder="Search" name="nombre">
       <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
     </form>
     </div>
