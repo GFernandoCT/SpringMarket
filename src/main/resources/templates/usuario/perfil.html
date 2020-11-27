@@ -25,7 +25,7 @@
         			<a class="nav-link" th:href="@{/Producto/crear}">Añadir vehículo</a>
       			</li>
       			<li class="nav-item">
-        			<a class="nav-link" th:href="@{/usuario/inicio}">Iniciar sesion / Registrarse</a>
+        			<a class="nav-link" th:href="@{/usuario/login}">Mi perfil</a>
       			</li>
       		</ul>
       		<form class="form-inline my-2 my-lg-0" th:action="@{/buscar}" method="post">
@@ -56,5 +56,8 @@
 				</div>
 				</div>
 			</div>
+			<div class="d-flex justify-content-center">
+					<a type="button" th:href="@{/usuario/logOut}" class="btn btn-primary jusitfy-content-center float-right">Cerrar sesion</a>
+				</div>
 </body>
 </html>

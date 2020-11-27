@@ -66,12 +66,9 @@
       			<li class="nav-item">
         			<a class="nav-link" th:href="@{/Producto/crear}">A&ntilde;adir vehículo</a>
       			</li>
-      			<th:block th:switch="${idUsuario}">
-      			<li th:case="'1'" class="nav-item">
-        			<a class="nav-link" th:href="@{/usuario/myprofile}">Mi perfil</a>
-      			</li>
-      			<li th:case="*" class="nav-item">
-        			<a class="nav-link" th:href="@{/usuario/inicio}">Iniciar sesion / Registrarse</a>
+
+      			<li class="nav-item">
+        			<a class="nav-link" th:href="@{/usuario/login}">Mi perfil</a>
       			</li>
       			</th:block>
       		</ul>

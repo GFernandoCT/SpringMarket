@@ -23,17 +23,23 @@ public class UsuarioControlador {
 	@Autowired
 	UsuarioServicio usuarioService;
 	
-	@GetMapping("/login")
+	@GetMapping("/signup")
 	public String showForm() {
 		return "usuario/registro";
 	}
 	
-	@GetMapping("/inicio")
-	public String inicio() {
-		return "usuario/inicio";
+	@GetMapping("/login")
+	public String inicio(HttpServletRequest request) {
+		
+		HttpSession session = request.getSession();
+
+		if (session != null && session.getAttribute("idUsuario") != null)
+			return "redirect:/usuario/perfil/" + session.getAttribute("idUsuario");
+		else
+			return "/usuario/inicio";
 	}
 	
-	@PostMapping("/inicio")
+	@PostMapping("/login")
 		public String iniciarSesion(
 				@RequestParam ("nombre") String nombre,
 				@RequestParam ("contraseña") String contraseña,
@@ -53,7 +59,7 @@ public class UsuarioControlador {
 		if (session != null && session.getAttribute("idUsuario") != null)
 			return "redirect:/usuario/perfil/" + session.getAttribute("idUsuario");
 		else
-			return "redirect:/";
+			return "redirect:/usuario/login";
 	}
 	
 	@RequestMapping(method = RequestMethod.GET, value = "/perfil/{id}")
@@ -92,4 +98,9 @@ public class UsuarioControlador {
 		return "redirect:/index";
 	}
 	
+	@GetMapping("/logOut")
+	public String destroySession(HttpServletRequest request) {
+		request.getSession().invalidate();
+	return "redirect:/index";
+	}
 }

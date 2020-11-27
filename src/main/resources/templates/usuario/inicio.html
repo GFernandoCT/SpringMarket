@@ -25,7 +25,7 @@
         			<a class="nav-link" th:href="@{/Producto/crear}">A&ntilde;adir vehículo</a>
       			</li>
       			<li class="nav-item">
-        			<a class="nav-link" th:href="@{/usuario/inicio}">Iniciar sesion / Registrarse</a>
+        			<a class="nav-link" th:href="@{/usuario/login}">Mi perfil</a>
       			</li>
       		</ul>
       		<form class="form-inline my-2 my-lg-0" th:action="@{/buscar}" method="post">
@@ -35,7 +35,7 @@
     </div>
     </div>
     </nav>	
-    <form th:action="@{/usuario/inicio}" method="post">
+    <form th:action="@{/usuario/login}" method="post">
     <div class="d-flex m-5 justify-content-center table-dark">
 		<div class="d-flex-column m-5 w-50 float-left">
 			<div class="form-group">
@@ -47,7 +47,7 @@
 				<input type="text" class="form-control" id="contraseñaUsuario" name="contraseña">
 			</div>
 		<div class="form-group">
-		<a class="text-white float-right" th:href="@{/usuario/login}">Registrarse</a>
+		<a class="text-white float-right" th:href="@{/usuario/signup}">Registrarse</a>
 		</div>
 		</div>
 	</div>
