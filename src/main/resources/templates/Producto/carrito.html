@@ -2,7 +2,7 @@
 <html lang="es" xmlns:th="http://www.thymeleaf.org">
 <head>
 	<meta charset="UTF-8">
-	<title th:text="${producto.nombreProducto}"></title>
+	<title>gj</title>
 	<link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
 </head>
 <body class="table-primary">
@@ -35,38 +35,7 @@
     </div>
     </div>
     </nav>
-    <div class="d-flex m-5 justify-content-center">
-	<div class="d-flex-column m-5">
-				<div>
-						<form th:action="@{/Producto/añadirProducto}" method="post">
-					<h1>
-						Datos de un <span th:text="${producto.nombreProducto}"></span>
-					</h1>
-					<div>
-						<b>Marca:</b> <span th:text="${producto.marcaProducto}"></span>
-					</div>
-					<div>
-						<b>Nombre del modelo:</b> <span th:text="${producto.nombreProducto}" name="nombreCarro" th:value="${producto.nombreProducto}"></span>
-					</div>
-					<div>
-						<b>Categor&iacute;a:</b> <span th:text="${producto.categoriaProducto}"></span>
-					</div>
-					<div>
-						<b>Descripci&oacute;n:</b> <span th:text="${producto.descripcionProducto}"></span>
-					</div>
-					<div>
-						<b>Precio:</b> <span th:text="${producto.precioProducto}"></span>
-					</div>
-					<div>
-						<b>Descuento:</b> <span th:text="${producto.descuentoProducto}"></span>
-					</div>
-				<br>
-				<p name="cantidadCarro" value="1"></p>
-					<button type="submit" class="btn btn-primary btn-sm float-left" name="id" th:value="${producto.idProducto}">A&ntilde;adir al carrito</button>
-				</form>
-				<a th:href="@{/Producto/borrar/{id}(id=${producto.idProducto})}" type="button" class="btn btn-danger btn-sm float-right">Borrar Producto</a>
-				</div>
-				</div>
-			</div>
+	
+	<p th:text="${sessionId}"></p>
 </body>
 </html>
