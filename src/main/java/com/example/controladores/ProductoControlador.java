@@ -105,17 +105,19 @@ public class ProductoControlador {
 	@PostMapping("/añadirProducto")
 	public String añadirAlCarrito(
 			@RequestParam("id") Long id, 
-			@RequestParam("nombreCarro") String nombreCarro,
-			@RequestParam("cantidadCarro") Long cantidadCarro,
+			@RequestParam("cantidadCarro") int cantidad,
 			HttpServletRequest request) {
 		@SuppressWarnings("unchecked")
 		List<String> usuarios = (List<String>) request.getAttribute("USUARIOS");
 		if(usuarios == null) {
 			usuarios = new ArrayList<>();
 		}
+		
+		Producto producto = productoService.obtenerProducto(id);
+		
 		request.getSession().setAttribute("ID",id);
-		request.getSession().setAttribute("nombreCarro", nombreCarro);
-		request.getSession().setAttribute("cantidadCarro", cantidadCarro);
+		request.getSession().setAttribute("nombreCarro", producto.getNombreProducto());
+		request.getSession().setAttribute("cantidadCarro", cantidad);
 		return "redirect:/Producto/carrito";
 	}
 }
