@@ -92,13 +92,13 @@ public class ProductoControlador {
 	
 	@GetMapping("/carrito")
 	public String verCarrito(Model model, HttpSession session) {
-		Long idCarrito= (Long) session.getAttribute("ID");
-		String nombreCarrito = (String) session.getAttribute("nombreCarro");
-		int cantidadCarrito = (Integer) session.getAttribute("cantidadCarro");
 		
-		ProductoCarrito productoCarro  = new ProductoCarrito(idCarrito,nombreCarrito,cantidadCarrito);
+		List<ProductoCarrito> carrito = (List<ProductoCarrito>)session.getAttribute("CARRITO");
+		if(carrito == null) {
+			carrito = new ArrayList<>();
+		}
 		
-		model.addAttribute("Carro", productoCarro);
+		model.addAttribute("sessionCarrito", carrito);
 		return "Producto/carrito";
 	}
 	
@@ -108,16 +108,16 @@ public class ProductoControlador {
 			@RequestParam("cantidadCarro") int cantidad,
 			HttpServletRequest request) {
 		@SuppressWarnings("unchecked")
-		List<String> usuarios = (List<String>) request.getAttribute("USUARIOS");
-		if(usuarios == null) {
-			usuarios = new ArrayList<>();
+		List<ProductoCarrito> carrito = (List<ProductoCarrito>) request.getSession().getAttribute("CARRITO");
+		if (carrito == null) {
+			carrito = new ArrayList<>();
 		}
-		
+
 		Producto producto = productoService.obtenerProducto(id);
+		ProductoCarrito productoCarrito = new ProductoCarrito(id,producto.getNombreProducto(),cantidad);
+		carrito.add(productoCarrito);
 		
-		request.getSession().setAttribute("ID",id);
-		request.getSession().setAttribute("nombreCarro", producto.getNombreProducto());
-		request.getSession().setAttribute("cantidadCarro", cantidad);
+		request.getSession().setAttribute("CARRITO",carrito);
 		return "redirect:/Producto/carrito";
 	}
 }

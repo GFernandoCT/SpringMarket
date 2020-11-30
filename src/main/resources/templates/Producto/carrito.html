@@ -2,7 +2,7 @@
 <html lang="es" xmlns:th="http://www.thymeleaf.org">
 <head>
 	<meta charset="UTF-8">
-	<title>gj</title>
+	<title>Carrito</title>
 	<link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
 </head>
 <body class="table-primary">
@@ -35,8 +35,8 @@
     </div>
     </div>
     </nav>
-    <p th:text="${Carro.idProductoCarro}"></p>
-	<p th:text="${Carro.nombreProductoCarro}"></p>
-	<p th:text="${Carro.cantidadProductoCarro}"></p>
+    	<th:block th:each="carrito : ${sessionCarrito}">
+    		<span th:text="${carrito}">Nombre</span>
+    	</th:block>
 </body>
 </html>
