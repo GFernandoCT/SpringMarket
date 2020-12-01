@@ -1,13 +1,16 @@
 package com.example.entidades;
 
 import java.io.Serializable;
+import java.util.*;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.OneToMany;
 
 @Entity
 @Table(name="USUARIO")		
@@ -19,6 +22,12 @@ public class Usuario implements Serializable{
 	@GeneratedValue(strategy= GenerationType.IDENTITY)
 	@Column(name = "ID_USUARIO")
 	private Long idUsuario;
+	
+	@OneToMany(
+	mappedBy = "usuario",
+	cascade = CascadeType.ALL,
+	orphanRemoval = true)
+	private Set<Pedido> pedido = new HashSet<>();
 
 	@Column(name= "NOMBRE")
 	private String nombreUsuario;
@@ -53,9 +62,11 @@ public class Usuario implements Serializable{
 
 	}
 
-	public Usuario(String nombreUsuario, String apellidoUsuario, String contraseñaUsuario,
-			String emailUsuario, String fechaUsuario, int tarjetaUsuario, String titularUsuario, int codigoUsuario,
-			String direccionUsuario) {
+	
+
+	public Usuario(String nombreUsuario, String apellidoUsuario,
+			String contraseñaUsuario, String emailUsuario, String fechaUsuario, int tarjetaUsuario,
+			String titularUsuario, int codigoUsuario, String direccionUsuario) {
 		super();
 		this.nombreUsuario = nombreUsuario;
 		this.apellidoUsuario = apellidoUsuario;
@@ -68,12 +79,22 @@ public class Usuario implements Serializable{
 		this.direccionUsuario = direccionUsuario;
 	}
 
+
+
 	public Long getIdUsuario() {
 		return idUsuario;
 	}
 
 	public void setIdUsuario(Long idUsuario) {
 		this.idUsuario = idUsuario;
+	}
+
+	public Set<Pedido> getPedido() {
+		return pedido;
+	}
+
+	public void setPedido(Set<Pedido> pedido) {
+		this.pedido = pedido;
 	}
 
 	public String getNombreUsuario() {
@@ -148,5 +169,14 @@ public class Usuario implements Serializable{
 		this.direccionUsuario = direccionUsuario;
 	}
 	
+	public boolean anadirPedidos(Pedido pedido) {
+		pedido.setUsuario(this);
+		return getPedido().add(pedido);
+		}
+	
+	public void eliminarPedidos(Pedido pedido) {
+		getPedido().remove(pedido);
+	}
+
 	
 }
