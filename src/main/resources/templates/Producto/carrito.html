@@ -35,8 +35,23 @@
     </div>
     </div>
     </nav>
-    	<th:block th:each="carrito : ${sessionCarrito}">
-    		<span th:text="${carrito}">Nombre</span>
-    	</th:block>
+    	<table class="table">
+        	<tr>
+        		<thead>
+				    <tr>
+				      <th scope="col">Id</th>
+				      <th scope="col">Nombre</th>
+				      <th scope="col">Categor&iacute;a</th>
+				      <th scope="col">Informaci&oacute;n</th>
+				    </tr>
+			  	</thead>
+			  	<tbody th:each="carrito : ${sessionCarrito}">
+	        		<th th:text="${carrito.idProductoCarro}">Id</th>
+	            	<th th:text="${carrito.nombreProductoCarro}">Nombre</th>
+	            	<th th:text="${carrito.cantidadProductoCarro}">Categor&iacute;a</th>
+	            	<th><a th:href="@{/Producto/{id}(id=${carrito.idProductoCarro})} ">Saber m&aacute;s</a></th>
+            	</tbody>
+            </tr>
+        </table>
 </body>
 </html>
