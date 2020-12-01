@@ -35,23 +35,29 @@
     </div>
     </div>
     </nav>
-    	<table class="table">
+    <div class="d-flex justify-content-center m-5 p-4 table-active border border-primary">
+    	<table class=" w-100">
         	<tr>
         		<thead>
 				    <tr>
-				      <th scope="col">Id</th>
+				    <th scope="row" class="p-2">Id</th>
+      				<td>Nombre</td>
+      				<td>Cantidad</td>
+      				<td>Informacion</td>
+				      <!-- <th>Id</th>
 				      <th scope="col">Nombre</th>
-				      <th scope="col">Categor&iacute;a</th>
+				      <th scope="col">Cantidad</th>
 				      <th scope="col">Informaci&oacute;n</th>
-				    </tr>
+				    </tr> -->
 			  	</thead>
-			  	<tbody th:each="carrito : ${sessionCarrito}">
-	        		<th th:text="${carrito.idProductoCarro}">Id</th>
-	            	<th th:text="${carrito.nombreProductoCarro}">Nombre</th>
-	            	<th th:text="${carrito.cantidadProductoCarro}">Categor&iacute;a</th>
-	            	<th><a th:href="@{/Producto/{id}(id=${carrito.idProductoCarro})} ">Saber m&aacute;s</a></th>
+			  	
+			  	<tbody th:each="carrito : ${sessionCarrito}" class="border-top border-dark">
+	        		<td th:text="${carrito.idProductoCarro}" class="p-1">Id</td>
+	            	<td th:text="${carrito.nombreProductoCarro}">Nombre</td>
+	            	<td th:text="${carrito.cantidadProductoCarro}">Categor&iacute;a</td>
+	            	<td><a th:href="@{/Producto/{id}(id=${carrito.idProductoCarro})} ">Saber m&aacute;s</a></td	>
             	</tbody>
-            </tr>
         </table>
+        </div>
 </body>
 </html>

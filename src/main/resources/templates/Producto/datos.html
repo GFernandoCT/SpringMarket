@@ -61,10 +61,18 @@
 						<b>Descuento:</b> <span th:text="${producto.descuentoProducto}"></span>
 					</div>
 				<br>
-				<input type="number" name="cantidadCarro"> </input>
-					<button type="submit" class="btn btn-primary btn-sm float-left" name="id" th:value="${producto.idProducto}">A&ntilde;adir al carrito</button>
+				<div class="d-flex">
+      				<select class="form-control mr-1 float-left w-25" name="cantidadCarro">
+        				<option value="1">1</option>
+        				<option value="2">2</option>
+        				<option value="3">3</option>
+        				<option value="4">4</option>
+        				<option value="5">5</option>
+      				</select>
+					<button type="submit" class="btn btn-primary btn-sm float-left w-75" name="id" th:value="${producto.idProducto}">A&ntilde;adir al carrito</button>
+				</div>
 				</form>
-				<a th:href="@{/Producto/borrar/{id}(id=${producto.idProducto})}" type="button" class="btn btn-danger btn-sm float-right">Borrar Producto</a>
+				<a th:href="@{/Producto/borrar/{id}(id=${producto.idProducto})}" type="button" class="btn btn-danger btn-sm float-right mt-2 ">Borrar Producto</a>
 				</div>
 				</div>
 			</div>
