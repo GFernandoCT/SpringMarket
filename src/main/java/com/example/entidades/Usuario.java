@@ -24,9 +24,7 @@ public class Usuario implements Serializable{
 	private Long idUsuario;
 	
 	@OneToMany(
-	mappedBy = "usuario",
-	cascade = CascadeType.ALL,
-	orphanRemoval = true)
+	mappedBy = "usuario",cascade = CascadeType.ALL,orphanRemoval = true)
 	private Set<Pedido> pedido = new HashSet<>();
 
 	@Column(name= "NOMBRE")
@@ -55,7 +53,10 @@ public class Usuario implements Serializable{
 	
 	@Column(name= "DIRECCION")
 	private String direccionUsuario;
-
+	
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
 	
 	public Usuario() {
 		super();

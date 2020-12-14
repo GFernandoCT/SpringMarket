@@ -20,13 +20,13 @@ public class Pedido implements Serializable{
 	@Id
 	@GeneratedValue(strategy= GenerationType.IDENTITY)
 	@Column(name = "ID_PEDIDO")
-	private Long idProducto;
+	private Long idPedido;
 	
 	@Column(name= "NOMBRE")
 	private String nombrePedido;
 	
 	@Column(name= "CANTIDAD")
-	private int cantidadProducto;
+	private int cantidadPedido;
 
 	@ManyToOne
 	@JoinColumn(name="ID_USUARIO")
@@ -38,24 +38,39 @@ public class Pedido implements Serializable{
 
 	
 
-	public Pedido(Long idProducto, String nombrePedido, int cantidadProducto, Usuario usuario) {
+	public Pedido(Long idPedido, String nombrePedido, int cantidadPedido, Usuario usuario) {
 		super();
-		this.idProducto = idProducto;
+		this.idPedido = idPedido;
 		this.nombrePedido = nombrePedido;
-		this.cantidadProducto = cantidadProducto;
+		this.cantidadPedido = cantidadPedido;
 	}
 
-
-
-	public Long getIdProducto() {
-		return idProducto;
-	}
-
-	public void setIdProducto(Long idProducto) {
-		this.idProducto = idProducto;
-	}
 
 	
+	public Long getIdPedido() {
+		return idPedido;
+	}
+
+
+
+	public void setIdPedido(Long idPedido) {
+		this.idPedido = idPedido;
+	}
+
+
+
+	public int getCantidadPedido() {
+		return cantidadPedido;
+	}
+
+
+
+	public void setCantidadPedido(int cantidadPedido) {
+		this.cantidadPedido = cantidadPedido;
+	}
+
+
+
 	public String getNombrePedido() {
 		return nombrePedido;
 	}
@@ -65,14 +80,6 @@ public class Pedido implements Serializable{
 	}
 
 	
-	public int getCantidadProducto() {
-		return cantidadProducto;
-	}
-
-	public void setCantidadProducto(int cantidadProducto) {
-		this.cantidadProducto = cantidadProducto;
-	}
-
 	
 	public Usuario getUsuario() {
 		return usuario;

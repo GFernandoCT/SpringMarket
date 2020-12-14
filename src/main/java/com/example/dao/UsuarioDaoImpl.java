@@ -7,6 +7,7 @@ import javax.persistence.Query;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 
+import com.example.entidades.Pedido;
 import com.example.entidades.Usuario;
 
 @Repository
@@ -51,6 +52,14 @@ public class UsuarioDaoImpl extends DaoGenericoImpl<Usuario> implements UsuarioD
 		}
 		
 		return null;
+	}
+
+	@Override
+	public Usuario añadirCompra(long idUsuario, Pedido pedido) {
+		Usuario usuario = this.buscar(idUsuario);
+		usuario.anadirPedidos(pedido);
+
+		return usuario;
 	}
 	
 }

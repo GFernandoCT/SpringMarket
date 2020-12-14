@@ -40,27 +40,32 @@
     </nav>
     <div class="d-flex justify-content-center m-5 p-4 table-active border border-primary">
     	<table class=" w-100">
+    	
         	<tr>
         		<thead>
 				    <tr>
-				    <th scope="row" class="p-2">Id</th>
+				    <th scope="row" class="p-1">Id</th>
       				<td>Nombre</td>
       				<td>Cantidad</td>
       				<td>Informacion</td>
-				      <!-- <th>Id</th>
+      				<!-- <td>Comprar</td>
+				      <th>Id</th>
 				      <th scope="col">Nombre</th>
 				      <th scope="col">Cantidad</th>
 				      <th scope="col">Informaci&oacute;n</th>
 				    </tr> -->
 			  	</thead>
-			  	
-			  	<tbody th:each="carrito : ${sessionCarrito}" class="border-top border-dark">
+        
+        			<div class="d-flex justify-content-center">
+			  		<tbody th:each="carrito : ${sessionCarrito}" class="border-top border-dark">
+			  		<form th:action="@{/compra/producto/{id}(id=${carrito.idProductoCarro})}" method="post">
 	        		<td th:text="${carrito.idProductoCarro}" class="p-1">Id</td>
-	            	<td th:text="${carrito.nombreProductoCarro}">Nombre</td>
+	            	<td th:text="${carrito.nombreProductoCarro}" >Nombre</td>
 	            	<td th:text="${carrito.cantidadProductoCarro}">Categor&iacute;a</td>
-	            	<td><a th:href="@{/Producto/{id}(id=${carrito.idProductoCarro})} ">Saber m&aacute;s</a></td	>
-            	</tbody>
+	            	<td><a th:href="@{/Producto/{id}(id=${carrito.idProductoCarro})} ">Saber m&aacute;s</a></td> 
+	            	<td><button type="submit" class="btn btn-primary btn-sm" name="cantidad" th:value="${carrito.cantidadProductoCarro}">Comprar productos</button></td>
+					</tbody>	
         </table>
         </div>
-</body>
+        </body>
 </html>

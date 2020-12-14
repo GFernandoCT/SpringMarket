@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>SpringMarketACFC</title>
+<link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+</head>
+<body class="table-primary">
+<nav class="navbar navbar-expand-lg navbar-dark table-dark">
+    <div class="titulo">
+    	<h3 class="float-left font-italic text-white">Legendary Motorsports</h3>
+    </div>
+    <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+    	<span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="funcionalidades position-relative float-right w-100">
+    <div class="collapse navbar-collapse" id="navbarColor01">
+    		<ul class="navbar-nav ml-auto float-right">
+      			<li class="nav-item">
+      				<a th:href="@{/}" class="nav-link">Inicio
+          				<span class="sr-only">(current)</span>
+        			</a>
+      			</li>
+      			<li class="nav-item">
+        			<a class="nav-link" th:href="@{/Producto/crear}">A&ntilde;adir vehículo</a>
+      			</li>
+      			<li class="nav-item active">
+        			<a class="nav-link" th:href="@{/usuario/login}">Mi perfil</a>
+      			</li>
+      			<li class="nav-item">
+        			<a class="nav-link" th:href="@{/Producto/carrito}">Carrito</a>
+      			</li>
+      		</ul>
+      		<form class="form-inline my-2 my-lg-0" th:action="@{/buscar}" method="post">
+      <input class="form-control mr-sm-2" type="text" placeholder="Search" name="nombre">
+      <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
+    </form>
+    </div>
+    </div>
+    </nav>	
+    
+    <div class="d-flex m-5 justify-content-center table-dark">
+		<div class="d-flex-column m-5 w-50 float-left">
+			<div class="form-group">
+				<label for="nombreUsuario">Nombre</label>
+				<input type="text" class="form-control" id="nombreUsuario" name="nombre">
+			</div>
+			<div class="form-group">
+				<label for="contraseñaUsuario">Contraseña</label>
+				<input type="text" class="form-control" id="contraseñaUsuario" name="contraseña">
+			</div>
+		<div class="form-group">
+		<a class="text-white float-right" th:href="@{/usuario/signup}">Registrarse</a>
+		</div>
+		</div>
+	</div>
+		<div class="d-flex justify-content-center">
+			<button type="submit" class="btn btn-primary jusitfy-content-center">Iniciar Sesion</button>
+		</div>
+	</form>
+</body>
+</html>

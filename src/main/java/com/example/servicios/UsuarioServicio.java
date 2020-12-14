@@ -2,7 +2,7 @@ package com.example.servicios;
 
 import java.util.List;
 
-import com.example.entidades.Producto;
+import com.example.entidades.Pedido;
 import com.example.entidades.Usuario;
 
 public interface UsuarioServicio {
@@ -19,4 +19,5 @@ public interface UsuarioServicio {
 
 		public Usuario iniciarSesion(String nombreUsuario,String contraseña);
 		
+		public Usuario añadirPedido(long idUsuario,Pedido pedido);
 }

@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.example.dao.UsuarioDao;
+import com.example.entidades.Pedido;
 import com.example.entidades.Usuario;
 
 @Transactional
@@ -46,5 +47,12 @@ public class UsuarioServiceImpl implements UsuarioServicio{
 	public Usuario iniciarSesion(String nombreUsuario, String contraseña) {
 		return usuarioDao.iniciar(nombreUsuario, contraseña);
 	}
+
+	@Override
+	public Usuario añadirPedido(long idUsuario, Pedido pedido) {
+		return usuarioDao.añadirCompra(idUsuario, pedido);
+	}
+	
+	
 
 }
