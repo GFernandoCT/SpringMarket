@@ -49,6 +49,7 @@
       				<td>Nombre</td>
       				<td>Cantidad</td>
       				<td>Informacion</td>
+      				<td>Devolver</td>
       				<!-- <td>Comprar</td>
 				      <th>Id</th>
 				      <th scope="col">Nombre</th>
@@ -56,13 +57,15 @@
 				      <th scope="col">Informaci&oacute;n</th>
 				    </tr> -->
 			  	</thead>
-        
         			<div class="d-flex justify-content-center">
 			  		<tbody th:each="compra : ${compra}" class="border-top border-dark">
 	        		<td th:text="${compra.idPedido}" class="p-1">Id</td>
 	            	<td th:text="${compra.nombrePedido}" >Nombre</td>
 	            	<td th:text="${compra.cantidadPedido}">Categor&iacute;a</td>
-	            	<td><a th:href="@{/Producto/{id}(id=${compra.idPedido})} ">Saber m&aacute;s</a></td> 
+	            	<td><a th:href="@{/Producto/{id}(id=${compra.idPedido})} ">Saber m&aacute;s</a></td>
+	            	<form th:action="@{/compra/devolver/{id}(id=${compra.idPedido})}" method="post">
+	            	<td><button type="submit" class="btn btn-primary btn-sm">Devolver</button></td>
+	            	</form>
 					</tbody>	
         </table>
         </div>

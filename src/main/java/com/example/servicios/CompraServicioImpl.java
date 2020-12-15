@@ -21,4 +21,9 @@ public class CompraServicioImpl implements CompraServicio {
 		return compraDao.listarPedidos(idUsuario);
 	}
 
+	@Override
+	public Pedido obtenerPedido(long idPedido) {
+		return compraDao.buscar(idPedido);
+	}
+	
 }
