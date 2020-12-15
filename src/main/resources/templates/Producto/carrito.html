@@ -58,12 +58,13 @@
         
         			<div class="d-flex justify-content-center">
 			  		<tbody th:each="carrito : ${sessionCarrito}" class="border-top border-dark">
-			  		<form th:action="@{/compra/producto/{id}(id=${carrito.idProductoCarro})}" method="post">
 	        		<td th:text="${carrito.idProductoCarro}" class="p-1">Id</td>
 	            	<td th:text="${carrito.nombreProductoCarro}" >Nombre</td>
 	            	<td th:text="${carrito.cantidadProductoCarro}">Categor&iacute;a</td>
 	            	<td><a th:href="@{/Producto/{id}(id=${carrito.idProductoCarro})} ">Saber m&aacute;s</a></td> 
+	            	<form th:action="@{/compra/producto/{id}(id=${carrito.idProductoCarro})}" method="post">
 	            	<td><button type="submit" class="btn btn-primary btn-sm" name="cantidad" th:value="${carrito.cantidadProductoCarro}">Comprar productos</button></td>
+	            	</form>
 					</tbody>	
         </table>
         </div>

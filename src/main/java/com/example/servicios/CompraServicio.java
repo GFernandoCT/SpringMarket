@@ -1,10 +1,10 @@
-package com.example.dao;
+package com.example.servicios;
 
 import java.util.List;
 
 import com.example.entidades.Pedido;
 
-public interface CompraDao extends DaoGenerico<Pedido>{
-	
+public interface CompraServicio {
+
 	public List<Pedido> listarPedidos(long idUsuario);
 }

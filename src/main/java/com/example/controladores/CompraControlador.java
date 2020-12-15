@@ -1,5 +1,8 @@
 package com.example.controladores;
 
+import java.util.List;
+import java.util.Set;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -9,8 +12,11 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.example.entidades.Pedido;
+import com.example.entidades.Usuario;
+import com.example.servicios.CompraServicio;
 import com.example.servicios.ProductoServicio;
 import com.example.servicios.UsuarioServicio;
 
@@ -23,6 +29,9 @@ public class CompraControlador {
 	
 	@Autowired
 	UsuarioServicio usuarioService;
+	
+	@Autowired
+	CompraServicio compraService;
 	
 	@RequestMapping(method = RequestMethod.GET, value = "/comprar")
 	public String perfilPersonal(HttpServletRequest request) {
@@ -48,11 +57,23 @@ public class CompraControlador {
 			pedido.setCantidadPedido(cantidadProducto);
 			
 			usuarioService.añadirPedido((long) session.getAttribute("idUsuario"), pedido);
-			return "redirect:/index";
+			return "redirect:/compra/miscompras";
 		}
 		else
 			return "redirect:/usuario/login";
 	}
 	
+	
+	@RequestMapping(method = RequestMethod.GET, value = "/miscompras")
+	public ModelAndView mostrarCompra(HttpServletRequest request) {
+		ModelAndView mav = new ModelAndView();
+		
+		Usuario usuario = usuarioService.obtenerUsuario((long) request.getSession().getAttribute("idUsuario"));
+		usuario.getPedido();
+		Set<Pedido> lPedido = usuario.getPedido();
+		mav.addObject("compra", lPedido);
+		mav.setViewName("usuario/miscompras");
+		return mav;
+	}
 	
 }

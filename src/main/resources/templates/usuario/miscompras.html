@@ -39,24 +39,32 @@
     </div>
     </nav>	
     
-    <div class="d-flex m-5 justify-content-center table-dark">
-		<div class="d-flex-column m-5 w-50 float-left">
-			<div class="form-group">
-				<label for="nombreUsuario">Nombre</label>
-				<input type="text" class="form-control" id="nombreUsuario" name="nombre">
-			</div>
-			<div class="form-group">
-				<label for="contraseñaUsuario">Contraseña</label>
-				<input type="text" class="form-control" id="contraseñaUsuario" name="contraseña">
-			</div>
-		<div class="form-group">
-		<a class="text-white float-right" th:href="@{/usuario/signup}">Registrarse</a>
-		</div>
-		</div>
-	</div>
-		<div class="d-flex justify-content-center">
-			<button type="submit" class="btn btn-primary jusitfy-content-center">Iniciar Sesion</button>
-		</div>
-	</form>
+   <div class="d-flex justify-content-center m-5 p-4 table-active border border-primary">
+    	<table class=" w-100">
+    	
+        	<tr>
+        		<thead>
+				    <tr>
+				    <th scope="row" class="p-1">Id</th>
+      				<td>Nombre</td>
+      				<td>Cantidad</td>
+      				<td>Informacion</td>
+      				<!-- <td>Comprar</td>
+				      <th>Id</th>
+				      <th scope="col">Nombre</th>
+				      <th scope="col">Cantidad</th>
+				      <th scope="col">Informaci&oacute;n</th>
+				    </tr> -->
+			  	</thead>
+        
+        			<div class="d-flex justify-content-center">
+			  		<tbody th:each="compra : ${compra}" class="border-top border-dark">
+	        		<td th:text="${compra.idPedido}" class="p-1">Id</td>
+	            	<td th:text="${compra.nombrePedido}" >Nombre</td>
+	            	<td th:text="${compra.cantidadPedido}">Categor&iacute;a</td>
+	            	<td><a th:href="@{/Producto/{id}(id=${compra.idPedido})} ">Saber m&aacute;s</a></td> 
+					</tbody>	
+        </table>
+        </div>
 </body>
 </html>
