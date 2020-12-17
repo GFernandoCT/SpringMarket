@@ -24,6 +24,8 @@
     </style>
 </head>
 <body class="table-primary">
+
+<!-- 
 <nav class="navbar navbar-expand-lg navbar-dark table-dark">
     <div class="titulo">
     	<h3 class="float-left font-italic text-white">Legendary Motorsports</h3>
@@ -50,7 +52,7 @@
 >>>>>>> branch 'develop_bien' of https://github.com/GFernandoCT/SpringMarket.git
       		<input class="form-control mr-sm-2" type="text" placeholder="Search">
       		<button class="btn btn-secondary my-2 my-sm-0 float-right" type="submit">Search</button>
-    	</form> -->
+    	</form> 
     </div>
     <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
     	<span class="navbar-toggler-icon"></span>
@@ -83,15 +85,16 @@
     	</div>
     </div>
     </nav>
+     -->
+     <nav th:replace="fragments/header_index"></nav>
     <br>
 	<th:block th:each="producto : ${ProductosOcho}">
 	<div class="productos position-relative w-25 p-2 float-left">
 		<div class="card border-primary mb-3 border-1">
   			<div class="card-header"><span th:text="${producto.marcaProducto}">Nombre</span></div>
   			<div class="card-body">
-    			<h4 class="card-title"><span th:text="${producto.nombreProducto}">Marca</span></h4>
+    			<h4 class="card-title"><a th:text="${producto.nombreProducto}" th:href="@{/Producto/{id}(id=${producto.idProducto})}">Marca</a></h4>
     			<p class="card-text"><span th:text="${producto.descripcionProducto}">Descripci&oacute;n</span></p>
-    			<a class="d-flex justify-content-end" th:href="@{/Producto/{id}(id=${producto.idProducto})} ">Saber m&aacute;s</a>
   			</div>
 		</div>
 		</div>

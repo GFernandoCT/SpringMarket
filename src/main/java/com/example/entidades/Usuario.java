@@ -27,7 +27,7 @@ public class Usuario implements Serializable{
 	mappedBy = "usuario",cascade = CascadeType.ALL,orphanRemoval = true)
 	private Set<Pedido> pedido = new HashSet<>();
 
-	@Column(name= "NOMBRE")
+	@Column(name= "NOMBRE", unique = true)
 	private String nombreUsuario;
 	
 	@Column(name= "APELLIDOS")
