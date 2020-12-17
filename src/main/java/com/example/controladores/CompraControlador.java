@@ -69,11 +69,22 @@ public class CompraControlador {
 		ModelAndView mav = new ModelAndView();
 		
 		Usuario usuario = usuarioService.obtenerUsuario((long) request.getSession().getAttribute("idUsuario"));
-		usuario.getPedido();
 		Set<Pedido> lPedido = usuario.getPedido();
 		mav.addObject("compra", lPedido);
 		mav.setViewName("usuario/miscompras");
 		return mav;
 	}
-	
+
+	@RequestMapping(method = RequestMethod.POST, value ="devolver/{id}")
+	public String devolverProducto(@PathVariable("id") long idCompra, HttpServletRequest request) {
+		
+		Pedido pedido = compraService.obtenerPedido(idCompra);
+		Usuario usuario = usuarioService.obtenerUsuario((long) request.getSession().getAttribute("idUsuario"));
+		Set<Pedido> lPedido = usuario.getPedido();
+		lPedido.remove(pedido);
+		
+		usuarioService.obtenerUsuario((long) request.getSession().getAttribute("idUsuario")).getPedido().remove(pedido);
+		
+		return "redirect:/compra/miscompras";
+	}
 }
