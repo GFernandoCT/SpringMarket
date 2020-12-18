@@ -102,44 +102,26 @@ public class ProductoControlador {
 	public String añadirAlCarrito(@RequestParam("id") Long id, @RequestParam("cantidadCarro") int cantidad,
 			HttpServletRequest request) {
 		@SuppressWarnings("unchecked")
-		
-		
 		Set<ProductoCarrito> carrito = (Set<ProductoCarrito>) request.getSession().getAttribute("CARRITO");
 		if (carrito == null) {
 			carrito = new HashSet<>();
 		}
 		
 		Boolean anadido =false;
-		
 		if (!carrito.isEmpty()) {
 			for (ProductoCarrito p :carrito) {
 				if (p.getIdProductoCarro()== id) {
 					p.setCantidadProductoCarro(p.getCantidadProductoCarro()+ cantidad);
 					anadido=true;
 					break;
-				}
-				
-				
-			}
-			
+				}				
+			}	
 		}
 		if (carrito.isEmpty() || !anadido) {
 			Producto producto = productoService.obtenerProducto(id);
 			ProductoCarrito productoCarrito = new ProductoCarrito(id, producto.getNombreProducto(), cantidad);
 			carrito.add(productoCarrito);
 		}
-
-		
-//		Producto producto = productoService.obtenerProducto(id);
-//		ProductoCarrito productoCarrito = new ProductoCarrito(id, producto.getNombreProducto(), cantidad);
-//
-//		for (ProductoCarrito p : carrito) {
-//			if (p.equals(productoCarrito))
-//				productoCarrito.setCantidadProductoCarro(
-//						productoCarrito.getCantidadProductoCarro() + p.getCantidadProductoCarro());
-//		}
-//
-//		carrito.add(productoCarrito);
 
 		request.getSession().setAttribute("CARRITO", carrito);
 		return "redirect:/Producto/carrito";

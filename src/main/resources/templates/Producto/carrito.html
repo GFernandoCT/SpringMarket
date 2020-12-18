@@ -30,11 +30,11 @@
 	            	<td th:text="${carrito.nombreProductoCarro}" >Nombre</td>
 	            	<td th:text="${carrito.cantidadProductoCarro}">Categor&iacute;a</td>
 	            	<td><a th:href="@{/Producto/{id}(id=${carrito.idProductoCarro})} ">Saber m&aacute;s</a></td> 
-	            	<form th:action="@{/compra/producto/{id}(id=${carrito.idProductoCarro})}" method="post">
-	            	<td><button type="submit" class="btn btn-primary btn-sm" name="cantidad" th:value="${carrito.cantidadProductoCarro}">Comprar productos</button></td>
-	            	</form>
 					</tbody>	
         </table>
+        <form th:action="@{/compra/producto/pedido}" method="post">
+          	<td><button type="submit" class="btn btn-primary btn-sm">Comprar productos</button></td>
+	    </form>
         </div>
         </body>
 </html>
