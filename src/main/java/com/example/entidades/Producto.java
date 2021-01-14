@@ -1,47 +1,70 @@
 package com.example.entidades;
 
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="PRODUCTO")
-public class Producto implements Serializable{
+@Table(name = "PRODUCTO")
+public class Producto implements Serializable {
 
 	private static final long serialVersionUID = -8668594760203621162L;
-	
+
 	@Id
-	@GeneratedValue(strategy= GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "ID_PRODUCTO")
 	private Long idProducto;
 
-	@Column(name= "MARCA")
+	@Column(name = "MARCA")
 	private String marcaProducto;
-	
-	@Column(name= "NOMBRE")
+
+	@Column(name = "NOMBRE")
 	private String nombreProducto;
-	
-	@Column(name= "CATEGORIA")
+
+	@Column(name = "CATEGORIA")
 	private String categoriaProducto;
-	
-	@Column(name= "DESCRIPCION")
+
+	@Column(name = "DESCRIPCION")
 	private String descripcionProducto;
-	
-	@Column(name= "PRECIO")
+
+	@Column(name = "PRECIO")
 	private int precioProducto;
-	
-	@Column(name= "DESCUENTO")
+
+	@Column(name = "DESCUENTO")
 	private int descuentoProducto;
 
-	public Producto(){
-		   super();
-		}
-	
+	@ManyToMany(mappedBy = "productos")
+	private Set<Compra> compras = new HashSet<>();
+
+	public void anadirCompra(Compra compra) {
+		this.compras.add(compra);
+		compra.getProductos().add(this);
+	}
+
+	public void eliminarCompra(Compra compra) {
+		this.compras.remove(compra);
+	}
+
+	public Set<Compra> getCompras() {
+		return compras;
+	}
+
+	public void setCompras(Set<Compra> compras) {
+		this.compras = compras;
+	}
+
+	public Producto() {
+		super();
+	}
+
 	public Producto(String marcaProducto, String nombreProducto, String categoriaProducto, String descripcionProducto,
 			int precioProducto, int descuentoProducto) {
 		super();
@@ -108,7 +131,5 @@ public class Producto implements Serializable{
 	public void setDescuentoProducto(int descuentoProducto) {
 		this.descuentoProducto = descuentoProducto;
 	}
-	
-	
-	
+
 }

@@ -86,7 +86,7 @@ public class CompraControlador {
 			Usuario usuario = usuarioService.obtenerUsuario((long) request.getSession().getAttribute("idUsuario"));
 			usuario.setPedido(pedidos);
 			
-			usuarioService.obtenerUsuario((long) request.getSession().getAttribute("idUsuario")).setPedido(pedidos);
+			//usuarioService.obtenerUsuario((long) request.getSession().getAttribute("idUsuario")).setPedido(pedidos);
 			
 			return "redirect:/compra/miscompras";
 		}

@@ -1,16 +1,18 @@
 package com.example.entidades;
 
 import java.io.Serializable;
-import java.util.*;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Table;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
 @Entity
 @Table(name="USUARIO")		
@@ -22,6 +24,10 @@ public class Usuario implements Serializable{
 	@GeneratedValue(strategy= GenerationType.IDENTITY)
 	@Column(name = "ID_USUARIO")
 	private Long idUsuario;
+	
+	
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "cliente", cascade = CascadeType.ALL, orphanRemoval = true)
+	private Set<Compra> compras = new HashSet<>();
 	
 	@OneToMany(
 	mappedBy = "usuario",cascade = CascadeType.ALL,orphanRemoval = true)
@@ -60,7 +66,6 @@ public class Usuario implements Serializable{
 	
 	public Usuario() {
 		super();
-
 	}
 
 	
@@ -179,5 +184,30 @@ public class Usuario implements Serializable{
 		getPedido().remove(pedido);
 	}
 
+	
+	//Metodos One-To-Many con Compra
+	
+	public Set<Compra> getCompras() {
+		return compras;
+	}
+
+	public void setCompras(Set<Compra> compras) {
+		this.compras = compras;
+	}
+
+	public boolean anadirCompra(Compra compra) {
+		compra.setCliente(this);
+		return getCompras().add(compra);
+	}
+
+	public void eliminarCompra(Compra compra) {
+		compra.setCliente(null);
+		this.compras.remove(compra);
+		
+	}
+	
+	
+	
+	
 	
 }
