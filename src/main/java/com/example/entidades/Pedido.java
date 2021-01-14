@@ -36,8 +36,6 @@ public class Pedido implements Serializable{
 		super();
 	}
 
-	
-
 	public Pedido(Long idPedido, String nombrePedido, int cantidadPedido, Usuario usuario) {
 		super();
 		this.idPedido = idPedido;
