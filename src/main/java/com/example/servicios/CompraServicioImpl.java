@@ -35,7 +35,7 @@ public class CompraServicioImpl implements CompraServicio {
 	
 	
 	@Override
-	public List<Pedido> listarPedidos(long idUsuario) {
+	public List<Compra> listarPedidos(long idUsuario) {
 		
 		Usuario u = usuarioDao.buscar(idUsuario);
 		
@@ -55,8 +55,13 @@ public class CompraServicioImpl implements CompraServicio {
 	}
 
 	@Override
-	public Pedido obtenerPedido(long idPedido) {
+	public Compra obtenerPedido(long idPedido) {
 		return compraDao.buscar(idPedido);
+	}
+
+	@Override
+	public Compra crearCompra(Compra compra) {
+		return compraDao.crear(compra);
 	}
 	
 }

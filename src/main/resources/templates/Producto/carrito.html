@@ -23,14 +23,21 @@
 				      <th scope="col">Informaci&oacute;n</th>
 				    </tr> -->
 			  	</thead>
-        
+        <!-- 
         			<div class="d-flex justify-content-center">
 			  		<tbody th:each="carrito : ${sessionCarrito}" class="border-top border-dark">
 	        		<td th:text="${carrito.idProductoCarro}" class="p-1">Id</td>
 	            	<td th:text="${carrito.nombreProductoCarro}" >Nombre</td>
 	            	<td th:text="${carrito.cantidadProductoCarro}">Categor&iacute;a</td>
 	            	<td><a th:href="@{/Producto/{id}(id=${carrito.idProductoCarro})} ">Saber m&aacute;s</a></td> 
-					</tbody>	
+					</tbody>
+					 -->	
+					<div class="d-flex justify-content-center">
+			  		<tbody th:each="carrito : ${sessionCarrito}" class="border-top border-dark">
+	        		<td th:text="${carrito.idProducto}" class="p-1">Id</td>
+	            	<td th:text="${carrito.nombreProducto}" >Nombre</td>
+	            	<td><a th:href="@{/Producto/{id}(id=${carrito.idProducto})} ">Saber m&aacute;s</a></td> 
+					</tbody>
         </table>
         <form th:action="@{/compra/producto/pedido}" method="post">
           	<td><button type="submit" class="btn btn-primary btn-sm">Comprar productos</button></td>

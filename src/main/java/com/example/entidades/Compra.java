@@ -49,9 +49,7 @@ public class Compra {
 
 	public void setCliente(Usuario cliente) {
 		this.cliente = cliente;
-	}
-	
-	
+	}	
 	
 	public Set<Producto> getProductos() {
 		return productos;

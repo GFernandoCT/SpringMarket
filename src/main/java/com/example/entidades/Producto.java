@@ -36,7 +36,7 @@ public class Producto implements Serializable {
 	private String descripcionProducto;
 
 	@Column(name = "PRECIO")
-	private int precioProducto;
+	private int precioProducto; 
 
 	@Column(name = "DESCUENTO")
 	private int descuentoProducto;
@@ -63,6 +63,12 @@ public class Producto implements Serializable {
 
 	public Producto() {
 		super();
+	}
+	
+	public Producto(Long idProductoCarro, String nombreProductoCarro) {
+		super();
+		this.idProducto = idProductoCarro;
+		this.nombreProducto = nombreProductoCarro;
 	}
 
 	public Producto(String marcaProducto, String nombreProducto, String categoriaProducto, String descripcionProducto,

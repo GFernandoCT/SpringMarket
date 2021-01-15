@@ -126,4 +126,32 @@ public class ProductoControlador {
 		request.getSession().setAttribute("CARRITO", carrito);
 		return "redirect:/Producto/carrito";
 	}
+	
+	@PostMapping("/añadirProducto2")
+	public String añadirAlCarrito2(@RequestParam("id") Long id,
+			HttpServletRequest request) {
+		@SuppressWarnings("unchecked")
+		Set<Producto> carrito = (Set<Producto>) request.getSession().getAttribute("CARRITO");
+		if (carrito == null) {
+			carrito = new HashSet<>();
+		}
+		
+		Boolean anadido =false;
+		if (!carrito.isEmpty()) {
+			for (Producto p :carrito) {
+				if (p.getIdProducto()== id) {
+					anadido=true;
+					break;
+				}				
+			}	
+		}
+		if (carrito.isEmpty() || !anadido) {
+			Producto producto = productoService.obtenerProducto(id);
+			Producto productoCarrito = new Producto(id, producto.getNombreProducto());
+			carrito.add(productoCarrito);
+		}
+
+		request.getSession().setAttribute("CARRITO", carrito);
+		return "redirect:/Producto/carrito";
+	}
 }

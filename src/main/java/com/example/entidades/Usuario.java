@@ -203,7 +203,6 @@ public class Usuario implements Serializable{
 	public void eliminarCompra(Compra compra) {
 		compra.setCliente(null);
 		this.compras.remove(compra);
-		
 	}
 	
 	

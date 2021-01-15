@@ -52,7 +52,5 @@ public class UsuarioServiceImpl implements UsuarioServicio{
 	public Usuario añadirPedido(long idUsuario, Pedido pedido) {
 		return usuarioDao.añadirCompra(idUsuario, pedido);
 	}
-	
-	
 
 }

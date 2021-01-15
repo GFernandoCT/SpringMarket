@@ -10,7 +10,7 @@
     <div class="d-flex m-5 justify-content-center">
 	<div class="d-flex-column m-5">
 				<div>
-						<form th:action="@{/Producto/añadirProducto}" method="post">
+						<form th:action="@{/Producto/añadirProducto2}" method="post">
 					<h1>
 						Datos de un <span th:text="${producto.nombreProducto}"></span>
 					</h1>
@@ -33,6 +33,7 @@
 						<b>Descuento:</b> <span th:text="${producto.descuentoProducto}"></span>
 					</div>
 				<br>
+				<!-- 
 				<div class="d-flex">
       				<select class="form-control mr-1 float-left w-25" name="cantidadCarro">
         				<option value="1">1</option>
@@ -41,6 +42,8 @@
         				<option value="4">4</option>
         				<option value="5">5</option>
       				</select>
+      				 -->
+      			<div>
 					<button type="submit" class="btn btn-primary btn-sm float-left w-75" name="id" th:value="${producto.idProducto}">A&ntilde;adir al carrito</button>
 				</div>
 				</form>

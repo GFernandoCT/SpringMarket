@@ -15,7 +15,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.example.entidades.Compra;
 import com.example.entidades.Pedido;
+import com.example.entidades.Producto;
 import com.example.entidades.ProductoCarrito;
 import com.example.entidades.Usuario;
 import com.example.servicios.CompraServicio;
@@ -65,7 +67,7 @@ public class CompraControlador {
 			return "redirect:/usuario/login";
 	}*/
 	
-	
+	/*
 	@RequestMapping(method = RequestMethod.POST, value = "/producto/pedido")
 	public String producto(HttpServletRequest request) {
 		
@@ -93,7 +95,32 @@ public class CompraControlador {
 		else
 			return "redirect:/usuario/login";
 	}
+	*/
 	
+	@RequestMapping(method = RequestMethod.POST, value = "/producto/pedido")
+	public String producto2(HttpServletRequest request) {
+		
+		HttpSession session = request.getSession();
+		if (session != null && session.getAttribute("idUsuario") != null) {
+			
+			@SuppressWarnings("unchecked")
+			Set<Producto> listaPedidos = (Set<Producto>) request.getSession().getAttribute("CARRITO");
+			
+			Compra compra = new Compra();
+			for (Producto producto : listaPedidos) {
+				compra.anadirProducto(producto);
+			}
+			
+			compraService.crearCompra(compra);
+			
+			Usuario usuario = usuarioService.obtenerUsuario((long) request.getSession().getAttribute("idUsuario"));
+			usuario.anadirCompra(compra);
+			
+			return "redirect:/compra/miscompras";
+		}
+		else
+			return "redirect:/usuario/login";
+	}
 	
 	
 	@RequestMapping(method = RequestMethod.GET, value = "/miscompras")
@@ -101,12 +128,14 @@ public class CompraControlador {
 		ModelAndView mav = new ModelAndView();
 		
 		Usuario usuario = usuarioService.obtenerUsuario((long) request.getSession().getAttribute("idUsuario"));
-		Set<Pedido> lPedido = usuario.getPedido();
+		//Set<Pedido> lPedido = usuario.getPedido();
+		Set<Compra> lPedido = usuario.getCompras();
 		mav.addObject("compra", lPedido);
 		mav.setViewName("usuario/miscompras");
 		return mav;
 	}
 
+	/*
 	@RequestMapping(method = RequestMethod.POST, value ="devolver/{id}")
 	public String devolverProducto(@PathVariable("id") long idCompra, HttpServletRequest request) {
 		
@@ -119,4 +148,5 @@ public class CompraControlador {
 		
 		return "redirect:/compra/miscompras";
 	}
+	*/
 }
