@@ -8,6 +8,8 @@ import com.example.entidades.Pedido;
 public interface CompraServicio {
 
 	public List<Compra> listarPedidos(long idUsuario);
+	
+	public List<Compra> listarPedidos2(long idUsuario);
 
 	public Compra obtenerPedido(long idPedido);
 	

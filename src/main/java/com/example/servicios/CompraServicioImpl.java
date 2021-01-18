@@ -61,6 +61,20 @@ public class CompraServicioImpl implements CompraServicio {
 		return LCompras;
 		
 	}
+	
+	@Override
+	public List<Compra> listarPedidos2(long idUsuario) {
+		
+		Iterable<Compra> listacompras = compraRepository.findAll();
+		
+		// compraDao.listarPedidos(idUsuario);
+		
+		List<Compra> LCompras = new ArrayList<Compra>();
+		listacompras.forEach(LCompras::add);
+		
+		return LCompras;
+		
+	}
 
 	@Override
 	public Compra obtenerPedido(long idPedido) {

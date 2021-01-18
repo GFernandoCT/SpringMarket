@@ -133,7 +133,7 @@ public class CompraControlador {
 		Set<Compra> lPedido = usuario.getCompras();
 		*/
 		
-		List<Compra>lPedido = compraService.listarPedidos((long) request.getSession().getAttribute("idUsuario"));
+		List<Compra>lPedido = compraService.listarPedidos2((long) request.getSession().getAttribute("idUsuario"));
 		mav.addObject("compra", lPedido);
 		mav.setViewName("usuario/miscompras");
 		return mav;
@@ -153,4 +153,6 @@ public class CompraControlador {
 		return "redirect:/compra/miscompras";
 	}
 	*/
+	
+	
 }
