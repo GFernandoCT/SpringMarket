@@ -1,5 +1,6 @@
 package com.example.servicios;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
@@ -39,7 +40,7 @@ public class CompraServicioImpl implements CompraServicio {
 		
 		Usuario u = usuarioDao.buscar(idUsuario);
 		
-		Producto p = productoDao.buscar(1);
+		Producto p = productoDao.buscar(1L);
 		
 		Compra c = new Compra();
 		
@@ -51,7 +52,14 @@ public class CompraServicioImpl implements CompraServicio {
 		Iterable<Compra> listacompras = compraRepository.findAll();
 		
 		
-		return compraDao.listarPedidos(idUsuario);
+		// compraDao.listarPedidos(idUsuario);
+		
+		
+		List<Compra> LCompras = new ArrayList<Compra>();
+		listacompras.forEach(LCompras::add);
+		
+		return LCompras;
+		
 	}
 
 	@Override
