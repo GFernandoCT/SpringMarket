@@ -15,5 +15,6 @@ public interface CompraDao extends DaoGenerico<Pedido>{
 public interface CompraDao extends DaoGenerico<Compra>{
 	
 	public List<Compra> listarPedidos(long idUsuario);
+	
 }
 

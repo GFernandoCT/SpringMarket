@@ -30,10 +30,17 @@ public class Compra {
 	private Usuario cliente;
 	
 	
-	@ManyToMany(fetch = FetchType.EAGER, cascade = { CascadeType.PERSIST, CascadeType.MERGE })
+	@ManyToMany(fetch = FetchType.EAGER, cascade = { CascadeType.MERGE })
 	@JoinTable(name = "COMPRA_PRODUCTO", joinColumns = @JoinColumn(name = "ID_COMPRA"), inverseJoinColumns = @JoinColumn(name = "ID_PRODUCTO"))
 	private Set<Producto> productos = new HashSet<>();
 	
+	public Compra() {
+		
+	}
+	
+	public Compra(Usuario cliente){
+		setCliente(cliente);
+	}
 
 	public Long getIdcompra() {
 		return idcompra;

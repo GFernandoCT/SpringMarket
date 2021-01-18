@@ -106,7 +106,7 @@ public class CompraControlador {
 			@SuppressWarnings("unchecked")
 			Set<Producto> listaPedidos = (Set<Producto>) request.getSession().getAttribute("CARRITO");
 			
-			Compra compra = new Compra();
+			Compra compra = new Compra(usuarioService.obtenerUsuario((long)session.getAttribute("idUsuario")));
 			for (Producto producto : listaPedidos) {
 				compra.anadirProducto(producto);
 			}
@@ -127,9 +127,13 @@ public class CompraControlador {
 	public ModelAndView mostrarCompra(HttpServletRequest request) {
 		ModelAndView mav = new ModelAndView();
 		
+		/*
 		Usuario usuario = usuarioService.obtenerUsuario((long) request.getSession().getAttribute("idUsuario"));
 		//Set<Pedido> lPedido = usuario.getPedido();
 		Set<Compra> lPedido = usuario.getCompras();
+		*/
+		
+		List<Compra>lPedido = compraService.listarPedidos((long) request.getSession().getAttribute("idUsuario"));
 		mav.addObject("compra", lPedido);
 		mav.setViewName("usuario/miscompras");
 		return mav;
