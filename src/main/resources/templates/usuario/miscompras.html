@@ -7,16 +7,15 @@
 </head>
 <body class="table-primary">
      <nav th:replace="fragments/header_perfil"></nav>
-   <div class="d-flex justify-content-center m-5 p-4 table-active border border-primary">
-    	<table class=" w-100">	
-        	<tr>
+			<th:block th:each="compra : ${compra}" class="border-top border-dark">
+				<h2 class="mt-5 ml-3">Número de la compra # <span th:text="${compra.idcompra}" class="p-1"></span></h2>
+				 <div class="d-flex justify-content-center mt-3 ml-3 mr-3 mb-1 p-4 table-active border border-primary">
+			  		<table class=" w-100">	
         		<thead>
-				    <tr>
-				    <th scope="row" class="p-1">Id</th>
-      				<td>Nombre</td>
-      				<td>Cantidad</td>
-      				<td>Informacion</td>
-      				<td>Devolver</td>
+				    <th scope="row" class="p-1">Id Producto</th>
+      				<th>Nombre del Vehículo</th>
+      				<th>Categoria</th>
+      				<th>Devolver</th>
       				<!-- <td>Comprar</td>
 				      <th>Id</th>
 				      <th scope="col">Nombre</th>
@@ -24,19 +23,28 @@
 				      <th scope="col">Informaci&oacute;n</th>
 				    </tr> -->
 			  	</thead>
-        			<div class="d-flex justify-content-center">
-			  		<th:block th:each="compra : ${compra}" class="border-top border-dark">
-	        		<td th:text="${compra.idcompra}" class="p-1">Id</td>
-	        		<td th:each="producto : ${compra.productos}">
-	        			<p th:text="${producto.idProducto}">
+			  	
+			  	<th:block th:each="producto : ${compra.productos}">
+			  		<tbody>
+			  		
+	        		<td th:text="${producto.idProducto}"/>
+	        		<td th:text="${producto.nombreProducto}"/>
+	        		<td th:text="${producto.categoriaProducto}"/>
+	        		<form th:action="@{/compra/devolver/{id}(id=${producto.idProducto})}" method="post">
+	            	<td><button type="submit" class="btn btn-primary btn-sm" th:value="${compra.idcompra}" name="idPedido">Devolver</button></td> 
+	            	</form>
+	        		
+	        		</tbody>
+	        	</table>
+	        	
 	            	<!-- <td th:text="${compra.nombrePedido}" >Nombre</td>
 	            	<td th:text="${compra.cantidadPedido}">Categor&iacute;a</td>
 	            	<td><a th:href="@{/Producto/{id}(id=${compra.idPedido})} ">Saber m&aacute;s</a></td>
 	            	<form th:action="@{/compra/devolver/{id}(id=${compra.idPedido})}" method="post">
-	            	<td><button type="submit" class="btn btn-primary btn-sm">Devolver</button></td> -->
-	            	</form>
-					</tbody>	
-        </table>
-        </div>
+	            	<td><button type="submit" class="btn btn-primary btn-sm">Devolver</button></td> 
+	            	</form>-->	
+
+        	</div>
+        </th:block>
 </body>
 </html>

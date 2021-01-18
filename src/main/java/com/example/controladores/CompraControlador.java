@@ -1,6 +1,5 @@
 package com.example.controladores;
 
-import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -15,10 +14,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.example.dao.CompraRepository;
 import com.example.entidades.Compra;
-import com.example.entidades.Pedido;
 import com.example.entidades.Producto;
-import com.example.entidades.ProductoCarrito;
 import com.example.entidades.Usuario;
 import com.example.servicios.CompraServicio;
 import com.example.servicios.ProductoServicio;
@@ -36,6 +34,9 @@ public class CompraControlador {
 	
 	@Autowired
 	CompraServicio compraService;
+	
+	@Autowired
+	CompraRepository compraRepository;
 	
 	@RequestMapping(method = RequestMethod.GET, value = "/comprar")
 	public String perfilPersonal(HttpServletRequest request) {
@@ -115,6 +116,8 @@ public class CompraControlador {
 			
 			Usuario usuario = usuarioService.obtenerUsuario((long) request.getSession().getAttribute("idUsuario"));
 			usuario.anadirCompra(compra);
+	
+			//compraRepository.save(compra);
 			
 			return "redirect:/compra/miscompras";
 		}
@@ -139,20 +142,18 @@ public class CompraControlador {
 		return mav;
 	}
 
-	/*
+	
 	@RequestMapping(method = RequestMethod.POST, value ="devolver/{id}")
-	public String devolverProducto(@PathVariable("id") long idCompra, HttpServletRequest request) {
+	public String devolverProducto(@PathVariable("id") long idProducto, @RequestParam("idPedido") long idPedido, HttpServletRequest request) {
 		
-		Pedido pedido = compraService.obtenerPedido(idCompra);
 		Usuario usuario = usuarioService.obtenerUsuario((long) request.getSession().getAttribute("idUsuario"));
-		Set<Pedido> lPedido = usuario.getPedido();
-		lPedido.remove(pedido);
-		
-		usuarioService.obtenerUsuario((long) request.getSession().getAttribute("idUsuario")).getPedido().remove(pedido);
+		Compra compra = compraService.obtenerPedido(idPedido);
+		compra.eliminarProducto(productoService.obtenerProducto(idProducto));
+		compraService.obtenerPedido(compra.getIdcompra());
 		
 		return "redirect:/compra/miscompras";
 	}
-	*/
+	
 	
 	
 }

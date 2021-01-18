@@ -14,7 +14,6 @@
 				    <tr>
 				    <th scope="row" class="p-1">Id</th>
       				<td>Nombre</td>
-      				<td>Cantidad</td>
       				<td>Informacion</td>
       				<!-- <td>Comprar</td>
 				      <th>Id</th>
@@ -38,7 +37,10 @@
 	            	<td th:text="${carrito.nombreProducto}" >Nombre</td>
 	            	<td><a th:href="@{/Producto/{id}(id=${carrito.idProducto})} ">Saber m&aacute;s</a></td> 
 					</tbody>
+					</div>
         </table>
+        </div>
+        <div class="d-flex justify-content-center">
         <form th:action="@{/compra/producto/pedido}" method="post">
           	<td><button type="submit" class="btn btn-primary btn-sm">Comprar productos</button></td>
 	    </form>
