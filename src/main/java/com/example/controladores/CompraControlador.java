@@ -1,5 +1,6 @@
 package com.example.controladores;
 
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -17,6 +18,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.example.dao.CompraRepository;
 import com.example.entidades.Compra;
 import com.example.entidades.Producto;
+import com.example.entidades.ProductoCarrito;
 import com.example.entidades.Usuario;
 import com.example.servicios.CompraServicio;
 import com.example.servicios.ProductoServicio;
@@ -118,6 +120,10 @@ public class CompraControlador {
 			usuario.anadirCompra(compra);
 	
 			//compraRepository.save(compra);
+			
+			//Vaciar carrito
+			Set<ProductoCarrito> vacio = new HashSet<>();
+			request.getSession().setAttribute("CARRITO", vacio);
 			
 			return "redirect:/compra/miscompras";
 		}
