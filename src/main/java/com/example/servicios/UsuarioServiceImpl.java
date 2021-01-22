@@ -3,6 +3,7 @@ package com.example.servicios;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -17,8 +18,12 @@ public class UsuarioServiceImpl implements UsuarioServicio{
 	@Autowired
 	private UsuarioDao usuarioDao;
 	
+	@Autowired
+	private BCryptPasswordEncoder bCryptPasswordEncoder;
+	
 	@Override
 	public Usuario crearUsuario(Usuario usuario) {
+		usuario.setContraseñaUsuario(bCryptPasswordEncoder.encode(usuario.getContraseñaUsuario()));
 		return usuarioDao.crear(usuario);
 	}
 
@@ -51,6 +56,11 @@ public class UsuarioServiceImpl implements UsuarioServicio{
 	@Override
 	public Usuario añadirPedido(long idUsuario, Pedido pedido) {
 		return usuarioDao.añadirCompra(idUsuario, pedido);
+	}
+
+	@Override
+	public Usuario buscarPorNombreUsuario(String username) {
+		return usuarioDao.buscarPorNombre(username);
 	}
 
 }

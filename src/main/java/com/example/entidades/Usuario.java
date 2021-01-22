@@ -11,6 +11,9 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -28,6 +31,10 @@ public class Usuario implements Serializable{
 	
 	@OneToMany(fetch = FetchType.EAGER, mappedBy = "cliente", cascade = CascadeType.ALL, orphanRemoval = true)
 	private Set<Compra> compras = new HashSet<>();
+	
+	@ManyToMany(fetch = FetchType.EAGER, cascade = { CascadeType.PERSIST, CascadeType.MERGE })
+	@JoinTable(name = "USUARIO_ROL", joinColumns = @JoinColumn(name = "ID_USUARIO"), inverseJoinColumns = @JoinColumn(name = "ID_ROL"))
+	private Set<Rol> roles = new HashSet<>();
 	
 	@OneToMany(
 	mappedBy = "usuario",cascade = CascadeType.ALL,orphanRemoval = true)
@@ -205,8 +212,25 @@ public class Usuario implements Serializable{
 		this.compras.remove(compra);
 	}
 	
+	//Metodos Many-To-Many con ROL
 	
+	public Set<Rol> getRoles() {
+		return roles;
+	}
+
+	public void setRoles(Set<Rol> roles) {
+		this.roles = roles;
+	}
 	
+	public boolean anadirRol(Rol rol) {
+	    rol.anadirUsuario(this);
+		return getRoles().add(rol);
+	}
+
+	public void eliminarRol(Rol rol) {
+		this.roles.remove(rol);
+		rol.getUsuarios().remove(this);
+	}
 	
 	
 }

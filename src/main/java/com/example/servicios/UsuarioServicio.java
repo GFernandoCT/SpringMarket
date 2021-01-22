@@ -20,4 +20,6 @@ public interface UsuarioServicio {
 		public Usuario iniciarSesion(String nombreUsuario,String contraseña);
 		
 		public Usuario añadirPedido(long idUsuario,Pedido pedido);
+		
+		public Usuario buscarPorNombreUsuario(String username);
 }

@@ -2,6 +2,7 @@ package com.example.dao;
 
 import java.util.List;
 
+import javax.persistence.NoResultException;
 import javax.persistence.Query;
 
 import org.springframework.stereotype.Component;
@@ -42,16 +43,16 @@ public class UsuarioDaoImpl extends DaoGenericoImpl<Usuario> implements UsuarioD
 
 	@Override
 	public Usuario iniciar(String nombreUsuario, String contraseña) {
-		Query query = this.em.createQuery("select u FROM Usuario u where u.nombreUsuario =: nombre AND u.contraseñaUsuario =: contraseña");
+		Query query = this.em.createQuery("select u FROM Usuario u where u.nombreUsuario =: nombre");
 		query.setParameter("nombre", nombreUsuario);
-		query.setParameter("contraseña",contraseña);
+		try {
 		Usuario usuario = (Usuario) query.getSingleResult();
 		
-		if (usuario != null) {
-			return usuario;
-		}
+		return usuario;
 		
-		return null;
+		}catch (NoResultException e) {
+			return null;
+		}
 	}
 
 	@Override
