@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+<script th:src="@{/js/jquery-3.5.0.js}"></script>
+<script th:src="@{/js/typeahead.bundle.min.js}"></script>
+
+
+<head>
+<meta charset="UTF-8">
+</head>
+<body>
+
+	<nav sec:authorize="isAnonymous()" th:replace="fragments/header_default"></nav>
+	<nav
+		sec:authorize="hasAuthority('ROL_CLIENTE') && !hasAuthority('ROL_ADMIN')"
+		th:replace="fragments/header_default"></nav>
+	<nav sec:authorize="hasAuthority('ROL_ADMIN')"
+		th:replace="fragments/header_admin"></nav>
+
+
+</body>
+</html>

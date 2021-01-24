@@ -6,7 +6,7 @@
 <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
 </head>
 <body class="table-primary">
-     <nav th:replace="fragments/header_default"></nav>
+     <nav th:replace="fragments/header_loader"></nav>
 	<div>
         <h2 class="mt-4 ml-2">Coches encontrados:</h2>
         <th:block th:each="producto : ${sessionBusquedad}">
