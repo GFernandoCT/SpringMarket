@@ -18,7 +18,7 @@ public class UsuarioDaoImpl extends DaoGenericoImpl<Usuario> implements UsuarioD
 	@Override
 	public Usuario buscarPorNombre(String nombre) {
 		Query query =
-				this.em.createQuery("select u FROM USUARIO u where u.nombre= :nombre");
+				this.em.createQuery("select u FROM Usuario u where u.nombreUsuario =: nombre");
 				query.setParameter("nombre", nombre);
 				Usuario usuario = (Usuario) query.getSingleResult();
 				
@@ -42,7 +42,7 @@ public class UsuarioDaoImpl extends DaoGenericoImpl<Usuario> implements UsuarioD
 	}
 
 	@Override
-	public Usuario iniciar(String nombreUsuario, String contraseña) {
+	public Usuario iniciar(String nombreUsuario) {
 		Query query = this.em.createQuery("select u FROM Usuario u where u.nombreUsuario =: nombre");
 		query.setParameter("nombre", nombreUsuario);
 		try {

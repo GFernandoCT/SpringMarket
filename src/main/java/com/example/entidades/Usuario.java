@@ -28,7 +28,6 @@ public class Usuario implements Serializable{
 	@Column(name = "ID_USUARIO")
 	private Long idUsuario;
 	
-	
 	@OneToMany(fetch = FetchType.EAGER, mappedBy = "cliente", cascade = CascadeType.ALL, orphanRemoval = true)
 	private Set<Compra> compras = new HashSet<>();
 	

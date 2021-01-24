@@ -49,8 +49,8 @@ public class UsuarioServiceImpl implements UsuarioServicio{
 	}
 
 	@Override
-	public Usuario iniciarSesion(String nombreUsuario, String contraseña) {
-		return usuarioDao.iniciar(nombreUsuario, contraseña);
+	public Usuario iniciarSesion(String nombreUsuario) {
+		return usuarioDao.iniciar(nombreUsuario);
 	}
 
 	@Override

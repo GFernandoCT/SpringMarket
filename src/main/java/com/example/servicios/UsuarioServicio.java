@@ -17,7 +17,7 @@ public interface UsuarioServicio {
 
 		public List<Usuario> listarUsuario();
 
-		public Usuario iniciarSesion(String nombreUsuario,String contraseña);
+		public Usuario iniciarSesion(String nombreUsuario);
 		
 		public Usuario añadirPedido(long idUsuario,Pedido pedido);
 		
