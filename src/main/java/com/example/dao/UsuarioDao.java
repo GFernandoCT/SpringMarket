@@ -11,7 +11,7 @@ public interface UsuarioDao extends DaoGenerico<Usuario>{
 	
 	public List<Usuario> listarUsuario();
 
-	public Usuario iniciar(String nombreUsuario, String contraseña);
+	public Usuario iniciar(String nombreUsuario);
 	
 	public Usuario añadirCompra(long idUsuario, Pedido pedido);
 }

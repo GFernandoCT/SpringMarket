@@ -48,7 +48,7 @@ public class UsuarioControlador {
 	public String iniciarSesion(@RequestParam("nombre") String nombre, @RequestParam("contraseña") String contraseña,
 			HttpServletRequest request) {
 
-		Usuario usuario = usuarioService.iniciarSesion(nombre, contraseña);
+		Usuario usuario = usuarioService.iniciarSesion(nombre);
 		request.getSession().setAttribute("idUsuario", usuario.getIdUsuario());
 		return "redirect:/usuario/myprofile";
 

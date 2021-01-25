@@ -44,10 +44,13 @@ public class ProductoControlador {
 		return "Producto/Prueba";
 	}
 
+	
+	//MOVIDO A ADMIN CONTROLADOR
+	/*
 	@GetMapping("/crear")
 	public String showForm() {
 		return "Producto/crear";
-	}
+	}*/
 
 	@RequestMapping(method = RequestMethod.GET, value = "/{id}")
 	public ModelAndView perfilProducto(@PathVariable("id") long idProducto, HttpServletRequest request) {
@@ -65,9 +68,10 @@ public class ProductoControlador {
 		mav.addObject("producto", producto);
 		mav.setViewName("producto/datos");
 		return mav;
-
 	}
 
+	// MOVIDO A ADMINCONTROLADOR
+	/**
 	@RequestMapping(method = RequestMethod.POST, value = "/crear")
 	public String crearProducto(@RequestParam("nombre") String nombre, @RequestParam("marca") String marca,
 			@RequestParam("categoria") String categoria, @RequestParam("descripcion") String descripcion,
@@ -76,7 +80,7 @@ public class ProductoControlador {
 		Producto producto = new Producto(marca, nombre, categoria, descripcion, precio, descuento);
 		productoService.crearProducto(producto);
 		return "redirect:/";
-	}
+	}*/
 
 	@RequestMapping(method = RequestMethod.GET, value = "/borrar/{id}")
 	public ModelAndView borrarProducto(@PathVariable("id") long idProducto, HttpServletRequest request) {

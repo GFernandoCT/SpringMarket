@@ -136,6 +136,8 @@ public class CompraControlador {
 	public ModelAndView mostrarCompra(HttpServletRequest request) {
 		ModelAndView mav = new ModelAndView();
 		
+		// TODO evitar que entren usuarios no logeados
+		
 		/*
 		Usuario usuario = usuarioService.obtenerUsuario((long) request.getSession().getAttribute("idUsuario"));
 		//Set<Pedido> lPedido = usuario.getPedido();
