@@ -15,8 +15,10 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.example.entidades.Pedido;
 import com.example.entidades.Producto;
+import com.example.entidades.Rol;
 import com.example.entidades.Usuario;
 import com.example.servicios.ProductoServicio;
+import com.example.servicios.RolService;
 import com.example.servicios.UsuarioServicio;
 import com.fasterxml.jackson.annotation.JacksonInject.Value;
 
@@ -24,6 +26,9 @@ import com.fasterxml.jackson.annotation.JacksonInject.Value;
 @RequestMapping(value = "/usuario")
 public class UsuarioControlador {
 
+	@Autowired
+	RolService rolService;
+	
 	@Autowired
 	UsuarioServicio usuarioService;
 
@@ -93,6 +98,8 @@ public class UsuarioControlador {
 
 		Usuario usuario = new Usuario(nombreUser, apellidoUser, contraseñaUser, emailUser, fechaUser, tarjetaUser,
 				titularUser, codigoUser, direccionUser);
+		Rol rol=rolService.obtenerRol(1);
+		usuario.anadirRol(rol);
 		usuarioService.crearUsuario(usuario);
 		return "redirect:/index";
 	}

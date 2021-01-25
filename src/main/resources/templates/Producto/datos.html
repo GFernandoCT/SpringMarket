@@ -47,7 +47,9 @@
 					<button type="submit" class="btn btn-primary btn-sm float-left w-100" name="id" th:value="${producto.idProducto}">A&ntilde;adir al carrito</button>
 				</div>
 				</form>
-				<a th:href="@{/Producto/borrar/{id}(id=${producto.idProducto})}" type="button" class="btn btn-danger btn-sm float-right mt-2 ">Borrar Producto</a>
+				<nav sec:authorize="hasAuthority('ROL_ADMIN')">
+				<a th:href="@{/admin/borrar/{id}(id=${producto.idProducto})}" type="button" class="btn btn-danger btn-sm float-right mt-2 ">Borrar Producto</a>
+				</nav>
 				</div>
 				</div>
 			</div>
