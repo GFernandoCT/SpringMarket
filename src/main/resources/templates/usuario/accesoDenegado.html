@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>SpringMarketACFC</title>
+	<link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+</head>
+<body class="table-primary">
+    <nav th:replace="fragments/header_loader"></nav>
+    <div class="d-flex m-5 justify-content-center p-5">
+	<div class="d-flex-column mt-5 p-5">
+		<h2>Acceso no permitido</h2>
+		<a type="button" class="btn btn-primary btn-sm float-left w-100" th:href="@{/}">Inicio</a>	
+	</div>
+	</div>
+</body>
+</html>

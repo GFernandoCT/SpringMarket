@@ -17,8 +17,10 @@ import org.springframework.stereotype.Component;
 @Component
 public class AccessDeniedHandlerImpl implements AccessDeniedHandler {
 	
-	/*private static Logger log =
-			(Logger) LoggerFactory.getLogger(AccessDeniedHandlerImpl.class);*/
+	/*private static Logger LOG =
+			 Logger.getLogger(AccessDeniedHandlerImpl.class);
+			 */
+	
 	@Override
 	public void handle(HttpServletRequest request,
 			HttpServletResponse response,
@@ -27,7 +29,7 @@ public class AccessDeniedHandlerImpl implements AccessDeniedHandler {
 		Authentication auth =
 				SecurityContextHolder.getContext().getAuthentication();
 		if (auth != null) {
-	//		log.info(auth.getName()
+	//	log.info(auth.getName()
 	//					+ " was trying to access protected resource: "
 	//					+ request.getRequestURI());
 	 }
