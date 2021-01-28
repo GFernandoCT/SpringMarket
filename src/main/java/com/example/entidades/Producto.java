@@ -2,14 +2,18 @@ package com.example.entidades;
 
 import java.io.Serializable;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -43,6 +47,9 @@ public class Producto implements Serializable {
 
 	@ManyToMany(mappedBy = "productos")
 	private Set<Compra> compras = new HashSet<>();
+	
+	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "producto", orphanRemoval = true)
+	private Set<Imagen> imagen = new HashSet<>();
 
 	public void anadirCompra(Compra compra) {
 		this.compras.add(compra);
@@ -51,6 +58,14 @@ public class Producto implements Serializable {
 
 	public void eliminarCompra(Compra compra) {
 		this.compras.remove(compra);
+	}
+
+	public Set<Imagen> getImagen() {
+		return imagen;
+	}
+
+	public void setImagen(Set<Imagen> imagen) {
+		this.imagen = imagen;
 	}
 
 	public Set<Compra> getCompras() {
@@ -137,5 +152,24 @@ public class Producto implements Serializable {
 	public void setDescuentoProducto(int descuentoProducto) {
 		this.descuentoProducto = descuentoProducto;
 	}
+	
+	public void anadirImagen(Imagen img) {
+		this.imagen.add(img);
+		img.setProducto(this);
+	}
+	
+	public void quitarImagen(Imagen img) {
+		img.setProducto(null);
+		this.imagen.remove(img);
+	}
 
+	public void removeImagenes() {
+		Iterator<Imagen> iterator = this.imagen.iterator();
+		while (iterator.hasNext()) {
+			Imagen img = iterator.next();
+			img.setProducto(null);
+			iterator.remove();
+		}
+	}
+	
 }
