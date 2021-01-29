@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<title th:text="${producto.nombreProducto}"></title>
+	<link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+</head>
+<body class="table-primary">
+    <nav th:replace="fragments/header_loader"></nav>
+<div class="main">
+		<div class="container-sm ">
+			<div>
+				<h2>Foto de <span th:text="${producto.nombreProducto}"></span></h2>
+			</div>
+			<div class="foto" th:if="${imagen != null}">
+				<img class="foto-perfil"
+					th:src="@{/imagenes/{idImagen}(idImagen=${imagen.id})}">
+			</div>
+			<div class="foto" th:if="${imagen == null}">
+				<img class="foto-perfil" th:src="@{/images/coche.jpg}">
+			</div>
+		</div>
+		<div class="container-sm "
+			style="margin-right: auto; margin-left: auto;">
+			<div class="card" style="float: left">
+
+
+				<form
+					th:action="@{/imagenes/cargar/{idProducto}(idProducto=${producto.idProducto})}"
+					method="POST" enctype="multipart/form-data">
+
+					<tr>
+						<td><input type="file" class="form-control" name="file"
+							required></td>
+					</tr>
+					<tr>
+						<td><input type="submit" class="btn btn-lg btn-info"></td>
+					</tr>
+			</div>
+		</div>
+	</div>
+</body>
+
+</html>

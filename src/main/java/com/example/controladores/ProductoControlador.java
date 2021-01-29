@@ -1,9 +1,6 @@
 package com.example.controladores;
 
-import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.Iterator;
-import java.util.List;
 import java.util.Set;
 
 import javax.servlet.http.HttpServletRequest;
@@ -20,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.example.entidades.Imagen;
 import com.example.entidades.Producto;
 import com.example.entidades.ProductoCarrito;
 import com.example.servicios.ProductoServicio;
@@ -63,7 +61,17 @@ public class ProductoControlador {
 			long idSession = (long) request.getSession().getAttribute("idUsuario");
 			propietario = idSession == idProducto;
 		}
+		
+		Imagen img = null;
+		if (!producto.getImagen().isEmpty()) {
+			for (Imagen i : producto.getImagen()) {
+				img = i;
+				break;
+			}
 
+		}
+		
+		mav.addObject("imagen", img);
 		mav.addObject("propietario", propietario);
 		mav.addObject("producto", producto);
 		mav.setViewName("producto/datos");

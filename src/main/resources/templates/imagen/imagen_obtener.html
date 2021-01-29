@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<title th:text="${producto.nombreProducto}"></title>
+	<link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+</head>
+<body>
+
+	<table>
+		<tr>
+			<td>Id</td>
+			<td>${imagen.id}</td>
+		</tr>
+		<tr>
+			<td>Name</td>
+			<td>${imagen.nombre}</td>
+		</tr>
+		<tr>
+			<td>Image</td>
+			<td><img src="data:image/jpg;base64,${image} alt=" Girl in a
+				jacket" style="width: 50px; height: 50px;"></img></td>
+		</tr>
+	</table>
+</body>
+
+</html>

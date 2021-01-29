@@ -16,3 +16,5 @@ insert into ROL (ID_ROL, NOMBRE_ROL ) values (2,'ROL_ADMIN');
 insert into USUARIO_ROL (ID_USUARIO, ID_ROL ) values (1,1);
 insert into USUARIO_ROL (ID_USUARIO, ID_ROL ) values (2,2);
 insert into USUARIO_ROL (ID_USUARIO, ID_ROL ) values (2,1);
+
+

@@ -60,7 +60,7 @@ public class ImagenControlador {
 			Imagen img = new Imagen("foto", image);
 			Boolean saveImage = imgServicio.actualizarImagen(idProducto, file);
 			if (saveImage) {
-				return "redirect:/profesor/perfil/" + idProducto;
+				return "redirect:/Producto/" + idProducto;
 			} else {
 				return "redirect:/imagenes/cargar/" + idProducto;
 			}
