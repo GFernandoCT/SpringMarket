@@ -4,42 +4,23 @@
 	<meta charset="UTF-8">
 	<title th:text="${producto.nombreProducto}"></title>
 	<link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
-	<style type="text/css">
-		.foto-perfil {
-	/* 	position: absolute; */
-	width: 400px;
-	height: 300px;
-	margin-left: 125px;
-	/* 	margin-top:15px; */
-	/* 	margin-left: 15px; */
-}
-</style>
 </head>
 <body class="table-primary">
-    
+   
     <nav th:replace="fragments/header_loader"></nav>
     
     <div class="d-flex m-5 justify-content-center">
-        <div class="d-flex">
+        <div class="d-flex W-25">
 			<div class="foto" th:if="${imagen != null}">
-				<img class="foto-perfil"
+				<img class="foto-perfil w-100"
 						th:src="@{/imagenes/{idImagen}(idImagen=${imagen.id})}">
 				<div class="overlay"></div>
-				<div class="button">
-					<a href="#"
-						th:href="@{/imagenes/cargar/{idProducto}(idProducto=${producto.idProducto})}">
-						Editar foto </a>
-				</div>
+				
 				
 			</div>
 			<div class="foto" th:if="${imagen == null}">
 				<img class="foto-perfil" th:src="@{/images/coche.jpg}">
 				<div class="overlay"></div>
-				<div class="button">
-					<a href="#"
-						th:href="@{/imagenes/cargar/{idProducto}(idProducto=${producto.idProducto})}">
-						Editar foto </a>
-				</div>
 			</div>
 			</div>
     
@@ -69,8 +50,6 @@
 					</div>
 				<br>
 				
-		
-				
 				<!-- 
 				<div class="d-flex">
       				<select class="form-control mr-1 float-left w-25" name="cantidadCarro">
@@ -85,8 +64,18 @@
 					<button type="submit" class="btn btn-primary btn-sm float-left w-100" name="id" th:value="${producto.idProducto}">A&ntilde;adir al carrito</button>
 				</div>
 				</form>
+				<div sec:authorize="hasAuthority('ROL_ADMIN')" class="button" th:if="${imagen != null}">
+					<a class="btn btn-info btn-sm float-left mt-2 w-50" href="#"
+						th:href="@{/imagenes/cargar/{idProducto}(idProducto=${producto.idProducto})}">
+						Editar foto </a>
+				</div>
+				<div sec:authorize="hasAuthority('ROL_ADMIN')" class="button" th:if="${imagen == null}">
+					<a class="btn btn-info btn-sm float-left mt-2 w-50" href="#"
+						th:href="@{/imagenes/cargar/{idProducto}(idProducto=${producto.idProducto})}">
+						Editar foto </a>
+				</div>
 				<nav sec:authorize="hasAuthority('ROL_ADMIN')">
-				<a th:href="@{/admin/borrar/{id}(id=${producto.idProducto})}" type="button" class="btn btn-danger btn-sm float-right mt-2 ">Borrar Producto</a>
+				<a th:href="@{/admin/borrar/{id}(id=${producto.idProducto})}" type="button" class="btn btn-danger btn-sm float-right mt-2 w-50">Borrar Producto</a>
 				</nav>
 				</div>
 				</div>

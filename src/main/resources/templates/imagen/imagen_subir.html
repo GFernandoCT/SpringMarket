@@ -9,22 +9,21 @@
     <nav th:replace="fragments/header_loader"></nav>
 <div class="main">
 		<div class="container-sm ">
-			<div>
-				<h2>Foto de <span th:text="${producto.nombreProducto}"></span></h2>
+			<div class="d-flex m-5 justify-content-center">
+				<h2>Cambiar foto de <span th:text="${producto.nombreProducto}"></span></h2>
 			</div>
-			<div class="foto" th:if="${imagen != null}">
-				<img class="foto-perfil"
+			<div class="d-flex m-5 justify-content-center">
+			<div class="foto w-50" th:if="${imagen != null}">
+				<img class="foto-perfil w-100"
 					th:src="@{/imagenes/{idImagen}(idImagen=${imagen.id})}">
 			</div>
-			<div class="foto" th:if="${imagen == null}">
-				<img class="foto-perfil" th:src="@{/images/coche.jpg}">
+			<div class="foto w-50" th:if="${imagen == null}">
+				<img class="foto-perfil w-100" th:src="@{/images/coche.jpg}">
 			</div>
-		</div>
-		<div class="container-sm "
+
+		<div class="container-sm w-50 pt-5"
 			style="margin-right: auto; margin-left: auto;">
-			<div class="card" style="float: left">
-
-
+			<div class="card border-primary mb-3" style="float: left">
 				<form
 					th:action="@{/imagenes/cargar/{idProducto}(idProducto=${producto.idProducto})}"
 					method="POST" enctype="multipart/form-data">
@@ -33,10 +32,15 @@
 						<td><input type="file" class="form-control" name="file"
 							required></td>
 					</tr>
+					
 					<tr>
-						<td><input type="submit" class="btn btn-lg btn-info"></td>
+						<td><input type="submit" class="btn btn-md btn-primary disabled w-100"></td>
 					</tr>
+					
+					</form>
 			</div>
+		</div>
+		</div>
 		</div>
 	</div>
 </body>

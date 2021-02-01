@@ -15,8 +15,8 @@
 				    <th scope="row" class="p-1">Id</th>
       				<td>Nombre</td>
       				<td>Informacion</td>
-      				<!-- <td>Comprar</td>
-				      <th>Id</th>
+      				<<td>Quitar</td>
+				      <!-- <th>Id</th>
 				      <th scope="col">Nombre</th>
 				      <th scope="col">Cantidad</th>
 				      <th scope="col">Informaci&oacute;n</th>
@@ -36,14 +36,22 @@
 	        		<td th:text="${carrito.idProducto}" class="p-1">Id</td>
 	            	<td th:text="${carrito.nombreProducto}" >Nombre</td>
 	            	<td><a th:href="@{/Producto/{id}(id=${carrito.idProducto})} ">Saber m&aacute;s</a></td> 
+	            	<form th:action="@{/Producto/borrarProductoCarrito}" method="post">
+	            	<td><button type="submit" class="btn btn-primary btn-sm" th:value="${carrito.idProducto}" name="id">Devolver</button></td> 
+	            	</form>
 					</tbody>
 					</div>
         </table>
         </div>
-        <div class="d-flex justify-content-center">
+        <div class="d-flex justify-content-center" th:if="${!sessionCarrito.empty}">
         <form th:action="@{/compra/producto/pedido}" method="post">
           	<td><button type="submit" class="btn btn-primary btn-sm">Comprar productos</button></td>
 	    </form>
+        </div>
+        
+        <div class="d-flex justify-content-center text-center" th:if="${sessionCarrito.empty}">
+        ¡Tu carrito esta vacío!<br/> 
+        Deberías comprar un coche para fomentar el capitalismo salvaje.
         </div>
         </body>
 </html>

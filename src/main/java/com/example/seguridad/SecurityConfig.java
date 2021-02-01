@@ -35,9 +35,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 				"/Producto/**",
 				"/createUser",
 				"/webjars/**",
+				"/imagenes/**",
 				"/Producto/prueba").permitAll()
 			.antMatchers("/admin/**").hasAuthority("ROL_ADMIN")
-			.antMatchers("/Producto/crear").hasAuthority("ROL_ADMIN")
 			.anyRequest().authenticated()
 		.and()
 		.formLogin()
@@ -52,9 +52,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 			.invalidateHttpSession(true)
 			.deleteCookies("JSESSIONID")
 			.clearAuthentication(true)
-			.logoutUrl("/logout")
-			.logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
-			.logoutSuccessUrl("/login?logout")
+			.logoutUrl("/logOut")
+			.logoutRequestMatcher(new AntPathRequestMatcher("/logOut"))
+			.logoutSuccessUrl("/index")
 			.permitAll()
  		.and()
  			.exceptionHandling().accessDeniedPage("/usuario/accesoDenegado");

@@ -166,4 +166,18 @@ public class ProductoControlador {
 		request.getSession().setAttribute("CARRITO", carrito);
 		return "redirect:/Producto/carrito";
 	}
+	
+	@PostMapping("/borrarProductoCarrito")
+	public String borrarProductoCarrito(@RequestParam("id")Long id, HttpServletRequest request) {
+		
+		@SuppressWarnings("unchecked")
+		Set<Producto> carrito = (Set<Producto>) request.getSession().getAttribute("CARRITO");
+		if (carrito == null) {
+			carrito = new HashSet<>();
+		}
+		
+		carrito.remove(productoService.obtenerProducto(id));
+		request.getSession().setAttribute("sessionCarrito", carrito);
+		return "redirect:/Producto/carrito";
+	}
 }
