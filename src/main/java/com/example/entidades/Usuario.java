@@ -35,9 +35,6 @@ public class Usuario implements Serializable{
 	@JoinTable(name = "USUARIO_ROL", joinColumns = @JoinColumn(name = "ID_USUARIO"), inverseJoinColumns = @JoinColumn(name = "ID_ROL"))
 	private Set<Rol> roles = new HashSet<>();
 	
-	@OneToMany(
-	mappedBy = "usuario",cascade = CascadeType.ALL,orphanRemoval = true)
-	private Set<Pedido> pedido = new HashSet<>();
 
 	@Column(name= "NOMBRE", unique = true)
 	private String nombreUsuario;
@@ -99,14 +96,6 @@ public class Usuario implements Serializable{
 
 	public void setIdUsuario(Long idUsuario) {
 		this.idUsuario = idUsuario;
-	}
-
-	public Set<Pedido> getPedido() {
-		return pedido;
-	}
-
-	public void setPedido(Set<Pedido> pedido) {
-		this.pedido = pedido;
 	}
 
 	public String getNombreUsuario() {
@@ -179,15 +168,6 @@ public class Usuario implements Serializable{
 
 	public void setDireccionUsuario(String direccionUsuario) {
 		this.direccionUsuario = direccionUsuario;
-	}
-	
-	public boolean anadirPedidos(Pedido pedido) {
-		pedido.setUsuario(this);
-		return getPedido().add(pedido);
-		}
-	
-	public void eliminarPedidos(Pedido pedido) {
-		getPedido().remove(pedido);
 	}
 
 	

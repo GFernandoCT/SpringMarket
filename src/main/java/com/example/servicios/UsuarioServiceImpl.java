@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.example.dao.UsuarioDao;
-import com.example.entidades.Pedido;
 import com.example.entidades.Usuario;
 
 @Transactional
@@ -53,10 +52,6 @@ public class UsuarioServiceImpl implements UsuarioServicio{
 		return usuarioDao.iniciar(nombreUsuario);
 	}
 
-	@Override
-	public Usuario añadirPedido(long idUsuario, Pedido pedido) {
-		return usuarioDao.añadirCompra(idUsuario, pedido);
-	}
 
 	@Override
 	public Usuario buscarPorNombreUsuario(String username) {

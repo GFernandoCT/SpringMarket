@@ -13,7 +13,6 @@ import com.example.dao.CompraRepository;
 import com.example.dao.ProductoDao;
 import com.example.dao.UsuarioDao;
 import com.example.entidades.Compra;
-import com.example.entidades.Pedido;
 import com.example.entidades.Producto;
 import com.example.entidades.Usuario;
 

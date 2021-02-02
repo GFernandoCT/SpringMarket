@@ -49,6 +49,8 @@ public class ControladorIndice {
 	
 	@PostMapping("/buscar")
 	public String buscar_post(@RequestParam("nombre") String nombre, HttpServletRequest request) {
+		
+		//TODO BUSCAR POR MAS COSAS QUE EL NOMBRE
 		request.getSession().setAttribute("NOMBRE",nombre);
 		return "redirect:/buscar";
 	}

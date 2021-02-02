@@ -3,7 +3,6 @@ package com.example.servicios;
 import java.util.List;
 
 import com.example.entidades.Compra;
-import com.example.entidades.Pedido;
 
 public interface CompraServicio {
 

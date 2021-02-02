@@ -14,14 +14,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.example.entidades.Pedido;
-import com.example.entidades.Producto;
 import com.example.entidades.Rol;
 import com.example.entidades.Usuario;
-import com.example.servicios.ProductoServicio;
 import com.example.servicios.RolService;
 import com.example.servicios.UsuarioServicio;
-import com.fasterxml.jackson.annotation.JacksonInject.Value;
 
 @Controller
 @RequestMapping(value = "/usuario")
@@ -72,7 +68,7 @@ public class UsuarioControlador {
 	}
 
 	@RequestMapping(method = RequestMethod.GET, value = "/perfil/{id}")
-	public ModelAndView perfilProfesor(@PathVariable("id") long idUsuario, HttpServletRequest request) {
+	public ModelAndView perfilUsuario(@PathVariable("id") long idUsuario, HttpServletRequest request) {
 
 		ModelAndView mav = new ModelAndView();
 		Usuario usuario = usuarioService.obtenerUsuario(idUsuario);

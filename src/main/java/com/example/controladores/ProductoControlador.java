@@ -29,26 +29,10 @@ public class ProductoControlador {
 	@Autowired
 	ProductoServicio productoService;
 
-	/*
-	 * @RequestMapping(method = RequestMethod.GET, value = "/lista") public
-	 * ModelAndView listarProducto() { ModelAndView mav = new ModelAndView();
-	 * List<Producto> lProducto = productoService.listarProducto();
-	 * mav.addObject("Productos", lProducto); mav.setViewName("Producto/Lista");
-	 * return mav; }
-	 */
-
 	@RequestMapping("/prueba")
 	public String hola(Model modelo) {
 		return "Producto/Prueba";
 	}
-
-	
-	//MOVIDO A ADMIN CONTROLADOR
-	/*
-	@GetMapping("/crear")
-	public String showForm() {
-		return "Producto/crear";
-	}*/
 
 	@RequestMapping(method = RequestMethod.GET, value = "/{id}")
 	public ModelAndView perfilProducto(@PathVariable("id") long idProducto, HttpServletRequest request) {
@@ -61,16 +45,15 @@ public class ProductoControlador {
 			long idSession = (long) request.getSession().getAttribute("idUsuario");
 			propietario = idSession == idProducto;
 		}
-		
+
 		Imagen img = null;
 		if (!producto.getImagen().isEmpty()) {
 			for (Imagen i : producto.getImagen()) {
 				img = i;
 				break;
 			}
-
 		}
-		
+
 		mav.addObject("imagen", img);
 		mav.addObject("propietario", propietario);
 		mav.addObject("producto", producto);
@@ -78,29 +61,10 @@ public class ProductoControlador {
 		return mav;
 	}
 
-	// MOVIDO A ADMINCONTROLADOR
-	/**
-	@RequestMapping(method = RequestMethod.POST, value = "/crear")
-	public String crearProducto(@RequestParam("nombre") String nombre, @RequestParam("marca") String marca,
-			@RequestParam("categoria") String categoria, @RequestParam("descripcion") String descripcion,
-			@RequestParam("precio") int precio, @RequestParam("descuento") int descuento, HttpServletRequest request) {
-
-		Producto producto = new Producto(marca, nombre, categoria, descripcion, precio, descuento);
-		productoService.crearProducto(producto);
-		return "redirect:/";
-	}*/
-
-	/*@RequestMapping(method = RequestMethod.GET, value = "/borrar/{id}")
-	public ModelAndView borrarProducto(@PathVariable("id") long idProducto, HttpServletRequest request) {
-		ModelAndView mav = new ModelAndView();
-		productoService.eliminarProducto(idProducto);
-		mav.setViewName("redirect:/");
-		return mav;
-	}*/
-
 	@GetMapping("/carrito")
 	public String verCarrito(Model model, HttpSession session) {
 
+		@SuppressWarnings("unchecked")
 		Set<ProductoCarrito> carrito = (Set<ProductoCarrito>) session.getAttribute("CARRITO");
 		if (carrito == null) {
 			carrito = new HashSet<>();
@@ -110,53 +74,24 @@ public class ProductoControlador {
 		return "Producto/carrito";
 	}
 
-	@PostMapping("/añadirProducto")
-	public String añadirAlCarrito(@RequestParam("id") Long id, @RequestParam("cantidadCarro") int cantidad,
-			HttpServletRequest request) {
-		@SuppressWarnings("unchecked")
-		Set<ProductoCarrito> carrito = (Set<ProductoCarrito>) request.getSession().getAttribute("CARRITO");
-		if (carrito == null) {
-			carrito = new HashSet<>();
-		}
-		
-		Boolean anadido =false;
-		if (!carrito.isEmpty()) {
-			for (ProductoCarrito p :carrito) {
-				if (p.getIdProductoCarro()== id) {
-					p.setCantidadProductoCarro(p.getCantidadProductoCarro()+ cantidad);
-					anadido=true;
-					break;
-				}				
-			}	
-		}
-		if (carrito.isEmpty() || !anadido) {
-			Producto producto = productoService.obtenerProducto(id);
-			ProductoCarrito productoCarrito = new ProductoCarrito(id, producto.getNombreProducto(), cantidad);
-			carrito.add(productoCarrito);
-		}
-
-		request.getSession().setAttribute("CARRITO", carrito);
-		return "redirect:/Producto/carrito";
-	}
-	
-	@PostMapping("/añadirProducto2")
-	public String añadirAlCarrito2(@RequestParam("id") Long id,
-			HttpServletRequest request) {
+	@PostMapping("/anadirProducto")
+	public String anadirCarrito(@RequestParam("id") Long id, HttpServletRequest request) {
 		@SuppressWarnings("unchecked")
 		Set<Producto> carrito = (Set<Producto>) request.getSession().getAttribute("CARRITO");
 		if (carrito == null) {
 			carrito = new HashSet<>();
 		}
-		
-		Boolean anadido =false;
+
+		Boolean anadido = false;
 		if (!carrito.isEmpty()) {
-			for (Producto p :carrito) {
-				if (p.getIdProducto()== id) {
-					anadido=true;
+			for (Producto p : carrito) {
+				if (p.getIdProducto() == id) {
+					anadido = true;
 					break;
-				}				
-			}	
+				}
+			}
 		}
+		
 		if (carrito.isEmpty() || !anadido) {
 			Producto producto = productoService.obtenerProducto(id);
 			Producto productoCarrito = new Producto(id, producto.getNombreProducto());
@@ -166,18 +101,18 @@ public class ProductoControlador {
 		request.getSession().setAttribute("CARRITO", carrito);
 		return "redirect:/Producto/carrito";
 	}
-	
+
 	@PostMapping("/borrarProductoCarrito")
-	public String borrarProductoCarrito(@RequestParam("id")Long id, HttpServletRequest request) {
-		
+	public String borrarProductoCarrito(@RequestParam("id") Long id, HttpServletRequest request) {
+
 		@SuppressWarnings("unchecked")
-		Set<Producto> carrito = (Set<Producto>) request.getSession().getAttribute("CARRITO");
+		Set<Producto> carrito = (Set<Producto>) request.getSession().getAttribute("sessionCarrito");
 		if (carrito == null) {
 			carrito = new HashSet<>();
 		}
-		
+
 		carrito.remove(productoService.obtenerProducto(id));
-		request.getSession().setAttribute("sessionCarrito", carrito);
+		request.getSession().setAttribute("CARRITO", carrito);
 		return "redirect:/Producto/carrito";
 	}
 }
