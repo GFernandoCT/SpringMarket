@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.example.entidades.Imagen;
@@ -32,6 +33,12 @@ public class ProductoControlador {
 	@RequestMapping("/prueba")
 	public String hola(Model modelo) {
 		return "Producto/Prueba";
+	}
+	
+	@RequestMapping(value = "/preguntas/{pregunta}", method = RequestMethod.POST)
+	@ResponseBody
+	public String anadirPregunta(@PathVariable("preguntaSubir") String pregunta) {
+		return pregunta;
 	}
 
 	@RequestMapping(method = RequestMethod.GET, value = "/{id}")
