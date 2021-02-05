@@ -4,13 +4,21 @@
 <meta charset="UTF-8">
 <title th:text="${producto.nombreProducto}"></title>
 <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+
+<style>
+	img{
+		max-width:250px;
+	}
+</style>
+
 </head>
+
 <body class="table-primary">
 
 	<nav th:replace="fragments/header_loader"></nav>
 
 	<div class="d-flex m-5 justify-content-center">
-		<div class="d-flex W-25">
+		<div class="d-flex W-25 mt-5">
 			<div class="foto" th:if="${imagen != null}">
 				<img class="foto-perfil w-100"
 					th:src="@{/imagenes/{idImagen}(idImagen=${imagen.id})}">
@@ -24,7 +32,7 @@
 			</div>
 		</div>
 
-		<div class="d-flex-column m-5 w-50">
+		<div class="d-flex-column m-5 w-75">
 			<div>
 				<form th:action="@{/Producto/anadirProducto}" method="post">
 					<h1>
@@ -73,23 +81,24 @@
 						th:href="@{/imagenes/cargar/{idProducto}(idProducto=${producto.idProducto})}">
 						Editar foto </a>
 				</div>
-				<nav sec:authorize="hasAuthority('ROL_ADMIN')">
+				<div sec:authorize="hasAuthority('ROL_ADMIN')">
 					<a th:href="@{/admin/borrar/{id}(id=${producto.idProducto})}"
 						type="button" class="btn btn-danger btn-sm float-right mt-2 w-50">Borrar
 						Producto</a>
-				</nav>
-			</div>
-			
-			<div>
-				<input type="text" class="form-control" id="pregunta" 
-				placeholder="¿Tienes alguna pregunta sobre el vehiculo?" 
-				name="preguntaSubir"> <!--  th:field="*{question}" --></input>
-			</div>
-			
-			<div id="algo">
+				</div>
+
+			</div>		
 			
 			</div>
-		</div>
 	</div>
+	<div class="d-flex justify-content-center w-100">
+			<input type="text" class="form-control w-50" id="pregunta" 
+				placeholder="¿Tienes alguna pregunta sobre el vehiculo?" 
+				name="preguntaSubir">
+			<button class="float-left "id="botonPregunta">Subir</button>
+			</div>
+				
+			<div id="algo">
+		</div>
 </body>
 </html>

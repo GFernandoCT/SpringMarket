@@ -1,4 +1,4 @@
-$("body").on("keyup", "#pregunta", anadirPregunta);
+$("body").on("click", "#botonPregunta", anadirPregunta);
 
 function anadirPregunta() {
 	var preguntaSubir = $("#pregunta").val();
@@ -15,10 +15,9 @@ function anadirPregunta() {
 		data: {"question": preguntaSubir},
 		type: "POST",
 		
-	succes: function(response) {
-		var preguntaRealizada;
-			preguntaRealizada = "<div> " + response + "</div>";
-		$('#algo').html(preguntaRealizada);
+	success: function(response) {
+		response = "<p>" + response +  "</p>"; 
+		$('#algo').html(response);
 	},
 	error: function(xhr,status,error){
 		alerta= "<div> No se ha podido realizar la pregunta </div>";

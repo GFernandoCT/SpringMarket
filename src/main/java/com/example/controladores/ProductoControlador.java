@@ -35,7 +35,7 @@ public class ProductoControlador {
 		return "Producto/Prueba";
 	}
 	
-	@RequestMapping(value = "/preguntas/{pregunta}", method = RequestMethod.POST)
+	@RequestMapping(value = "/preguntas/{preguntaSubir}", method = RequestMethod.POST)
 	@ResponseBody
 	public String anadirPregunta(@PathVariable("preguntaSubir") String pregunta) {
 		return pregunta;
