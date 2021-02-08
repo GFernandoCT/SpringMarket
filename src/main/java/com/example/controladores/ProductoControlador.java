@@ -1,5 +1,6 @@
 package com.example.controladores;
 
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -19,9 +20,12 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.example.entidades.Imagen;
+import com.example.entidades.Pregunta;
 import com.example.entidades.Producto;
 import com.example.entidades.ProductoCarrito;
+import com.example.entidades.Usuario;
 import com.example.servicios.ProductoServicio;
+import com.example.servicios.UsuarioServicio;
 
 @Controller
 @RequestMapping(value = "/Producto")
@@ -30,15 +34,33 @@ public class ProductoControlador {
 	@Autowired
 	ProductoServicio productoService;
 
+	@Autowired
+	UsuarioServicio usuarioService;
+	
 	@RequestMapping("/prueba")
 	public String hola(Model modelo) {
 		return "Producto/Prueba";
 	}
 	
-	@RequestMapping(value = "/preguntas/{preguntaSubir}", method = RequestMethod.POST)
+	@RequestMapping(value = "/preguntas/{preguntaSubir}/{idProducto}", method = RequestMethod.POST)
 	@ResponseBody
-	public String anadirPregunta(@PathVariable("preguntaSubir") String pregunta) {
-		return pregunta;
+	public String anadirPregunta(@PathVariable("preguntaSubir") String pregunta,
+			@PathVariable("idProducto") String idProducto,
+			HttpServletRequest request) {
+	
+		Usuario usuario = usuarioService.obtenerUsuario((long) request.getSession().getAttribute("idUsuario"));
+		
+		String nombreUsuario = usuario.getNombreUsuario();
+		
+		Date fecha = new Date();
+		
+		Pregunta preguntaCompleta = new Pregunta(pregunta,nombreUsuario,fecha.toString());
+
+		
+		
+		String prueba = pregunta + idProducto;
+		
+		return prueba;
 	}
 
 	@RequestMapping(method = RequestMethod.GET, value = "/{id}")

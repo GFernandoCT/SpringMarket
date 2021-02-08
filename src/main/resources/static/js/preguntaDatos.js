@@ -2,6 +2,7 @@ $("body").on("click", "#botonPregunta", anadirPregunta);
 
 function anadirPregunta() {
 	var preguntaSubir = $("#pregunta").val();
+	var idProducto = $("#idProducto").text();
 	
 	var token = $("meta[name='_csrf']").attr("content");
 	var header = $("meta[name='_csrf_header']").attr("content");
@@ -10,9 +11,9 @@ function anadirPregunta() {
 	});
 	
 	$.ajax({
-		url: "/Producto/preguntas/" + preguntaSubir,
+		url: "/Producto/preguntas/" + preguntaSubir + "/" + idProducto,
 		contentType: "application/json; charset=utf-8",
-		data: {"question": preguntaSubir},
+		data: {"preguntaSubir":preguntaSubir, "idProducto":idProducto},
 		type: "POST",
 		
 	success: function(response) {

@@ -39,6 +39,7 @@ public class Producto implements Serializable {
 	@Column(name = "DESCRIPCION")
 	private String descripcionProducto;
 
+
 	@Column(name = "PRECIO")
 	private int precioProducto; 
 
@@ -50,6 +51,9 @@ public class Producto implements Serializable {
 	
 	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "producto", orphanRemoval = true)
 	private Set<Imagen> imagen = new HashSet<>();
+	
+	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "producto", orphanRemoval = true)
+	private Set<Pregunta> pregunta = new HashSet<>();
 
 	public void anadirCompra(Compra compra) {
 		this.compras.add(compra);
@@ -170,6 +174,24 @@ public class Producto implements Serializable {
 			img.setProducto(null);
 			iterator.remove();
 		}
+	}
+	
+	public Set<Pregunta> getPregunta() {
+		return pregunta;
+	}
+	
+	public void setPregunta(Set<Pregunta> pregunta) {
+		this.pregunta = pregunta;
+	}
+	
+	public void anadirPregunta(Pregunta pregunta) {
+	 this.pregunta.add(pregunta);
+	 pregunta.setProducto(this); 
+	}
+	
+	public void eliminarPregunta(Pregunta pregunta) {
+		pregunta.setProducto(null);
+		this.pregunta.remove(pregunta);
 	}
 	
 }

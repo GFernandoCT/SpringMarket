@@ -2,9 +2,12 @@ package com.example.entidades;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -24,6 +27,11 @@ public class Pregunta {
 	
 	@Column(name = "FECHAPREGUNTA")
 	private String fechaPregunta;
+
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "ID_PRODUCTO")
+	private Producto producto;
+	
 
 	public Pregunta() {
 		super();
@@ -68,4 +76,11 @@ public class Pregunta {
 		this.fechaPregunta = fechaPregunta;
 	}
 
+	public Producto getProducto() {
+		return producto;
+	}
+	
+	public void setProducto(Producto producto) {
+		this.producto = producto;
+	}
 }

@@ -23,9 +23,8 @@
 				<img class="foto-perfil w-100"
 					th:src="@{/imagenes/{idImagen}(idImagen=${imagen.id})}">
 				<div class="overlay"></div>
-
-
 			</div>
+			
 			<div class="foto" th:if="${imagen == null}">
 				<img class="foto-perfil" th:src="@{/images/coche.jpg}">
 				<div class="overlay"></div>
@@ -43,7 +42,7 @@
 					</div>
 					<div>
 						<b>Nombre del modelo:</b> <span
-							th:text="${producto.nombreProducto}" name="nombreCarro"
+							th:text="${producto.nombreProducto}" id="nombreProducto"
 							th:value="${producto.nombreProducto}"></span>
 					</div>
 					<div>
@@ -60,6 +59,9 @@
 					<div>
 						<b>Descuento:</b> <span th:text="${producto.descuentoProducto}"></span>
 					</div>
+					<div id="idProducto" th:text="${producto.idProducto}">
+					</div>
+					
 					<br />
 
 					<div>
