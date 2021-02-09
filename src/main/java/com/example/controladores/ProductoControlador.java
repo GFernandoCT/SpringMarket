@@ -24,6 +24,7 @@ import com.example.entidades.Pregunta;
 import com.example.entidades.Producto;
 import com.example.entidades.ProductoCarrito;
 import com.example.entidades.Usuario;
+import com.example.servicios.PreguntaService;
 import com.example.servicios.ProductoServicio;
 import com.example.servicios.UsuarioServicio;
 
@@ -37,6 +38,9 @@ public class ProductoControlador {
 	@Autowired
 	UsuarioServicio usuarioService;
 	
+	@Autowired
+	PreguntaService preguntaService;
+	
 	@RequestMapping("/prueba")
 	public String hola(Model modelo) {
 		return "Producto/Prueba";
@@ -47,16 +51,21 @@ public class ProductoControlador {
 	public String anadirPregunta(@PathVariable("preguntaSubir") String pregunta,
 			@PathVariable("idProducto") String idProducto,
 			HttpServletRequest request) {
-	
-		Usuario usuario = usuarioService.obtenerUsuario((long) request.getSession().getAttribute("idUsuario"));
-		
-		String nombreUsuario = usuario.getNombreUsuario();
-		
-		Date fecha = new Date();
-		
-		Pregunta preguntaCompleta = new Pregunta(pregunta,nombreUsuario,fecha.toString());
 
 		
+		
+		Usuario usuario = usuarioService.obtenerUsuario((long) request.getSession().getAttribute("idUsuario"));
+		String nombreUsuario = usuario.getNombreUsuario();
+		
+		Date fecha = new Date();		
+		Pregunta preguntaCompleta = new Pregunta(pregunta,nombreUsuario,fecha.toString());
+
+		Producto producto = productoService.obtenerProducto(Long.parseLong(idProducto));
+		
+		producto.anadirPregunta(preguntaCompleta);
+		
+		preguntaService.crearPregunta(preguntaCompleta);
+	
 		
 		String prueba = pregunta + idProducto;
 		

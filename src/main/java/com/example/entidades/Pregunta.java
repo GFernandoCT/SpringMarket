@@ -14,6 +14,8 @@ import javax.persistence.Table;
 @Table(name = "PREGUNTA")
 public class Pregunta {
 	
+	private static final long serialVersionUID = -8668594760203621162L;
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "ID_PREGUNTA")
