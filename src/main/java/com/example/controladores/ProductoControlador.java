@@ -1,7 +1,9 @@
 package com.example.controladores;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import javax.servlet.http.HttpServletRequest;
@@ -65,9 +67,8 @@ public class ProductoControlador {
 		producto.anadirPregunta(preguntaCompleta);
 		
 		preguntaService.crearPregunta(preguntaCompleta);
-	
 		
-		String prueba = pregunta + idProducto;
+		String prueba = "true";
 		
 		return prueba;
 	}
@@ -91,10 +92,19 @@ public class ProductoControlador {
 				break;
 			}
 		}
+		
+		
+		List<Pregunta> preguntas = new ArrayList<>();
+		
+		if(preguntaService.mostrarPreguntasProducto(producto) != null) {
+			preguntas = preguntaService.mostrarPreguntasProducto(producto);
+		}
+		
 
 		mav.addObject("imagen", img);
 		mav.addObject("propietario", propietario);
 		mav.addObject("producto", producto);
+		mav.addObject("preguntas",preguntas);
 		mav.setViewName("producto/datos");
 		return mav;
 	}

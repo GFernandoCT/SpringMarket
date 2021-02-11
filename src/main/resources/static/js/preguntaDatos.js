@@ -17,8 +17,8 @@ function anadirPregunta() {
 		type: "POST",
 		
 	success: function(response) {
-		response = "<p>" + response +  "</p>"; 
-		$('#algo').html(response);
+		pregunta = "<p>" + preguntaSubir+  "</p>"; 
+		$('#preguntas').append(pregunta);
 	},
 	error: function(xhr,status,error){
 		alerta= "<div> No se ha podido realizar la pregunta </div>";

@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.example.dao.PreguntaDao;
 import com.example.entidades.Pregunta;
+import com.example.entidades.Producto;
 
 @Transactional
 @Service
@@ -23,8 +24,8 @@ public class PreguntaServiceImpl implements PreguntaService{
 	}
 
 	@Override
-	public List<Pregunta> mostrarPreguntasProducto(long idProducto) {
-		return preguntaDao.mostrarPreguntas(idProducto);		
+	public List<Pregunta> mostrarPreguntasProducto(Producto producto) {
+		return preguntaDao.mostrarPreguntas(producto);		
 	}
 
 

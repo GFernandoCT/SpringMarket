@@ -99,8 +99,13 @@
 				name="preguntaSubir">
 			<button class="float-left "id="botonPregunta">Subir</button>
 			</div>
-				
-			<div id="algo">
-		</div>
+			
+		<div id="preguntas" class="jumbotron m-5">
+			<th:block th:each="preguntas : ${preguntas}"> 
+				<h2> <span th:text="${preguntas.textoPregunta}"></span>	</h2>
+					
+	        </th:block>	 
+	        	<div id="preguntaAnadida" class="p-1"></div>
+	    </div>
 </body>
 </html>
