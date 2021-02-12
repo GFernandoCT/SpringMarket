@@ -11,4 +11,6 @@ public interface PreguntaService {
 	
 	public List<Pregunta> mostrarPreguntasProducto(Producto producto);
 
+	public Pregunta buscarPregunta(long idPregunta);
+	
 }

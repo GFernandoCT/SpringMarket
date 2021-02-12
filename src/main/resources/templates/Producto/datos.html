@@ -6,9 +6,9 @@
 <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
 
 <style>
-	img{
-		max-width:250px;
-	}
+img {
+	max-width: 250px;
+}
 </style>
 
 </head>
@@ -24,7 +24,7 @@
 					th:src="@{/imagenes/{idImagen}(idImagen=${imagen.id})}">
 				<div class="overlay"></div>
 			</div>
-			
+
 			<div class="foto" th:if="${imagen == null}">
 				<img class="foto-perfil" th:src="@{/images/coche.jpg}">
 				<div class="overlay"></div>
@@ -59,9 +59,8 @@
 					<div>
 						<b>Descuento:</b> <span th:text="${producto.descuentoProducto}"></span>
 					</div>
-					<div id="idProducto" th:text="${producto.idProducto}">
-					</div>
-					
+					<div id="idProducto" th:text="${producto.idProducto}"></div>
+
 					<br />
 
 					<div>
@@ -89,23 +88,27 @@
 						Producto</a>
 				</div>
 
-			</div>		
-			
 			</div>
+
+		</div>
 	</div>
 	<div class="d-flex justify-content-center w-100">
-			<input type="text" class="form-control w-50" id="pregunta" 
-				placeholder="¿Tienes alguna pregunta sobre el vehiculo?" 
-				name="preguntaSubir">
-			<button class="float-left "id="botonPregunta">Subir</button>
+		<input type="text" class="form-control w-50" id="pregunta"
+			placeholder="¿Tienes alguna pregunta sobre el vehiculo?"
+			name="preguntaSubir">
+		<button class="float-left " id="botonPregunta">Subir</button>
+	</div>
+
+		<th:block th:each="preguntas : ${preguntas}">
+			<div class="card border-primary m-3">
+			<div class="card-body">
+				<h4 class="card-title"><span th:text="${preguntas.textoPregunta}">Pregunta</span></h4>
+				<h6 class="card-subtitle mb-2 text-muted" th:text="${preguntas.usuarioPregunta}">Card subtitle</h6>
+				<p class="card-text">Aquí tiene que ir la respuesta de la pregunta.</p>
 			</div>
-			
-		<div id="preguntas" class="jumbotron m-5">
-			<th:block th:each="preguntas : ${preguntas}"> 
-				<h2> <span th:text="${preguntas.textoPregunta}"></span>	</h2>
-					
-	        </th:block>	 
-	        	<div id="preguntaAnadida" class="p-1"></div>
-	    </div>
+		</div>
+		</th:block>
+		
+		<div id="preguntaAnadida" class="p-1"></div>
 </body>
 </html>

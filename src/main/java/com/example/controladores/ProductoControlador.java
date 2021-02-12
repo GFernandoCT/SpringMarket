@@ -53,13 +53,17 @@ public class ProductoControlador {
 	public String anadirPregunta(@PathVariable("preguntaSubir") String pregunta,
 			@PathVariable("idProducto") String idProducto,
 			HttpServletRequest request) {
-
 		
-		
+		HttpSession session = request.getSession();
+		if (session != null && session.getAttribute("idUsuario") != null) {
+			
 		Usuario usuario = usuarioService.obtenerUsuario((long) request.getSession().getAttribute("idUsuario"));
 		String nombreUsuario = usuario.getNombreUsuario();
 		
-		Date fecha = new Date();		
+		Date fecha = new Date();	
+		
+		pregunta = "¿" + pregunta + "?";
+		
 		Pregunta preguntaCompleta = new Pregunta(pregunta,nombreUsuario,fecha.toString());
 
 		Producto producto = productoService.obtenerProducto(Long.parseLong(idProducto));
@@ -68,9 +72,12 @@ public class ProductoControlador {
 		
 		preguntaService.crearPregunta(preguntaCompleta);
 		
-		String prueba = "true";
+		String completado = "true";
 		
-		return prueba;
+		return completado;
+		
+		}
+		else return "false";
 	}
 
 	@RequestMapping(method = RequestMethod.GET, value = "/{id}")

@@ -28,6 +28,11 @@ public class PreguntaServiceImpl implements PreguntaService{
 		return preguntaDao.mostrarPreguntas(producto);		
 	}
 
+	@Override
+	public Pregunta buscarPregunta(long idPregunta) {
+		return preguntaDao.buscar(idPregunta);
+	}
+
 
 
 }
