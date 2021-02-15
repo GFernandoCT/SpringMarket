@@ -1,7 +1,6 @@
 package com.example.controladores;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -18,14 +17,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.example.entidades.Imagen;
-import com.example.entidades.Pregunta;
+import com.example.entidades.PreguntaDTO;
 import com.example.entidades.Producto;
 import com.example.entidades.ProductoCarrito;
-import com.example.entidades.Usuario;
 import com.example.servicios.PreguntaService;
 import com.example.servicios.ProductoServicio;
 import com.example.servicios.UsuarioServicio;
@@ -48,37 +45,6 @@ public class ProductoControlador {
 		return "Producto/Prueba";
 	}
 	
-	@RequestMapping(value = "/preguntas/{preguntaSubir}/{idProducto}", method = RequestMethod.POST)
-	@ResponseBody
-	public String anadirPregunta(@PathVariable("preguntaSubir") String pregunta,
-			@PathVariable("idProducto") String idProducto,
-			HttpServletRequest request) {
-		
-		HttpSession session = request.getSession();
-		if (session != null && session.getAttribute("idUsuario") != null) {
-			
-		Usuario usuario = usuarioService.obtenerUsuario((long) request.getSession().getAttribute("idUsuario"));
-		String nombreUsuario = usuario.getNombreUsuario();
-		
-		Date fecha = new Date();	
-		
-		pregunta = "¿" + pregunta + "?";
-		
-		Pregunta preguntaCompleta = new Pregunta(pregunta,nombreUsuario,fecha.toString());
-
-		Producto producto = productoService.obtenerProducto(Long.parseLong(idProducto));
-		
-		producto.anadirPregunta(preguntaCompleta);
-		
-		preguntaService.crearPregunta(preguntaCompleta);
-		
-		String completado = "true";
-		
-		return completado;
-		
-		}
-		else return "false";
-	}
 
 	@RequestMapping(method = RequestMethod.GET, value = "/{id}")
 	public ModelAndView perfilProducto(@PathVariable("id") long idProducto, HttpServletRequest request) {
@@ -101,7 +67,7 @@ public class ProductoControlador {
 		}
 		
 		
-		List<Pregunta> preguntas = new ArrayList<>();
+		List<PreguntaDTO> preguntas = new ArrayList<>();
 		
 		if(preguntaService.mostrarPreguntasProducto(producto) != null) {
 			preguntas = preguntaService.mostrarPreguntasProducto(producto);

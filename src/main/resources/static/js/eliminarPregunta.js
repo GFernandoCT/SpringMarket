@@ -1,8 +1,9 @@
-$("body").on("click", "#botonPregunta", anadirPregunta);
+$("body").on("click", "#botonEliminar", eliminarPregunta);
 
-function anadirPregunta() {
-	var preguntaSubir = $("#pregunta").val();
-	var idProducto = $("#idProducto").text();
+
+function eliminarPregunta() {
+	var idPregunta = $("#botonEliminar").val();
+	//var idProducto = $("#idProducto").text();
 	
 	
 	var token = $("meta[name='_csrf']").attr("content");
@@ -18,14 +19,14 @@ function anadirPregunta() {
 		type: "POST",
 		
 	success: function(preguntadto) {
-		/*if(response == "true"){
-			*/
+		if(response == "true"){
+			
 		var textoPregunta = preguntadto.textoPregunta;
 		var usuarioPregunta = preguntadto.usuarioPregunta;
 	
-		/*$.getJSON("/pregunta/buscarUno",function(result){
+		$.getJSON("/pregunta/buscarUno",function(result){
 			alert("hola");
-		})*/
+		})
 		
 		pregunta = "<div class='card border-primary m-3'>" + 
 			"<div class='card-body'>" +
@@ -35,14 +36,16 @@ function anadirPregunta() {
 			"</div>" +
 		"</div> "
 		$('#preguntas').append(pregunta);
-		/*}
+		}
 		else{
 			location.replace("/usuario/login");
-		}*/
+		}
 	},
 	error: function(xhr,status,error){
 		alerta= "<div> No se ha podido realizar la pregunta </div>";
 		$('#algo').html(alerta);
 	}
+	
 	});
-}
+	}
+		

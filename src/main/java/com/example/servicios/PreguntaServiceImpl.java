@@ -1,5 +1,6 @@
 package com.example.servicios;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.transaction.Transactional;
@@ -9,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import com.example.dao.PreguntaDao;
 import com.example.entidades.Pregunta;
+import com.example.entidades.PreguntaDTO;
 import com.example.entidades.Producto;
 
 @Transactional
@@ -24,13 +26,42 @@ public class PreguntaServiceImpl implements PreguntaService{
 	}
 
 	@Override
-	public List<Pregunta> mostrarPreguntasProducto(Producto producto) {
-		return preguntaDao.mostrarPreguntas(producto);		
+	public List<PreguntaDTO> mostrarPreguntasProducto(Producto producto) {
+		
+		List<PreguntaDTO> preguntitas = new ArrayList<>();
+		List<Pregunta> preguntas =  preguntaDao.mostrarPreguntas(producto);
+		
+		for(Pregunta p : preguntas) {
+			
+			PreguntaDTO dto = new PreguntaDTO();
+		
+			dto.setIdPregunta(p.getIdPregunta());
+		    dto.setTextoPregunta(p.getTextoPregunta());
+		    dto.setFechaPregunta(p.getFechaPregunta());
+		    dto.setUsuarioPregunta(p.getUsuarioPregunta());
+		    dto.setIdProducto(p.getProducto().getIdProducto());
+		    dto.setNombreProducto(p.getProducto().getNombreProducto());
+		    
+		    preguntitas.add(dto);
+		}
+		
+		return preguntitas;
 	}
 
 	@Override
-	public Pregunta buscarPregunta(long idPregunta) {
-		return preguntaDao.buscar(idPregunta);
+	public PreguntaDTO buscarPregunta(long idPregunta) {
+		
+		Pregunta p =preguntaDao.buscar(idPregunta);
+		
+		PreguntaDTO dto = new PreguntaDTO();
+		dto.setIdPregunta(p.getIdPregunta());
+	    dto.setTextoPregunta(p.getTextoPregunta());
+	    dto.setFechaPregunta(p.getFechaPregunta());
+	    dto.setUsuarioPregunta(p.getUsuarioPregunta());
+	    dto.setIdProducto(p.getProducto().getIdProducto());
+	    dto.setNombreProducto(p.getProducto().getNombreProducto());
+		
+		return dto;
 	}
 
 
