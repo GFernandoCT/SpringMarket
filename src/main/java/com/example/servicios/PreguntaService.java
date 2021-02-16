@@ -12,6 +12,10 @@ public interface PreguntaService {
 	
 	public List<PreguntaDTO> mostrarPreguntasProducto(Producto producto);
 
-	public PreguntaDTO buscarPregunta(long idPregunta);
+	public PreguntaDTO buscarPreguntaDTO(long idPregunta);
+	
+	public Pregunta buscarPregunta(long idPregunta);
+	
+	public void borrarPregunta(long idPregunta);
 	
 }

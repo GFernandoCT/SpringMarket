@@ -22,6 +22,7 @@ function anadirPregunta() {
 			*/
 		var textoPregunta = preguntadto.textoPregunta;
 		var usuarioPregunta = preguntadto.usuarioPregunta;
+		var idPregunta = preguntadto.idPregunta;
 	
 		/*$.getJSON("/pregunta/buscarUno",function(result){
 			alert("hola");
@@ -32,6 +33,7 @@ function anadirPregunta() {
 				"<h4 class='card-title'> <span>" + textoPregunta + "</span></h4>" +
 				"<h6 class='card-subtitle mb-2 text-muted'>" + usuarioPregunta + "</h6> " +
 				"<p class='card-text'>Aquí tiene que ir la respuesta de la pregunta.</p>" +
+				"<a id='botonEliminar' value="+ idPregunta +" type='button' class='btn btn-danger btn-sm float-right borrar'>Borrar Pregunta</a>" +
 			"</div>" +
 		"</div> "
 		$('#preguntas').append(pregunta);

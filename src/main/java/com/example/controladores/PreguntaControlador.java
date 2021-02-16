@@ -57,7 +57,7 @@ public class PreguntaControlador {
 		
 		Pregunta p = preguntaService.crearPregunta(preguntaCompleta);
 		
-		return preguntaService.buscarPregunta(p.getIdPregunta());
+		return preguntaService.buscarPreguntaDTO(p.getIdPregunta());
 		
 		}
 		
@@ -65,10 +65,23 @@ public class PreguntaControlador {
 	
 	}
 	
-	@RequestMapping(value = "/buscarUno", method = RequestMethod.GET)
+	@RequestMapping(value = "/eliminarPregunta/{idPregunta}", method = RequestMethod.POST)
+	@ResponseBody
+	public long eliminarPregunta(@PathVariable("idPregunta") Long idPregunta,
+			HttpServletRequest request) {
+		
+		HttpSession session = request.getSession();
+		if (session != null && session.getAttribute("idUsuario") != null) {
+			preguntaService.borrarPregunta(idPregunta);
+			return idPregunta;
+			}
+			else return 0L;
+	}
+	
+	/*@RequestMapping(value = "/buscarUno", method = RequestMethod.GET)
 	public PreguntaDTO buscarModulo() {
 		PreguntaDTO pregunta = preguntaService.buscarPregunta(1L);
 		return pregunta;
-	}
+	}*/
 
 }

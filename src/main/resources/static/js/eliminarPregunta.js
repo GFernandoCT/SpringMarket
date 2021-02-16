@@ -1,51 +1,58 @@
-$("body").on("click", "#botonEliminar", eliminarPregunta);
+//$("body").on("click", "#botonEliminar", eliminarPregunta);
 
+
+/*function alerta(){
+	alert("fhsjdak");
+}*/
 
 function eliminarPregunta() {
-	var idPregunta = $("#botonEliminar").val();
+	
+	//var idPregunta = $("#botonEliminar").val();
+	var idPregunta = 1;
 	//var idProducto = $("#idProducto").text();
-	
-	
+	//var idPregunta = $(this).closest()
+
 	var token = $("meta[name='_csrf']").attr("content");
 	var header = $("meta[name='_csrf_header']").attr("content");
 	$(document).ajaxSend(function(e, xhr, options) {
 		xhr.setRequestHeader(header, token);
 	});
-	
+
 	$.ajax({
-		url: "/pregunta/preguntas/" + preguntaSubir + "/" + idProducto,
+		url: "/pregunta/eliminarPregunta/" + idPregunta,
 		contentType: "application/json; charset=utf-8",
-		data: {"preguntaSubir":preguntaSubir, "idProducto":idProducto},
+		data: { "idPregunta": idPregunta },
 		type: "POST",
-		
-	success: function(preguntadto) {
-		if(response == "true"){
-			
-		var textoPregunta = preguntadto.textoPregunta;
-		var usuarioPregunta = preguntadto.usuarioPregunta;
-	
-		$.getJSON("/pregunta/buscarUno",function(result){
-			alert("hola");
-		})
-		
-		pregunta = "<div class='card border-primary m-3'>" + 
-			"<div class='card-body'>" +
-				"<h4 class='card-title'> <span>" + textoPregunta + "</span></h4>" +
-				"<h6 class='card-subtitle mb-2 text-muted'>" + usuarioPregunta + "</h6> " +
-				"<p class='card-text'>Aquí tiene que ir la respuesta de la pregunta.</p>" +
-			"</div>" +
-		"</div> "
-		$('#preguntas').append(pregunta);
+
+		success: function(preguntadto) {
+			//if(response == "true"){
+
+			$(obj).closest("div").remove();
+
+			/*}
+			else{
+				location.replace("/usuario/login");
+			}*/
+		},
+		error: function(xhr, status, error) {
+			alerta = "<div> No se ha podido eliminar la pregunta </div>";
+			$('#algo').html(alerta);
 		}
-		else{
-			location.replace("/usuario/login");
-		}
-	},
-	error: function(xhr,status,error){
-		alerta= "<div> No se ha podido realizar la pregunta </div>";
-		$('#algo').html(alerta);
-	}
-	
+
 	});
+}
+
+$(document).ready(function() {
+	var boton = document.getElementsByClassName('borrar');
+	for (var i = 0; i < boton.length; i++) {
+		boton[i].addEventListener('click', eliminarPregunta, false);
 	}
-		
+	/*});
+	
+	$(document).ready(function() {
+	var boton = document.getElementsByClassName('borrar');
+	for (var i = 0; i < boton.length; i++) {
+		boton[i].addEventListener('click', alerta, false);
+	}*/
+	
+});	

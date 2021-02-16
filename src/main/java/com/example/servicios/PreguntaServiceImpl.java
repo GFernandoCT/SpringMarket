@@ -49,7 +49,7 @@ public class PreguntaServiceImpl implements PreguntaService{
 	}
 
 	@Override
-	public PreguntaDTO buscarPregunta(long idPregunta) {
+	public PreguntaDTO buscarPreguntaDTO(long idPregunta) {
 		
 		Pregunta p =preguntaDao.buscar(idPregunta);
 		
@@ -64,6 +64,17 @@ public class PreguntaServiceImpl implements PreguntaService{
 		return dto;
 	}
 
+	@Override
+	public Pregunta buscarPregunta(long idPregunta) {
+		Pregunta p =preguntaDao.buscar(idPregunta);
+		return p;
+	}
 
+	@Override
+	public void borrarPregunta(long idPregunta) {
+		preguntaDao.borrar(idPregunta);
+	}
+	
+	
 
 }
