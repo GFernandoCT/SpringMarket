@@ -1,16 +1,12 @@
-//$("body").on("click", "#botonEliminar", eliminarPregunta);
+$("body").on("click", "#botonEliminar", eliminarPregunta);
 
 
-/*function alerta(){
-	alert("fhsjdak");
-}*/
+
 
 function eliminarPregunta() {
-	
-	//var idPregunta = $("#botonEliminar").val();
-	var idPregunta = 1;
-	//var idProducto = $("#idProducto").text();
-	//var idPregunta = $(this).closest()
+		
+	var obj = $(this);
+	var idPregunta = $(this).closest("div").find("#botonEliminar").attr("value");
 
 	var token = $("meta[name='_csrf']").attr("content");
 	var header = $("meta[name='_csrf_header']").attr("content");
@@ -27,7 +23,7 @@ function eliminarPregunta() {
 		success: function(preguntadto) {
 			//if(response == "true"){
 
-			$(obj).closest("div").remove();
+			$(obj).closest("div.card").remove();
 
 			/*}
 			else{
@@ -42,17 +38,17 @@ function eliminarPregunta() {
 	});
 }
 
-$(document).ready(function() {
+/*$(document).ready(function() {
 	var boton = document.getElementsByClassName('borrar');
 	for (var i = 0; i < boton.length; i++) {
 		boton[i].addEventListener('click', eliminarPregunta, false);
 	}
-	/*});
+	});
 	
 	$(document).ready(function() {
 	var boton = document.getElementsByClassName('borrar');
 	for (var i = 0; i < boton.length; i++) {
 		boton[i].addEventListener('click', alerta, false);
-	}*/
+	}
 	
-});	
+});	*/

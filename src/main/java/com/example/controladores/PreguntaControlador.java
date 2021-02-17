@@ -60,7 +60,6 @@ public class PreguntaControlador {
 		return preguntaService.buscarPreguntaDTO(p.getIdPregunta());
 		
 		}
-		
 		else return null;
 	
 	}

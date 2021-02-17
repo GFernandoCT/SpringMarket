@@ -103,9 +103,9 @@ img {
 		<th:block th:each="preguntas : ${preguntas}">
 			<div class="card border-primary m-3">
 			<div class="card-body">
-				<h4 class="card-title"><span th:text="${preguntas.textoPregunta}">Pregunta</span></h4>
+				<h4 class="card-title" id="prueba2"><span  th:text="${preguntas.textoPregunta}">Pregunta</span></h4>
 				<h6 class="card-subtitle mb-2 text-muted" th:text="${preguntas.usuarioPregunta}">Card subtitle</h6>
-				<p class="card-text">Aquí tiene que ir la respuesta de la pregunta.</p>
+				<p class="card-text" value="fsfs" id="texto">Aquí tiene que ir la respuesta de la pregunta.</p>
 				<a id="botonEliminar" th:value="${preguntas.idPregunta}" type="button" class="btn btn-danger btn-sm float-right borrar">Borrar
 						Pregunta</a>
 			</div>

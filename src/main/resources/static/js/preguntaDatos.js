@@ -18,15 +18,12 @@ function anadirPregunta() {
 		type: "POST",
 		
 	success: function(preguntadto) {
-		/*if(response == "true"){
-			*/
+		if(preguntadto.idPregunta == null)
+			location.replace("/usuario/login");
+		else{
 		var textoPregunta = preguntadto.textoPregunta;
 		var usuarioPregunta = preguntadto.usuarioPregunta;
 		var idPregunta = preguntadto.idPregunta;
-	
-		/*$.getJSON("/pregunta/buscarUno",function(result){
-			alert("hola");
-		})*/
 		
 		pregunta = "<div class='card border-primary m-3'>" + 
 			"<div class='card-body'>" +
@@ -37,10 +34,7 @@ function anadirPregunta() {
 			"</div>" +
 		"</div> "
 		$('#preguntas').append(pregunta);
-		/*}
-		else{
-			location.replace("/usuario/login");
-		}*/
+		}
 	},
 	error: function(xhr,status,error){
 		alerta= "<div> No se ha podido realizar la pregunta </div>";
