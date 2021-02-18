@@ -8,18 +8,21 @@ public class PreguntaDTO {
 	
 	private String usuarioPregunta;
 	
+	private Long idUsuarioPregunta;
+	
 	private String fechaPregunta;
 
 	private Long idProducto;
 	
 	private String nombreProducto;
 
-	public PreguntaDTO(Long idPregunta, String textoPregunta, String usuarioPregunta, String fechaPregunta,
+	public PreguntaDTO(Long idPregunta, String textoPregunta, String usuarioPregunta, Long idUsuarioPregunta, String fechaPregunta,
 			Long idProducto, String nombreProducto) {
 		super();
 		this.idPregunta = idPregunta;
 		this.textoPregunta = textoPregunta;
 		this.usuarioPregunta = usuarioPregunta;
+		this.idUsuarioPregunta = idUsuarioPregunta;
 		this.fechaPregunta = fechaPregunta;
 		this.idProducto = idProducto;
 		this.nombreProducto = nombreProducto;
@@ -74,6 +77,14 @@ public class PreguntaDTO {
 
 	public void setNombreProducto(String nombreProducto) {
 		this.nombreProducto = nombreProducto;
+	}
+
+	public Long getIdUsuarioPregunta() {
+		return idUsuarioPregunta;
+	}
+
+	public void setIdUsuarioPregunta(Long idUsuarioPregunta) {
+		this.idUsuarioPregunta = idUsuarioPregunta;
 	}
 	
 	

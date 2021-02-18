@@ -43,17 +43,17 @@ public class PreguntaControlador {
 		if (session != null && session.getAttribute("idUsuario") != null) {
 			
 		Usuario usuario = usuarioService.obtenerUsuario((long) request.getSession().getAttribute("idUsuario"));
-		String nombreUsuario = usuario.getNombreUsuario();
 		
 		Date fecha = new Date();	
 		
 		pregunta = "¿" + pregunta + "?";
 		
-		Pregunta preguntaCompleta = new Pregunta(pregunta,nombreUsuario,fecha.toString());
+		Pregunta preguntaCompleta = new Pregunta(pregunta,fecha.toString());
 
 		Producto producto = productoService.obtenerProducto(Long.parseLong(idProducto));
 		
 		producto.anadirPregunta(preguntaCompleta);
+		usuario.anadirPregunta(preguntaCompleta);
 		
 		Pregunta p = preguntaService.crearPregunta(preguntaCompleta);
 		

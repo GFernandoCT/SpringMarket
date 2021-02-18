@@ -51,11 +51,11 @@ public class ProductoControlador {
 
 		ModelAndView mav = new ModelAndView();
 		Producto producto = productoService.obtenerProducto(idProducto);
-		Boolean propietario = false;
+		Long propietario = 0L;
 
 		if (request.getSession().getAttribute("idUsuario") != null) {
 			long idSession = (long) request.getSession().getAttribute("idUsuario");
-			propietario = idSession == idProducto;
+			propietario = idSession;
 		}
 
 		Imagen img = null;

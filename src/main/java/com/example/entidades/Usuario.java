@@ -35,7 +35,9 @@ public class Usuario implements Serializable{
 	@JoinTable(name = "USUARIO_ROL", joinColumns = @JoinColumn(name = "ID_USUARIO"), inverseJoinColumns = @JoinColumn(name = "ID_ROL"))
 	private Set<Rol> roles = new HashSet<>();
 	
-
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "cliente", cascade = CascadeType.ALL, orphanRemoval = true)
+	private Set<Pregunta> preguntas = new HashSet<>();
+	
 	@Column(name= "NOMBRE", unique = true)
 	private String nombreUsuario;
 	
@@ -210,6 +212,25 @@ public class Usuario implements Serializable{
 		this.roles.remove(rol);
 		rol.getUsuarios().remove(this);
 	}
+
 	
+	//Metodos One-to-many con Pregunta
+	public Set<Pregunta> getPreguntas() {
+		return preguntas;
+	}
+
+	public void setPreguntas(Set<Pregunta> preguntas) {
+		this.preguntas = preguntas;
+	}
+	
+	public boolean anadirPregunta(Pregunta pregunta) {
+	    pregunta.setCliente(this);
+		return getPreguntas().add(pregunta);
+	}
+
+	public void eliminarPregunta(Pregunta pregunta) {
+		pregunta.setCliente(null);
+		this.preguntas.remove(pregunta);
+	}	
 	
 }

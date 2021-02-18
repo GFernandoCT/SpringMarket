@@ -38,7 +38,8 @@ public class PreguntaServiceImpl implements PreguntaService{
 			dto.setIdPregunta(p.getIdPregunta());
 		    dto.setTextoPregunta(p.getTextoPregunta());
 		    dto.setFechaPregunta(p.getFechaPregunta());
-		    dto.setUsuarioPregunta(p.getUsuarioPregunta());
+		    dto.setUsuarioPregunta(p.getCliente().getNombreUsuario());
+		    dto.setIdUsuarioPregunta(p.getCliente().getIdUsuario());
 		    dto.setIdProducto(p.getProducto().getIdProducto());
 		    dto.setNombreProducto(p.getProducto().getNombreProducto());
 		    
@@ -57,7 +58,8 @@ public class PreguntaServiceImpl implements PreguntaService{
 		dto.setIdPregunta(p.getIdPregunta());
 	    dto.setTextoPregunta(p.getTextoPregunta());
 	    dto.setFechaPregunta(p.getFechaPregunta());
-	    dto.setUsuarioPregunta(p.getUsuarioPregunta());
+	    dto.setUsuarioPregunta(p.getCliente().getNombreUsuario());
+	    dto.setIdUsuarioPregunta(p.getCliente().getIdUsuario());
 	    dto.setIdProducto(p.getProducto().getIdProducto());
 	    dto.setNombreProducto(p.getProducto().getNombreProducto());
 		

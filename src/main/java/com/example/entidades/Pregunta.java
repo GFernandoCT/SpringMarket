@@ -24,9 +24,6 @@ public class Pregunta {
 	@Column(name = "TEXTOPREGUNTA")
 	private String textoPregunta;
 	
-	@Column(name = "USUARIOPREGUNTA")
-	private String usuarioPregunta;
-	
 	@Column(name = "FECHAPREGUNTA")
 	private String fechaPregunta;
 
@@ -34,15 +31,19 @@ public class Pregunta {
 	@JoinColumn(name = "ID_PRODUCTO")
 	private Producto producto;
 	
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "ID_USUARIO")
+	private Usuario cliente;
+
+
 
 	public Pregunta() {
 		super();
 	}
 	
-	public Pregunta(String textoPregunta, String usuarioPregunta, String fechaPregunta) {
+	public Pregunta(String textoPregunta, String fechaPregunta) {
 		super();
 		this.textoPregunta = textoPregunta;
-		this.usuarioPregunta = usuarioPregunta;
 		this.fechaPregunta = fechaPregunta;
 	}
 
@@ -62,14 +63,6 @@ public class Pregunta {
 		this.textoPregunta = textoPregunta;
 	}
 
-	public String getUsuarioPregunta() {
-		return usuarioPregunta;
-	}
-
-	public void setUsuarioPregunta(String usuarioPregunta) {
-		this.usuarioPregunta = usuarioPregunta;
-	}
-
 	public String getFechaPregunta() {
 		return fechaPregunta;
 	}
@@ -85,4 +78,14 @@ public class Pregunta {
 	public void setProducto(Producto producto) {
 		this.producto = producto;
 	}
+	
+	public Usuario getCliente() {
+		return cliente;
+	}
+
+	public void setCliente(Usuario cliente) {
+		this.cliente = cliente;
+	}
+	
+	
 }
