@@ -108,6 +108,12 @@ img {
 				<p class="card-text" value="fsfs" id="texto">Aquí tiene que ir la respuesta de la pregunta.</p>
 				<a th:if="${#authorization.expression('hasRole(''ROL_ADMIN'')')} or ${propietario} == ${preguntas.idUsuarioPregunta}" id="botonEliminar" th:value="${preguntas.idPregunta}" type="button" class="btn btn-danger btn-sm float-right borrar">Borrar
 						Pregunta</a>
+				<div>
+				<button class="btn btn-primary my-2" id="respuestaBoton">Añadir respuesta</button>
+					<input type="text" class="form-control w-50 bg-primary" id="respuesta"
+						placeholder="¿Tienes alguna pregunta sobre el vehiculo?"
+						name="preguntaSubir">
+				</div>
 			</div>
 		</div>
 			

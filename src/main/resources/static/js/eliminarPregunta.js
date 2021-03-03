@@ -1,8 +1,6 @@
 $("body").on("click", "#botonEliminar", eliminarPregunta);
 
 
-
-
 function eliminarPregunta() {
 		
 	var obj = $(this);

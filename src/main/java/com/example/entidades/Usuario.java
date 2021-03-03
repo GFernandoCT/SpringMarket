@@ -38,6 +38,9 @@ public class Usuario implements Serializable{
 	@OneToMany(fetch = FetchType.EAGER, mappedBy = "cliente", cascade = CascadeType.ALL, orphanRemoval = true)
 	private Set<Pregunta> preguntas = new HashSet<>();
 	
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "cliente", cascade = CascadeType.ALL, orphanRemoval = true)
+	private Set<Respuesta> respuestas = new HashSet<>();
+
 	@Column(name= "NOMBRE", unique = true)
 	private String nombreUsuario;
 	
@@ -233,4 +236,25 @@ public class Usuario implements Serializable{
 		this.preguntas.remove(pregunta);
 	}	
 	
+
+	// Metodos one to many con respuesta
+	public Set<Respuesta> getRespuestas() {
+		return respuestas;
+	}
+
+	public void setRespuestas(Set<Respuesta> respuestas) {
+		this.respuestas = respuestas;
+	}
+	
+	public void anadirRespuesta(Respuesta respuesta) {
+		this.respuestas.add(respuesta);
+		respuesta.setCliente(this);
+	}
+	
+	public void eliminarRespuesta(Respuesta respuesta){
+		respuesta.setCliente(null);
+		this.respuestas.remove(respuesta);
+		
+	}
 }
+

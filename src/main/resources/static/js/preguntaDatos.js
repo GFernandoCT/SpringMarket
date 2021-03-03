@@ -1,6 +1,14 @@
 $("body").on("click", "#botonPregunta", anadirPregunta);
 
+$("body").on("click", "#respuestaBoton", abrirPanel);
+
+function abrirPanel() {
+	
+	$("#respuesta").hide();
+	};
+
 function anadirPregunta() {
+
 	var preguntaSubir = $("#pregunta").val();
 	var idProducto = $("#idProducto").text();
 	
