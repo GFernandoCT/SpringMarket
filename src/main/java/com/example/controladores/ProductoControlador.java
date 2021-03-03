@@ -20,11 +20,14 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.example.entidades.Imagen;
+import com.example.entidades.Pregunta;
 import com.example.entidades.PreguntaDTO;
 import com.example.entidades.Producto;
 import com.example.entidades.ProductoCarrito;
+import com.example.entidades.RespuestaDTO;
 import com.example.servicios.PreguntaService;
 import com.example.servicios.ProductoServicio;
+import com.example.servicios.RespuestaServicio;
 import com.example.servicios.UsuarioServicio;
 
 @Controller
@@ -39,6 +42,9 @@ public class ProductoControlador {
 	
 	@Autowired
 	PreguntaService preguntaService;
+	
+	@Autowired
+	RespuestaServicio respuestaService;
 	
 	@RequestMapping("/prueba")
 	public String hola(Model modelo) {
@@ -68,16 +74,32 @@ public class ProductoControlador {
 		
 		
 		List<PreguntaDTO> preguntas = new ArrayList<>();
+		List<RespuestaDTO> respuestas = new ArrayList<>();	
 		
 		if(preguntaService.mostrarPreguntasProducto(producto) != null) {
 			preguntas = preguntaService.mostrarPreguntasProducto(producto);
+			
+			
+			
+				for(PreguntaDTO p : preguntas) {
+					List<RespuestaDTO> respuestasDto = new ArrayList<>();
+					Pregunta pregunta = preguntaService.buscarPregunta(p.getIdPregunta());
+					
+					if(respuestaService.mostrarRespuestasPregunta(pregunta) != null) {
+					respuestasDto = respuestaService.mostrarRespuestasPregunta(pregunta);
+				
+					for(RespuestaDTO r : respuestasDto) {
+						respuestas.add(r);
+					}
+				}
+			}
 		}
-		
 
 		mav.addObject("imagen", img);
 		mav.addObject("propietario", propietario);
 		mav.addObject("producto", producto);
 		mav.addObject("preguntas",preguntas);
+		mav.addObject("respuestas",respuestas);
 		mav.setViewName("producto/datos");
 		return mav;
 	}

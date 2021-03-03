@@ -56,7 +56,7 @@ public class Respuesta {
 		return idRespuesta;
 	}
 
-	public void setIdRsepuesta(Long idPregunta) {
+	public void setIdRespuesta(Long idPregunta) {
 		this.idRespuesta = idPregunta;
 	}
 

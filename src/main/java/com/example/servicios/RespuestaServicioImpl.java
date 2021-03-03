@@ -10,7 +10,6 @@ import org.springframework.stereotype.Service;
 
 import com.example.dao.RespuestaDao;
 import com.example.entidades.Pregunta;
-import com.example.entidades.PreguntaDTO;
 import com.example.entidades.Respuesta;
 import com.example.entidades.RespuestaDTO;
 
@@ -55,17 +54,23 @@ public class RespuestaServicioImpl implements RespuestaServicio{
 	@Override
 	public List<RespuestaDTO> mostrarRespuestasPregunta(Pregunta pregunta) {
 		
-	//TODO mostrarPreguntas
-		
 		List<RespuestaDTO> respuestasDTO = new ArrayList<>();
 		List<Respuesta> respuestas =  respuestaDao.mostrarRespuestas(pregunta);
 		
-		for(Pregunta p : respuestas) {
+		for(Respuesta r : respuestas) {
+			RespuestaDTO dto = new RespuestaDTO();
+			
+			dto.setIdRespuesta(r.getIdRespuesta());
+		    dto.setTextoRespuesta(r.getTextoRespuesta());
+		    dto.setFechaRespuesta(r.getFechaRespuesta());
+		    dto.setUsuarioRespuesta(r.getCliente().getNombreUsuario());
+		    dto.setIdUsuarioRespuesta(r.getCliente().getIdUsuario());
+		    dto.setIdPregunta(r.getPregunta().getIdPregunta());
+		    
+			respuestasDTO.add(dto);
 		}
-		
 
-		
-		return null;
+		return respuestasDTO;
 	}	
 
 

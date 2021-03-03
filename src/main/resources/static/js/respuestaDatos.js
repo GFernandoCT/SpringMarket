@@ -2,17 +2,15 @@ $("body").on("click", "#respuestaBoton", abrirPanel);
 $("body").on("click", "#botonRespuestaSubir", subirRespuesta);
 
 function abrirPanel(){
-	$("#respuestaCaja").removeClass("d-none");
+	$(this).closest("div").find("#respuestaCaja").removeClass("d-none");
 };
 
 
 function subirRespuesta() {
 	
-	var respuestaSubir = $("#respuesta").val();
 	var obj = $(this);
-	var idPregunta = $(this).closest("div").find("#botonRespuestaSubir").attr("value");
-
-	alert(idPregunta);
+	var respuestaSubir = $(obj).closest("div").find("#respuesta").val();
+	var idPregunta = $(obj).closest("div").find("#botonRespuestaSubir").attr("value");
 
 	var token = $("meta[name='_csrf']").attr("content");
 	var header = $("meta[name='_csrf_header']").attr("content");
@@ -27,13 +25,27 @@ function subirRespuesta() {
 		type: "POST",
 
 		success: function(respuestaDto) {
-			//if(response == "true"){
-			alert("fasdfas");
-			//}
-			//else{
-			//	location.replace("/usuario/login");
-			//}
+
+			if(respuestaDto.idRespuesta != null){
+			
+			var textoRespuesta = respuestaDto.textoRespuesta;
+			var usuarioRespuesta = respuestaDto.usuarioRespuesta;
+			var idRespuesta = respuestaDto.idRespuesta;
+			
+				respuesta =
+					"<div class='card-body border border-primary px-5 p-3 my-3'>" +
+						"<h4 class='card-title'> <span>" + textoRespuesta + "</span></h4>" +
+						"<h6 class='card-subtitle mb-2 text-muted'>" + usuarioRespuesta + "</h6> " +
+						"<p class='card-text'>Aquí tiene que ir la respuesta de la pregunta.</p>" +
+						"<a id='botonEliminar' value=" + idRespuesta + " type='button' class='btn btn-danger btn-sm borrar'>Borrar Pregunta</a>" +
+					"</div>"
+		$(obj).closest('#respuestaCaja').append(respuesta);
+			}
+			else{
+				location.replace("/usuario/login");
+			}
 		},
+		
 		error: function(xhr, status, error) {
 			alerta = "<div> No se ha podido eliminar la pregunta </div>";
 			$('#algo').html(alerta);
