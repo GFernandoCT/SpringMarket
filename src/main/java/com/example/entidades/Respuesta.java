@@ -17,7 +17,7 @@ public class Respuesta {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "ID_RESPUESTA")
-	private Long idPregunta;
+	private Long idRespuesta;
 	
 	@Column(name = "TEXTORESPUESTA")
 	private String textoRespuesta;
@@ -41,12 +41,23 @@ public class Respuesta {
 	@JoinColumn(name = "ID_USUARIO")
 	private Usuario cliente;
 
-	public Long getIdPregunta() {
-		return idPregunta;
+	
+	public Respuesta() {
+		super();
+	}
+	
+	public Respuesta(String textoRespuesta, String fechaRespuesta) {
+		super();
+		this.textoRespuesta = textoRespuesta;
+		this.fechaRespuesta = fechaRespuesta;
+	}
+	
+	public Long getIdRespuesta() {
+		return idRespuesta;
 	}
 
-	public void setIdPregunta(Long idPregunta) {
-		this.idPregunta = idPregunta;
+	public void setIdRsepuesta(Long idPregunta) {
+		this.idRespuesta = idPregunta;
 	}
 
 	public String getTextoRespuesta() {

@@ -15,9 +15,12 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.example.entidades.Pregunta;
 import com.example.entidades.PreguntaDTO;
 import com.example.entidades.Producto;
+import com.example.entidades.Respuesta;
+import com.example.entidades.RespuestaDTO;
 import com.example.entidades.Usuario;
 import com.example.servicios.PreguntaService;
 import com.example.servicios.ProductoServicio;
+import com.example.servicios.RespuestaServicio;
 import com.example.servicios.UsuarioServicio;
 
 @Controller
@@ -28,10 +31,14 @@ public class PreguntaControlador {
 	PreguntaService preguntaService;
 	
 	@Autowired
+	RespuestaServicio respuestaService;
+	
+	@Autowired
 	UsuarioServicio usuarioService;
 	
 	@Autowired
 	ProductoServicio productoService;
+	
 	
 	@RequestMapping(value = "/preguntas/{preguntaSubir}/{idProducto}", method = RequestMethod.POST)
 	@ResponseBody
@@ -63,6 +70,38 @@ public class PreguntaControlador {
 		else return null;
 	
 	}
+	
+	@RequestMapping(value = "/respuesta/{preguntaSubir}/{idPregunta}", method = RequestMethod.POST)
+	@ResponseBody
+	public RespuestaDTO anadirRespuesta(@PathVariable("preguntaSubir") String respuesta,
+			@PathVariable("idPregunta") String idPregunta,
+			HttpServletRequest request) {
+		
+		HttpSession session = request.getSession();
+		if (session != null && session.getAttribute("idUsuario") != null) {
+			
+		Usuario usuario = usuarioService.obtenerUsuario((long) request.getSession().getAttribute("idUsuario"));
+		
+		Date fecha = new Date();
+		
+		Respuesta respuestaCompleta = new Respuesta(respuesta,fecha.toString());
+
+		Pregunta pregunta = preguntaService.buscarPregunta(Long.parseLong(idPregunta));
+		
+		//Producto producto = productoService.obtenerProducto(Long.parseLong(idProducto));
+		
+		pregunta.anadirRespuesta(respuestaCompleta);
+		usuario.anadirRespuesta(respuestaCompleta);
+		
+		Respuesta r = respuestaService.crearRespuesta(respuestaCompleta);
+		
+		return respuestaService.buscarRespuestaDTO(r.getIdRespuesta());
+		
+		}
+		else return null;
+	
+	}
+	
 	
 	@RequestMapping(value = "/eliminarPregunta/{idPregunta}", method = RequestMethod.POST)
 	@ResponseBody

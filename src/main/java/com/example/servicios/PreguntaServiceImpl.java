@@ -52,7 +52,7 @@ public class PreguntaServiceImpl implements PreguntaService{
 	@Override
 	public PreguntaDTO buscarPreguntaDTO(long idPregunta) {
 		
-		Pregunta p =preguntaDao.buscar(idPregunta);
+		Pregunta p = preguntaDao.buscar(idPregunta);
 		
 		PreguntaDTO dto = new PreguntaDTO();
 		dto.setIdPregunta(p.getIdPregunta());
@@ -68,7 +68,7 @@ public class PreguntaServiceImpl implements PreguntaService{
 
 	@Override
 	public Pregunta buscarPregunta(long idPregunta) {
-		Pregunta p =preguntaDao.buscar(idPregunta);
+		Pregunta p = preguntaDao.buscar(idPregunta);
 		return p;
 	}
 
