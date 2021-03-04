@@ -17,8 +17,8 @@ public class RespuestaDaoImpl extends DaoGenericoImpl<Respuesta> implements Resp
 
 	@Override
 	public List<Respuesta> mostrarRespuestas(Pregunta pregunta) {
-		Query query = this.em.createQuery("select u from Pregunta u where u.producto =: idProducto");
-		query.setParameter("idPregunta", pregunta);
+		Query query = this.em.createQuery("select u from Respuesta u where u.pregunta =: Pregunta");
+		query.setParameter("Pregunta", pregunta);
 		List<Respuesta> lPreguntas = query.getResultList();
 		if(lPreguntas != null)
 			return lPreguntas;

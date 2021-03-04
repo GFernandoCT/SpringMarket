@@ -102,24 +102,32 @@ img {
 <div id="preguntas">
 		<th:block th:each="preguntas : ${preguntas}">
 			<div class="card border-primary m-3">
-			<div class="card-body">
+			<div id="contenido" class="card-body">
 				<h4 class="card-title" id="prueba2"><span  th:text="${preguntas.textoPregunta}">Pregunta</span></h4>
 				<h6 class="card-subtitle mb-2 text-muted" th:text="${preguntas.usuarioPregunta}">Card subtitle</h6>
-				<p class="card-text" value="fsfs" id="texto">Aquí tiene que ir la respuesta de la pregunta.</p>
 				<!-- <div id="idPregunta" class="d-none" th:text="${preguntas.idPregunta}"></div> -->
 				<a th:if="${#authorization.expression('hasRole(''ROL_ADMIN'')')} or ${propietario} == ${preguntas.idUsuarioPregunta}" id="botonEliminar" th:value="${preguntas.idPregunta}" type="button" class="btn btn-danger btn-sm float-right borrar">Borrar
 						Pregunta</a>
-				
 				<button class="btn btn-primary my-2" id="respuestaBoton">Añadir respuesta</button>
+				<button class="btn btn-primary my-2" id="mostrarRespuestas">Mostrar Respuestas</button>
 				<div class="d-none" id="respuestaCaja">
 					<input type="text" class="form-control mr-1 w-50 bg-primary float-left" id="respuesta"
 						placeholder="¿Tienes alguna pregunta sobre el vehiculo?"
 						name="respuestaSubir">
 				<button class="btn btn-primary float-left" id="botonRespuestaSubir" th:value="${preguntas.idPregunta}">Subir respuesta</button>	
 				<div id="respuestasPregunta" class="card-body">
-					
 				</div>
-				</div>		
+				</div>	
+				<div id="contenedorRespuestas" class="d-none"> 
+				<th:block th:each="respuestas : ${respuestas}">
+				<div th:if="${respuestas.idPregunta} == ${preguntas.idPregunta}" id="preguntasResueltas" class='card-body border border-primary px-5 p-3 my-3'>
+						<h4 class='card-title'> <span th:text="${respuestas.textoRespuesta}">  textoRespuesta </span></h4>
+						<h6 class='card-subtitle mb-2 text-muted' th:text="${respuestas.usuarioRespuesta}"></h6>
+
+						<a id='botonEliminar' value=" + idRespuesta + " type='button' class='btn btn-danger btn-sm borrar'>Borrar Respuesta</a>
+				</div>
+				</th:block>	
+				</div>
 			</div>
 		</div>
 			

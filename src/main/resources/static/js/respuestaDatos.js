@@ -1,10 +1,14 @@
 $("body").on("click", "#respuestaBoton", abrirPanel);
+$("body").on("click", "#mostrarRespuestas", abrirRespuestas);
 $("body").on("click", "#botonRespuestaSubir", subirRespuesta);
 
 function abrirPanel(){
 	$(this).closest("div").find("#respuestaCaja").removeClass("d-none");
 };
 
+function abrirRespuestas(){
+	$(this).closest("div#contenido").find("#contenedorRespuestas").removeClass("d-none");
+};
 
 function subirRespuesta() {
 	
@@ -36,8 +40,7 @@ function subirRespuesta() {
 					"<div class='card-body border border-primary px-5 p-3 my-3'>" +
 						"<h4 class='card-title'> <span>" + textoRespuesta + "</span></h4>" +
 						"<h6 class='card-subtitle mb-2 text-muted'>" + usuarioRespuesta + "</h6> " +
-						"<p class='card-text'>Aquí tiene que ir la respuesta de la pregunta.</p>" +
-						"<a id='botonEliminar' value=" + idRespuesta + " type='button' class='btn btn-danger btn-sm borrar'>Borrar Pregunta</a>" +
+						"<a id='botonEliminar' value=" + idRespuesta + " type='button' class='btn btn-danger btn-sm borrar'>Borrar Respuesta</a>" +
 					"</div>"
 		$(obj).closest('#respuestaCaja').append(respuesta);
 			}

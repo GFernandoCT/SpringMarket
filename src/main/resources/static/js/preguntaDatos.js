@@ -32,6 +32,15 @@ function anadirPregunta() {
 				"<h6 class='card-subtitle mb-2 text-muted'>" + usuarioPregunta + "</h6> " +
 				"<p class='card-text'>Aquí tiene que ir la respuesta de la pregunta.</p>" +
 				"<a id='botonEliminar' value="+ idPregunta +" type='button' class='btn btn-danger btn-sm float-right borrar'>Borrar Pregunta</a>" +
+				"<button class='btn btn-primary my-2 mr-1' id='respuestaBoton'>Añadir respuesta</button>" + 
+				"<button class='btn btn-primary my-2' id='mostrarRespuestas'>Mostrar Respuestas</button>" +
+				"<div class='d-none' id='respuestaCaja'>" +
+					"<input type='text' class='form-control mr-1 w-50 bg-primary float-left' id='respuesta' " + 
+						"placeholder='¿Tienes alguna pregunta sobre el vehiculo?'" +
+						" name='respuestaSubir'> " +
+				"<button class='btn btn-primary float-left' id='botonRespuestaSubir' value=" + idPregunta + ">Subir respuesta</button>" +	
+				"<div id='respuestasPregunta' class='card-body'>" +
+				"</div>" +
 			"</div>" +
 		"</div> "
 		$('#preguntas').append(pregunta);
