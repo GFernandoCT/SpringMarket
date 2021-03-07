@@ -116,10 +116,46 @@ public class PreguntaControlador {
 			else return 0L;
 	}
 	
+	@RequestMapping(value = "/eliminarRespuesta/{idRespuesta}", method = RequestMethod.POST)
+	@ResponseBody
+	public long eliminarRespuesta(@PathVariable("idRespuesta") Long idRespuesta,
+			HttpServletRequest request) {
+		
+		HttpSession session = request.getSession();
+		if (session != null && session.getAttribute("idUsuario") != null) {
+			respuestaService.borrarRespuesta(idRespuesta);
+			return idRespuesta;
+			}
+			else return 0L;
+	}
+	
+	
+	@RequestMapping(value = "/modificar/{textoCambiar}/{idRespuesta}", method = RequestMethod.POST)
+	@ResponseBody
+	public RespuestaDTO modificarRespuesta(@PathVariable("textoCambiar") String textoCambiar,
+			@PathVariable("idRespuesta") String idRespuesta,
+			HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		if (session != null && session.getAttribute("idUsuario") != null) {
+			
+		Usuario usuario = usuarioService.obtenerUsuario((long) request.getSession().getAttribute("idUsuario"));
+		
+		Respuesta r = respuestaService.buscarRespuesta(Long.parseLong(idRespuesta));
+		r.setTextoRespuesta(textoCambiar);
+		
+		return respuestaService.buscarRespuestaDTO(r.getIdRespuesta());
+		
+		}
+		else return null;
+		
+	}
+	
+		
+	}
+	
 	/*@RequestMapping(value = "/buscarUno", method = RequestMethod.GET)
 	public PreguntaDTO buscarModulo() {
 		PreguntaDTO pregunta = preguntaService.buscarPregunta(1L);
 		return pregunta;
 	}*/
 
-}

@@ -37,10 +37,17 @@ function subirRespuesta() {
 			var idRespuesta = respuestaDto.idRespuesta;
 			
 				respuesta =
-					"<div class='card-body border border-primary px-5 p-3 my-3'>" +
-						"<h4 class='card-title'> <span>" + textoRespuesta + "</span></h4>" +
+					"<div class='card-body border border-primary px-5 p-3 my-3 overflow-hidden' id='preguntasResueltas'>" +
+						"<h4 class='card-title'> <span id='texto'>" + textoRespuesta + "</span></h4>" +
 						"<h6 class='card-subtitle mb-2 text-muted'>" + usuarioRespuesta + "</h6> " +
-						"<a id='botonEliminar' value=" + idRespuesta + " type='button' class='btn btn-danger btn-sm borrar'>Borrar Respuesta</a>" +
+						"<button class='btn btn-primary my-2' id='cambiarRespuesta'>Cambiar Respuesta</button>" +
+						"<div class='d-none m-2 overflow-hidden' id='modificarRespuesta'>" +
+							"<input type='text' class='form-control mr-1 w-50 bg-primary float-left' id='respuestaModificar'" + 
+								"placeholder='¿Tienes alguna pregunta sobre el vehiculo?'" +
+								"name='respuestaSubir'>" + 
+							"<button class='btn btn-primary float-left' id='botonRespuestaModificar' value='" + idRespuesta + "'>Cambiar</button>" +	
+						"</div>" +
+						"<a id='eliminarRespuesta' value=" + idRespuesta + " type='button' class='btn btn-danger btn-sm borrar'>Borrar Respuesta</a>" +
 					"</div>"
 		$(obj).closest('#respuestaCaja').append(respuesta);
 			}
