@@ -32,7 +32,6 @@ function abrirPanel(){
 
 		success: function(respuestaDto) {
 
-			alert(textoRespuesta);
 			textoRespuesta.text(respuestaDto.textoRespuesta);
 			/*if(respuestaDto.idRespuesta != null){
 			
