@@ -47,7 +47,7 @@ function subirRespuesta() {
 								"name='respuestaSubir'>" + 
 							"<button class='btn btn-primary float-left' id='botonRespuestaModificar' value='" + idRespuesta + "'>Cambiar</button>" +	
 						"</div>" +
-						"<a id='eliminarRespuesta' value=" + idRespuesta + " type='button' class='btn btn-danger btn-sm borrar'>Borrar Respuesta</a>" +
+						"<a id='eliminarRespuesta' value=" + idRespuesta + " type='button' class='btn btn-danger btn-sm borrar float-right'>Borrar Respuesta</a>" +
 					"</div>"
 		$(obj).closest('#respuestaCaja').append(respuesta);
 			}
